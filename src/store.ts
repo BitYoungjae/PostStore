@@ -1,12 +1,7 @@
 import { getNodeTree, FileNode, PostNode } from './utils/getNodeTree';
 import { PropList, getPropList } from './propGenerator';
 import { PathList, getPathList, Path } from './pathGenerator';
-import {
-  SlugOption,
-  isPageSlug,
-  getPostsByCategories,
-  pagePathFilter,
-} from './common';
+import { SlugOption, getPostsByCategories, pagePathFilter } from './common';
 import { PostData } from './postParser';
 
 interface PostStore {
