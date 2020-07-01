@@ -9,6 +9,8 @@ export interface SlugOption {
   page?: string;
 }
 
+export const isDev = globalThis.__DEV__;
+
 export const isCategory = (node: FileNode): node is CategoryNode =>
   node.type === 'category';
 export const isPost = (node: FileNode): node is PostNode =>
