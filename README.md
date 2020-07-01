@@ -4,6 +4,12 @@ PostStore는 NEXT.JS와 함께 마크다운 기반 블로그를 만들기 위한
 
 ## 주요 기록
 
+### 2020-07-02
+
+- 증분 빌드 초안 구현 [소스](src/utils/incrementalBuild.ts)
+- 개발 모드 식별을 위한 환경변수 추가 [common.ts](src/common.ts) -> `isDev`
+- tsConfig 기준 code quality 관련 옵션 추가 및 해당 옵션에 맞는 코드 리팩터링 진행.
+
 ### 2020-07-01
 
 **`PostStore` 를 별도의 모듈로 분리하였습니다.**
