@@ -66,12 +66,6 @@ export const getPostsByCategories = (
   return posts;
 };
 
-export const getPostsByTag = (rootNode: FileNode, tag: string) =>
-  findNodeAll(
-    rootNode,
-    (node) => isPost(node) && node.postData.tags.includes(tag),
-  );
-
 export const getPostsByTags = (rootNode: FileNode, tags: string[]) => {
   return findNodeAll(rootNode, (node) => {
     if (!isPost(node)) return false;
