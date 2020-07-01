@@ -1,4 +1,4 @@
-import { getNodeTree, FileNode, PostNode } from './utils/getNodeTree';
+import { getNodeTree, FileNode } from './utils/getNodeTree';
 import { PropList, getPropList } from './propGenerator';
 import { PathList, getPathList, Path } from './pathGenerator';
 import { SlugOption, getPostsByCategories, pagePathFilter } from './common';
