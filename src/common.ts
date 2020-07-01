@@ -1,5 +1,6 @@
 import { FileNode, PostNode, CategoryNode } from './utils/getNodeTree';
 import { findNode, findNodeAll } from './utils/visit';
+import { Path } from './pathGenerator';
 
 export interface SlugOption {
   category?: string;
@@ -114,3 +115,8 @@ export const getPageNum = (slug: string[]): number => {
   if (!isPageSlug(slug)) return -1;
   return +slug[slug.length - 1];
 };
+
+export const pagePathFilter = (pathList: Path[], slug: string) =>
+  pathList
+    .map((path) => path.params[slug])
+    .filter((slug) => !isPageSlug(slug as string[])) as string[][];
