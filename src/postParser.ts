@@ -11,6 +11,7 @@ import rehypePrism from './utils/rehype-prism';
 import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from './utils/sanitizeSchema.json';
 import { slugify } from './utils/slugify';
+import { getCachedData, saveCache } from './utils/incrementalBuild';
 
 const fsPromise = fs.promises;
 
@@ -41,7 +42,10 @@ const getPostTimestamp = async (
 };
 
 export const parsePost = async (filePath: string) => {
-  const rawText = await fsPromise.readFile(filePath);
+  const rawText = await fsPromise.readFile(filePath, 'utf8');
+  const cachedData = getCachedData<PostData>(rawText);
+
+  if (cachedData != null) return cachedData;
 
   const {
     data: { title, date, tags = [], published = true },
@@ -62,6 +66,7 @@ export const parsePost = async (filePath: string) => {
     categories: [],
   };
 
+  saveCache(rawText, post);
   return post;
 };
 
