@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { getStore } from '../src/store';
 import { getPostsByCategories, getPostBySlug } from '../src/common';
 import isEqual from 'lodash.isequal';
