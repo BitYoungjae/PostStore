@@ -1,7 +1,13 @@
 import { getNodeTree, FileNode, PostNode } from './utils/getNodeTree';
 import { PropList, getPropList } from './propGenerator';
 import { PathList, getPathList, Path } from './pathGenerator';
-import { SlugOption, isPageSlug, getPostsByCategories } from './common';
+import {
+  SlugOption,
+  isPageSlug,
+  getPostsByCategories,
+  pagePathFilter,
+} from './common';
+import { PostData } from './postParser';
 
 interface PostStore {
   postDir: string;
@@ -71,20 +77,24 @@ const appendExtraToPost = (
   categoryPathList: Path[],
   categorySlug: string,
 ) => {
-  const trimmedCategories = categoryPathList
-    .map((path) => path.params[categorySlug])
-    .filter((slug) => !isPageSlug(slug as string[])) as string[][];
+  const trimmedCategories = pagePathFilter(categoryPathList, categorySlug);
 
   for (const category of trimmedCategories) {
     const posts = getPostsByCategories(rootNode, category);
-    let prev: PostNode | undefined;
-    for (const post of posts) {
+    let prev: PostData | undefined;
+    for (const { postData: now } of posts) {
       if (prev) {
-        prev.postData.nextPost = post.slug;
-        post.postData.prevPost = prev.slug;
+        now.prevPost = {
+          slug: prev.slug,
+          title: prev.title,
+        };
+        prev.nextPost = {
+          slug: now.slug,
+          title: now.title,
+        };
       }
-      post.postData.categories = category;
-      prev = post;
+      now.categories = category;
+      prev = now;
     }
   }
 };

@@ -14,6 +14,8 @@ import { slugify } from './utils/slugify';
 
 const fsPromise = fs.promises;
 
+interface PostLink extends Pick<PostData, 'slug' | 'title'> {}
+
 export interface PostData {
   slug: string;
   title: string;
@@ -22,8 +24,8 @@ export interface PostData {
   date: number;
   isPublished: boolean;
   categories: string[];
-  prevPost: string;
-  nextPost: string;
+  prevPost?: PostLink;
+  nextPost?: PostLink;
 }
 
 const getPostTimestamp = async (
@@ -58,8 +60,6 @@ export const parsePost = async (filePath: string) => {
     html,
     isPublished: published ? true : false,
     categories: [],
-    prevPost: '',
-    nextPost: '',
   };
 
   return post;
