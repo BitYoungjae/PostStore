@@ -6,8 +6,8 @@ PostStore는 NEXT.JS와 함께 마크다운 기반 블로그를 만들기 위한
 
 ### 2020-07-02
 
-- 증분 빌드 초안 구현 [소스](src/utils/incrementalBuild.ts)
-- 개발 모드 식별을 위한 환경변수 추가 [common.ts](src/common.ts) -> `isDev`
+- 증분 빌드 초안 구현 ([src/utils/incrementalBuild.ts](src/utils/incrementalBuild.ts))
+- 개발 모드 식별을 위한 환경변수 `isDev` 추가 ([src/common.ts](src/common.ts))
 - tsConfig 기준 code quality 관련 옵션 추가 및 해당 옵션에 맞는 코드 리팩터링 진행.
 
 ### 2020-07-01
