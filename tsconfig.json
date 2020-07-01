@@ -2,10 +2,11 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "forceConsistentCasingInFileNames": true,
     "rootDir": "./src",
     "outDir": "./dist",
@@ -23,6 +24,5 @@
       "@lib/*": ["lib/*"]
     }
   },
-  "exclude": ["node_modules", "tests"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "exclude": ["node_modules", "tests", "dist"]
 }
