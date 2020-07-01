@@ -1,9 +1,9 @@
 import fs from 'fs';
-import { getStore } from '../store';
-import { getPostsByCategories, getPostBySlug } from '../common';
+import { getStore } from '../src/store';
+import { getPostsByCategories, getPostBySlug } from '../src/common';
 import isEqual from 'lodash.isequal';
 import { testPath } from './lib/env';
-import { getCategoriesPaths } from '../pathGenerator';
+import { getCategoriesPaths } from '../src/pathGenerator';
 import { snapShotTest } from './lib/snapshotTest';
 
 test('getCategoriesPaths', async () => {

@@ -2,19 +2,19 @@
   "type": "category",
   "name": "testPosts",
   "slug": "testposts",
-  "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts",
+  "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts",
   "children": [
     {
       "type": "category",
       "name": "Javascript",
       "slug": "javascript",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Javascript",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript",
       "children": [
         {
           "type": "post",
           "name": "객체에 대하여.md",
           "slug": "2020-06-23-객체에-대하여",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Javascript/객체에 대하여.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/객체에 대하여.md",
           "postData": {
             "slug": "2020-06-23-객체에-대하여",
             "title": "객체에 대하여 알아봅시다",
@@ -34,7 +34,7 @@
           "type": "post",
           "name": "자바스크립트 개껌이지!!!  😄.md",
           "slug": "2020-06-23-자바스크립트-개껌이지",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Javascript/자바스크립트 개껌이지!!!  😄.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/자바스크립트 개껌이지!!!  😄.md",
           "postData": {
             "slug": "2020-06-23-자바스크립트-개껌이지",
             "title": "개껌이라니까?",
@@ -54,13 +54,13 @@
           "type": "category",
           "name": "특별 시리즈",
           "slug": "특별-시리즈",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Javascript/특별 시리즈",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/특별 시리즈",
           "children": [
             {
               "type": "post",
               "name": "자바스크립트의 모든 것 1탄.md",
               "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Javascript/특별 시리즈/자바스크립트의 모든 것 1탄.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/특별 시리즈/자바스크립트의 모든 것 1탄.md",
               "postData": {
                 "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
                 "title": "자바스크립트의 모든 거엇!",
@@ -85,19 +85,19 @@
       "type": "category",
       "name": "React",
       "slug": "react",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/React",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React",
       "children": [
         {
           "type": "category",
           "name": "꿀팁 정리",
           "slug": "꿀팁-정리",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/React/꿀팁 정리",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/꿀팁 정리",
           "children": [
             {
               "type": "post",
               "name": "개꿀팁 공유합니다.md",
               "slug": "2020-06-29-개꿀팁-공유합니다",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/React/꿀팁 정리/개꿀팁 공유합니다.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/꿀팁 정리/개꿀팁 공유합니다.md",
               "postData": {
                 "slug": "2020-06-29-개꿀팁-공유합니다",
                 "title": "리액트 꾸울팁 공유!!",
@@ -119,13 +119,13 @@
           "type": "category",
           "name": "리액트 핵심정리",
           "slug": "리액트-핵심정리",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/React/리액트 핵심정리",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/리액트 핵심정리",
           "children": [
             {
               "type": "post",
               "name": "리액트의 핵심!!.md",
               "slug": "2020-06-30-리액트의-핵심",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/React/리액트 핵심정리/리액트의 핵심!!.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/리액트 핵심정리/리액트의 핵심!!.md",
               "postData": {
                 "slug": "2020-06-30-리액트의-핵심",
                 "title": "리액트의 핵심을 파헤쳐보자!",
@@ -147,7 +147,7 @@
           "type": "post",
           "name": "행복합니다 정말이요.md",
           "slug": "2020-06-27-행복합니다-정말이요",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/React/행복합니다 정말이요.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/행복합니다 정말이요.md",
           "postData": {
             "slug": "2020-06-27-행복합니다-정말이요",
             "title": "정말 행복하시나요",
@@ -169,13 +169,13 @@
       "type": "category",
       "name": "Redux",
       "slug": "redux",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Redux",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Redux",
       "children": [
         {
           "type": "post",
           "name": "리덕스 저자 직강 정리.md",
           "slug": "2020-06-20-리덕스-저자-직강-정리",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Redux/리덕스 저자 직강 정리.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Redux/리덕스 저자 직강 정리.md",
           "postData": {
             "slug": "2020-06-20-리덕스-저자-직강-정리",
             "title": "리덕스 저자 직강 정리",
@@ -195,7 +195,7 @@
           "type": "post",
           "name": "사랑해요 헬지.md",
           "slug": "2020-06-27-사랑해요-헬지",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/Redux/사랑해요 헬지.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Redux/사랑해요 헬지.md",
           "postData": {
             "slug": "2020-06-27-사랑해요-헬지",
             "title": "정말 행복하시나요",
@@ -217,12 +217,12 @@
       "type": "post",
       "name": "최상위 게시물.md",
       "slug": "2020-07-01-최상위-게시물",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/최상위 게시물.md",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/최상위 게시물.md",
       "postData": {
         "slug": "2020-07-01-최상위-게시물",
         "title": "2020-07-01-최상위-게시물",
         "tags": [],
-        "date": 1593609959946,
+        "date": 1593610748567,
         "html": "<h1 id=\"최상위-게시물입니다\">최상위 게시물입니다</h1>\n<p>또한 프론트메타도 없지요.</p>",
         "isPublished": true,
         "categories": [],
@@ -234,13 +234,13 @@
       "type": "category",
       "name": "테스트용 게시물들",
       "slug": "테스트용-게시물들",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/테스트용 게시물들",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들",
       "children": [
         {
           "type": "post",
           "name": "날짜 없는 게시물.md",
           "slug": "2020-07-01-날짜-없는-게시물",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/테스트용 게시물들/날짜 없는 게시물.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜 없는 게시물.md",
           "postData": {
             "slug": "2020-07-01-날짜-없는-게시물",
             "title": "날짜가 없는 게시물",
@@ -248,7 +248,7 @@
               "다른건",
               "다-있다"
             ],
-            "date": 1593609959947,
+            "date": 1593610748567,
             "html": "<h2 id=\"날짜가-없네요\">날짜가 없네요</h2>\n<p>어찌될까요?</p>",
             "isPublished": true,
             "categories": [],
@@ -260,12 +260,12 @@
           "type": "post",
           "name": "프론트매터가 없는 게시물.md",
           "slug": "2020-07-01-프론트매터가-없는-게시물",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/lib/PostStore/tests/testPosts/테스트용 게시물들/프론트매터가 없는 게시물.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/프론트매터가 없는 게시물.md",
           "postData": {
             "slug": "2020-07-01-프론트매터가-없는-게시물",
             "title": "2020-07-01-프론트매터가-없는-게시물",
             "tags": [],
-            "date": 1593609959948,
+            "date": 1593610748567,
             "html": "<h1 id=\"프론트메타가-없어요\">프론트메타가 없어요</h1>\n<p>어찌될까요?</p>",
             "isPublished": true,
             "categories": [],

@@ -1,5 +1,5 @@
 import { testPath } from './lib/env';
-import { getNodeTree } from '../utils/getNodeTree';
+import { getNodeTree } from '../src/utils/getNodeTree';
 import { snapShotTest } from './lib/snapshotTest';
 
 test('getNodeTree', async () => {
