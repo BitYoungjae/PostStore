@@ -30,7 +30,7 @@ export interface PostData {
   nextPost?: PostLink;
 }
 
-export const parsePost = async (filePath: string) => {
+export const parsePost = async (filePath: string): Promise<PostData> => {
   const rawText = await fsPromise.readFile(filePath, 'utf8');
   const cachedData = getCachedData<PostData>(rawText);
 
