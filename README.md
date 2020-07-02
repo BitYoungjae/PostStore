@@ -14,6 +14,9 @@ npm test
 
 ### 스냅샷 테스트
 
+- 스냅샷 링크 : [스냅샷 디렉터리](tests/snapshot)
+- 스냅샷 테스트 함수 목록 : [스냅샷 디렉터리](scripts/snapshot.ts)
+
 ```bash
 npm run snapshot update
 ```
@@ -41,7 +44,7 @@ npm run snapshot all
 - tsConfig 기준 code quality 관련 옵션 추가 및 해당 옵션에 맞는 코드 리팩터링 진행.
 - 카테고리 순서와 게시물 순서의 일관성을 유지하기 위해 트리 생성시 정렬 기능 추가.
   - [src/utils/getNodeTree.ts 코드](src/utils/getNodeTree.ts#L82-L115)
-  - [sortTest 스냅샷 링크](tests/snapshot/sortTest.snapshot.json)
+  - [sortTest 스냅샷 링크](tests/snapshot/tree/sortTest.snapshot.json)
 - 스냅샷 테스트 관련 cli 추가
 
 ### 2020-07-01
@@ -56,12 +59,12 @@ npm run snapshot all
 - 테스트 개선
   - 스냅샷 테스트를 별도의 유틸로 분리함.
   - `store.propList` 및 `getNodeTree` 스냅샷 테스트 추가
-    - [getNodeTree 스냅샷 링크](tests/snapshot/fileTree.snapshot.json)
-    - [propList.global 스냅샷 링크](tests/snapshot/propList.global.snapshot.json)
-    - [propList.category 스냅샷 링크](tests/snapshot/propList.category.snapshot.json)
-    - [propList.tag 스냅샷 링크](tests/snapshot/propList.tag.snapshot.json)
-    - [propList.page 스냅샷 링크](tests/snapshot/propList.page.snapshot.json)
-    - [propList.post 스냅샷 링크](tests/snapshot/propList.post.snapshot.json)
+    - [getNodeTree 스냅샷 링크](tests/snapshot/tree/fileTree.snapshot.json)
+    - [propList.global 스냅샷 링크](tests/snapshot/propList/global.snapshot.json)
+    - [propList.category 스냅샷 링크](tests/snapshot/propList/category.snapshot.json)
+    - [propList.tag 스냅샷 링크](tests/snapshot/propList/tag.snapshot.json)
+    - [propList.page 스냅샷 링크](tests/snapshot/propList/page.snapshot.json)
+    - [propList.post 스냅샷 링크](tests/snapshot/propList/post.snapshot.json)
 
 ### 2020-06-30
 
@@ -103,4 +106,4 @@ npm run snapshot all
 - lib/getNodeTree.tsx 구현 완료
   - posts 폴더를 스캔하여 하부 디렉터리를 카테고리로 하위 마크다운 파일을 포스트로 하는 트리를 생성한다.
   - [테스트 디렉터리](tests/testPosts)
-  - [스냅샷 링크](tests/snapshot/fileTree.snapshot.json)
+  - [스냅샷 링크](tests/snapshot/tree/fileTree.snapshot.json)
