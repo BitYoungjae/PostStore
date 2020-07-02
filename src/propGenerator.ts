@@ -17,6 +17,7 @@ import {
   getPostBySlug,
   isDev,
   isCategoryNode,
+  isTest,
 } from './common';
 
 export interface PostListProp {
@@ -116,7 +117,7 @@ const getGlobalProps = (rootNode: FileNode): PropList['global'] => {
   const categoryCount = getCategoriesAll(rootNode).length - 1;
   const postCount = getPostsAll(rootNode).length;
   const tagCount = getTagsAll(rootNode).length;
-  const buildTime = isDev ? 0 : Date.now();
+  const buildTime = isDev || isTest ? 0 : Date.now();
   const categoryTree = makeCategoryTree(rootNode);
   const tagList = makeTagList(rootNode);
 

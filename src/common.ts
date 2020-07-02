@@ -9,7 +9,8 @@ export interface SlugOption {
   page?: string;
 }
 
-export const isDev = globalThis.__DEV__;
+export const isDev = process.env['NODE_ENV'] === 'development' ? true : false;
+export const isTest = process.env['NODE_ENV'] === 'test' ? true : false;
 
 export const isCategoryNode = (node: FileNode): node is CategoryNode =>
   node.type === 'category';

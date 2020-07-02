@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import { isDev } from '../common';
+import { isTest } from '../common';
 
 const ALGORITHM = 'sha1';
 const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
 
 export const getCachedData = <T>(content: string): T | undefined => {
-  if (isDev) return;
+  if (isTest) return;
 
   const hash = makeHash(content);
   const buildInfo = loadBuildInfo(buildInfoPath);
@@ -16,7 +16,7 @@ export const getCachedData = <T>(content: string): T | undefined => {
 };
 
 export const saveCache = <T>(content: string, data: T) => {
-  if (isDev) return;
+  if (isTest) return;
 
   const hash = makeHash(content);
   const deepCopied = JSON.parse(JSON.stringify(data));

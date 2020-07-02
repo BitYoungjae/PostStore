@@ -12,7 +12,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from './utils/sanitizeSchema.json';
 import { slugify } from './utils/slugify';
 import { getCachedData, saveCache } from './utils/incrementalBuild';
-import { isDev } from './common';
+import { isDev, isTest } from './common';
 
 const fsPromise = fs.promises;
 
@@ -89,7 +89,7 @@ const getPostTimestamp = async (
   date?: Date,
 ): Promise<number> => {
   if (date == null) {
-    if (isDev) return new Date('1990-04-10').valueOf();
+    if (isDev || isTest) return new Date('1990-04-10').valueOf();
 
     const ctime = (await fsPromise.stat(filePath)).ctime;
     return ctime.valueOf();

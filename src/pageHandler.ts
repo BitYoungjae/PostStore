@@ -22,12 +22,14 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
   postDir,
   slugOption,
   perPage = 10,
+  shouldUpdate,
 }: getStoreProps) => {
   async function getPathsBySlug(): Promise<Path[]> {
     const store = await getStore({
       postDir,
       slugOption,
       perPage,
+      shouldUpdate,
     });
 
     const pathList = store.pathList[pageCategory];
@@ -39,6 +41,7 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
       postDir,
       slugOption,
       perPage,
+      shouldUpdate,
     });
 
     const propList = store.propList[pageCategory] as PropListSubType<T>;
@@ -67,12 +70,14 @@ export const getMainPageHandler = ({
   postDir,
   slugOption,
   perPage = 10,
+  shouldUpdate,
 }: getStoreProps) => {
   async function getMainProps(): Promise<PageProp<'page'>> {
     const store = await getStore({
       postDir,
       slugOption,
       perPage,
+      shouldUpdate,
     });
 
     const propList = store.propList.page;

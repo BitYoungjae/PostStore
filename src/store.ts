@@ -1,7 +1,13 @@
 import { getNodeTree, FileNode } from './utils/getNodeTree';
 import { PropList, getPropList } from './propGenerator';
 import { PathList, getPathList, Path } from './pathGenerator';
-import { SlugOption, getPostsByCategories, pagePathFilter } from './common';
+import {
+  SlugOption,
+  getPostsByCategories,
+  pagePathFilter,
+  isTest,
+  isDev,
+} from './common';
 import { PostData } from './postParser';
 
 interface PostStore {
@@ -15,6 +21,7 @@ export interface getStoreProps {
   postDir: string;
   slugOption?: SlugOption;
   perPage?: number;
+  shouldUpdate?: boolean;
 }
 
 const defaultSlugs: Required<SlugOption> = {
@@ -30,8 +37,9 @@ export const getStore = async ({
   postDir,
   perPage = 10,
   slugOption = defaultSlugs,
+  shouldUpdate = isDev || isTest,
 }: getStoreProps): Promise<PostStore> => {
-  if (store) return store;
+  if (store && !shouldUpdate) return store;
 
   const filledSlugOption: Required<SlugOption> = {
     ...defaultSlugs,
