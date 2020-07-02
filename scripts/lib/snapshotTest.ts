@@ -1,18 +1,19 @@
-import { snapshotPath } from './env';
+import { snapshotPath } from '../../tests/lib/env';
 import path from 'path';
 import fs from 'fs';
 import isEqual from 'lodash.isequal';
+import { FileNode } from '../../src/utils/getNodeTree';
 const fsPromise = fs.promises;
+
+export const onlyFileName = (nodeList: FileNode[]) =>
+  nodeList.map((node) => node.name.normalize());
 
 export const snapShotTest = async (
   data: any,
   snapshotName: string,
   shouldUpdate = false,
 ): Promise<boolean> => {
-  const snapshotFilePath = path.resolve(
-    snapshotPath,
-    `${snapshotName}.snapshot.json`,
-  );
+  const snapshotFilePath = makeSnapShotFilePath(snapshotPath, snapshotName);
 
   const saveSnapshot = () => {
     const newJSON = JSON.stringify(data, null, 2);
@@ -33,3 +34,6 @@ export const snapShotTest = async (
     return false;
   }
 };
+
+const makeSnapShotFilePath = (snapshotPath: string, snapshotName: string) =>
+  path.resolve(snapshotPath, `${snapshotName}.snapshot.json`);

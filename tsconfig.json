@@ -15,7 +15,6 @@
     "resolveJsonModule": true,
     "declaration": true,
     "incremental": true,
-    "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
@@ -24,5 +23,5 @@
       "@lib/*": ["lib/*"]
     }
   },
-  "exclude": ["node_modules", "tests", "dist"]
+  "exclude": ["node_modules", "tests", "dist", "scripts"]
 }
