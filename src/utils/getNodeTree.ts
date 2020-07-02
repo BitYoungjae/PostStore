@@ -33,55 +33,78 @@ export interface CategoryNode extends FileNode {
 
 interface getNodeTreeProps {
   nodePath: string;
-  isFile?: boolean;
+  type?: FileNode['type'];
 }
 
 export async function getNodeTree({
   nodePath,
-  isFile = false,
+  type = 'category',
 }: getNodeTreeProps): Promise<FileNode> {
-  const nodeName = path.basename(nodePath).normalize();
+  const newNode: FileNode = await createNode(nodePath, type);
 
-  const newNode: FileNode = {
-    type: isFile ? 'post' : 'category',
-    name: nodeName,
-    slug: isFile ? '' : slugify(nodeName),
-    path: nodePath,
-  };
+  if (isPostNode(newNode)) return newNode;
 
-  if (isFile) {
-    newNode.postData = await parsePost(nodePath);
-    newNode.slug = newNode.postData.slug;
-
-    return newNode;
-  }
-
-  newNode.children = [];
-
-  const nodeList = await fsPromise.readdir(nodePath, {
+  const children = await fsPromise.readdir(nodePath, {
     withFileTypes: true,
     encoding: 'utf-8',
   });
-  if (!nodeList.length) return newNode;
 
-  for (const node of nodeList) {
-    const newPath = `${nodePath}/${node.name}`;
+  if (!children.length) return newNode;
+
+  newNode.children = [];
+
+  for (const node of children) {
+    const nextNodePath = `${nodePath}/${node.name}`;
 
     if (isDirectory(node)) {
-      newNode.children.push(await getNodeTree({ nodePath: newPath }));
+      const newCategoryNode = await getNodeTree({
+        nodePath: nextNodePath,
+        type: 'category',
+      });
+      newNode.children.push(newCategoryNode);
     } else if (isMarkdown(node)) {
-      newNode.children.push(
-        await getNodeTree({
-          nodePath: newPath,
-          isFile: true,
-        }),
-      );
+      const newPostNode = (await getNodeTree({
+        nodePath: nextNodePath,
+        type: 'post',
+      })) as PostNode;
+
+      const { isPublished, html } = newPostNode.postData;
+      if (!isPublished || !html) continue;
+
+      newNode.children.push(newPostNode);
     }
   }
 
   newNode.children = sortChildren(newNode.children);
+
   return newNode;
 }
+
+const createNode = async (
+  nodePath: string,
+  type: FileNode['type'],
+): Promise<FileNode> => {
+  const name = path.basename(nodePath).normalize();
+
+  const newNode: Partial<FileNode> = {
+    type,
+    name,
+    path: nodePath,
+  };
+
+  if (type === 'post') {
+    const postData = await parsePost(nodePath);
+    const slug = postData.slug;
+
+    newNode.slug = slug;
+    newNode.postData = postData;
+
+    return newNode as FileNode;
+  }
+
+  newNode.slug = slugify(name);
+  return newNode as FileNode;
+};
 
 const sortChildren = (nodeList: FileNode[]): FileNode[] => {
   const categoryList = nodeList.filter(isCategoryNode);
