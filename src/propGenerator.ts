@@ -54,18 +54,22 @@ export interface PropList {
 interface getPropListProps {
   rootNode: FileNode;
   pathList: PathList;
-  slugOption: SlugOption;
+  slugOption: Required<SlugOption>;
   perPage?: number;
 }
 
-export const getPropList = (options: getPropListProps): PropList => {
-  const { rootNode, pathList, slugOption, perPage = 10 } = options;
+export const getPropList = ({
+  rootNode,
+  pathList,
+  slugOption,
+  perPage = 10,
+}: getPropListProps): PropList => {
   const global: PropList['global'] = getGlobalProps(rootNode);
   const category: PropList['category'] = makePropList({
     rootNode,
     perPage,
     pathList: pathList.category,
-    slugName: slugOption.category!,
+    slugName: slugOption.category,
     getPostsFn: getPostsByCategories,
   });
 
@@ -73,7 +77,7 @@ export const getPropList = (options: getPropListProps): PropList => {
     rootNode,
     perPage,
     pathList: pathList.tag,
-    slugName: slugOption.tag!,
+    slugName: slugOption.tag,
     getPostsFn: getPostsByTags,
   });
 
@@ -81,7 +85,7 @@ export const getPropList = (options: getPropListProps): PropList => {
     rootNode,
     perPage,
     pathList: pathList.page,
-    slugName: slugOption.page!,
+    slugName: slugOption.page,
     getPostsFn: getPostsAll,
   });
 

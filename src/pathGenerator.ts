@@ -96,7 +96,7 @@ export const getPagePaths = (
 
 interface getPathListProps {
   rootNode: FileNode;
-  slugOption: SlugOption;
+  slugOption: Required<SlugOption>;
   perPage: number;
 }
 
@@ -108,7 +108,7 @@ export const getPathList = (options: getPathListProps): PathList => {
     page: pageSlug,
     post: postSlug,
     tag: tagSlug,
-  } = slugOption as Required<SlugOption>;
+  } = slugOption;
 
   const convertToPostPath = convertToPath(postSlug);
   const convertToCategoryPath = convertToPath(categorySlug);
