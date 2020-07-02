@@ -94,7 +94,7 @@ export const getMainPageHandler = ({
       console.log('\u001b[2m──────────────\u001b[22m');
       console.log(
         chalk`{blue.bold Default Prop :}\n{yellow ${JSON.stringify({
-          global,
+          global: store.propList.global,
           main: emptyProp,
         })}}`,
       );
