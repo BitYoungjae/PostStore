@@ -22,6 +22,7 @@ import {
 export interface PostListProp {
   count: number;
   currentPage: number;
+  perPage: number;
   totalPage: number;
   postList: PostData[];
 }
@@ -190,6 +191,7 @@ const makePropList = ({
     const prop: PostListProp = {
       count,
       currentPage,
+      perPage,
       postList,
       totalPage,
     };
