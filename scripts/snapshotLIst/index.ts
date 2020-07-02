@@ -1,5 +1,5 @@
-import * as list from './snapshotList';
-export * from './snapshotList';
+import * as list from './list';
+export * from './list';
 
 export type SnapshotGenerator = (shoudUpdate?: boolean) => Promise<boolean>;
 
