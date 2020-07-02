@@ -15,7 +15,7 @@ npm test
 ### 스냅샷 테스트
 
 - 스냅샷 링크 : [스냅샷 디렉터리](tests/snapshot)
-- 스냅샷 테스트 함수 목록 : [스냅샷 함수들](scripts/snapshot.ts)
+- 스냅샷 테스트 함수 목록 : [스냅샷 함수들](scripts/snapshotList/list.ts)
 
 ```bash
 npm run snapshot update
