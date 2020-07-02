@@ -1,12 +1,34 @@
 {
-  "categoryCount": 7,
-  "postCount": 11,
+  "categoryCount": 10,
+  "postCount": 33,
   "tagCount": 17,
   "categoryTree": {
     "name": "testPosts",
     "slug": "testposts",
-    "postCount": 11,
+    "postCount": 33,
     "children": [
+      {
+        "name": "테스트용 게시물들",
+        "slug": "테스트용-게시물들",
+        "postCount": 24,
+        "children": [
+          {
+            "name": "날짜순 정렬",
+            "slug": "날짜순-정렬",
+            "postCount": 6
+          },
+          {
+            "name": "복합 정렬",
+            "slug": "복합-정렬",
+            "postCount": 8
+          },
+          {
+            "name": "제목순 정렬",
+            "slug": "제목순-정렬",
+            "postCount": 8
+          }
+        ]
+      },
       {
         "name": "Javascript",
         "slug": "javascript",
@@ -40,33 +62,18 @@
         "name": "Redux",
         "slug": "redux",
         "postCount": 2
-      },
-      {
-        "name": "테스트용 게시물들",
-        "slug": "테스트용-게시물들",
-        "postCount": 2
       }
     ]
   },
   "tagList": [
     {
-      "name": "객체",
-      "slug": "객체",
+      "name": "다른건",
+      "slug": "다른건",
       "postCount": 1
     },
     {
-      "name": "오브제엑트",
-      "slug": "오브제엑트",
-      "postCount": 1
-    },
-    {
-      "name": "개소리",
-      "slug": "개소리",
-      "postCount": 1
-    },
-    {
-      "name": "삽소리",
-      "slug": "삽소리",
+      "name": "다-있다",
+      "slug": "다-있다",
       "postCount": 1
     },
     {
@@ -82,6 +89,26 @@
     {
       "name": "총집편",
       "slug": "총집편",
+      "postCount": 1
+    },
+    {
+      "name": "개소리",
+      "slug": "개소리",
+      "postCount": 1
+    },
+    {
+      "name": "삽소리",
+      "slug": "삽소리",
+      "postCount": 1
+    },
+    {
+      "name": "객체",
+      "slug": "객체",
+      "postCount": 1
+    },
+    {
+      "name": "오브제엑트",
+      "slug": "오브제엑트",
       "postCount": 1
     },
     {
@@ -122,16 +149,6 @@
     {
       "name": "저자직강",
       "slug": "저자직강",
-      "postCount": 1
-    },
-    {
-      "name": "다른건",
-      "slug": "다른건",
-      "postCount": 1
-    },
-    {
-      "name": "다-있다",
-      "slug": "다-있다",
       "postCount": 1
     }
   ],
