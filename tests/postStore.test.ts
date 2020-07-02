@@ -24,7 +24,8 @@ test('getPostsByCategories', async () => {
 
 test('getPostsBySlug', async () => {
   const post = getPostBySlug(rootNode, '2020-06-22-자바스크립트의-모든-것-1탄');
-  expect(post?.postData.title).toBe('자바스크립트의 모든 거엇!');
+  expect(post).toBeDefined();
+  expect(post?.postData?.title).toBe('자바스크립트의 모든 거엇!');
 });
 
 test('propList Snapshot Test', async () => {
