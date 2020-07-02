@@ -89,7 +89,7 @@ export const getMainPageHandler = ({
 
     if (!mainProp) {
       console.log(
-        chalk`{red.bold Caution :} Since there are no posts, the following default values is delivered.`,
+        chalk`{red.bold Caution :} Since There are no posts in the {yellow.bold ${postDir}} path., the following default values is delivered.`,
       );
       console.log(JSON.stringify(emptyProp));
     }
@@ -100,7 +100,7 @@ export const getMainPageHandler = ({
     };
   }
 
-  return getMainProps;
+  return { getMainProps };
 };
 
 export const getCategoryPageHandler = makePageHandler('category');
