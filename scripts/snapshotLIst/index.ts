@@ -1,26 +1,10 @@
-import {
-  SnapshotGenerator,
-  getNodeTreeSnapshot,
-  sortTestSnapshot,
-  propListSnapshot,
-  getCategoriesPathSnapshot,
-  getMainPageHandlerSnapshot,
-} from './snapshotList';
+import * as list from './snapshotList';
+export * from './snapshotList';
 
-export {
-  getNodeTreeSnapshot,
-  sortTestSnapshot,
-  propListSnapshot,
-  getCategoriesPathSnapshot,
-  getMainPageHandlerSnapshot,
-};
+export type SnapshotGenerator = (shoudUpdate?: boolean) => Promise<boolean>;
 
-const snapshotList: SnapshotGenerator[] = [
-  getNodeTreeSnapshot,
-  sortTestSnapshot,
-  propListSnapshot,
-  getCategoriesPathSnapshot,
-  getMainPageHandlerSnapshot,
-];
+const generators = Object.values(list).filter(
+  (value) => typeof value === 'function',
+) as SnapshotGenerator[];
 
-export default snapshotList;
+export default generators;

@@ -6,6 +6,7 @@
   "module": "./dist/esm/index.mjs",
   "scripts": {
     "test": "jest --verbose",
+    "test:all": "npm run test:jest;npm run snapshot test",
     "snapshot": "NODE_ENV=test ts-node ./scripts/snapshot.ts",
     "build": "rollup -c"
   },

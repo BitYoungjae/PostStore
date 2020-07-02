@@ -4,18 +4,22 @@ import { snapShotTest, onlyFileName } from '../lib/snapshotTest';
 import { getCategoriesPaths } from '../../src/pathGenerator';
 import { getNodeTree, FileNode } from '../../src/utils/getNodeTree';
 import { getPostsByCategories } from '../../src/common';
-import { getMainPageHandler } from '../../src/pageHandler';
+import {
+  getMainPageHandler,
+  getCategoryPageHandler,
+  getPostPageHandler,
+  getPageHandler,
+  getTagPageHandler,
+} from '../../src/pageHandler';
 
 let rootNode: FileNode;
 
-export const getRootNode = async () => {
+const getRootNode = async () => {
   if (rootNode) return rootNode;
 
   rootNode = await getNodeTree({ nodePath: testPath });
   return rootNode;
 };
-
-export type SnapshotGenerator = (shoudUpdate: boolean) => Promise<boolean>;
 
 export async function propListSnapshot(
   shoudUpdate: boolean = false,
@@ -23,11 +27,11 @@ export async function propListSnapshot(
   const store = await getStore({ postDir: testPath, perPage: 2 });
 
   const tests = [
-    snapShotTest(store.propList.category, 'propList.category', shoudUpdate),
-    snapShotTest(store.propList.tag, 'propList.tag', shoudUpdate),
-    snapShotTest(store.propList.page, 'propList.page', shoudUpdate),
-    snapShotTest(store.propList.post, 'propList.post', shoudUpdate),
-    snapShotTest(store.propList.global, 'propList.global', shoudUpdate),
+    snapShotTest(store.propList.category, './propList/category', shoudUpdate),
+    snapShotTest(store.propList.tag, './propList/tag', shoudUpdate),
+    snapShotTest(store.propList.page, './propList/page', shoudUpdate),
+    snapShotTest(store.propList.post, './propList/post', shoudUpdate),
+    snapShotTest(store.propList.global, './propList/global', shoudUpdate),
   ];
 
   const testResults = (await Promise.all(tests)).every(
@@ -44,7 +48,7 @@ export async function getCategoriesPathSnapshot(
   const categories = getCategoriesPaths(rootNode);
   const testResult = await snapShotTest(
     categories,
-    'getCategoriesPaths',
+    './etc/getCategoriesPaths',
     shoudUpdate,
   );
 
@@ -55,7 +59,11 @@ export async function getNodeTreeSnapshot(
   shoudUpdate: boolean = false,
 ): Promise<boolean> {
   const rootNode = await getRootNode();
-  const testResult = await snapShotTest(rootNode, 'fileTree', shoudUpdate);
+  const testResult = await snapShotTest(
+    rootNode,
+    './tree/fileTree',
+    shoudUpdate,
+  );
 
   return testResult;
 }
@@ -77,7 +85,7 @@ export async function sortTestSnapshot(
 
   const testResult = await snapShotTest(
     { sortByDate, sortByName, sortByComplex },
-    'sortTest',
+    './tree/sortTest',
     shoudUpdate,
   );
 
@@ -94,9 +102,53 @@ export async function getMainPageHandlerSnapshot(
   const mainProps = await getMainProps();
   const testResult = await snapShotTest(
     mainProps,
-    'getMainPageHandler',
+    './pageHandler/main',
     shouldUpdate,
   );
 
   return testResult;
 }
+
+const makePageHandlerTest = (
+  name: string,
+  handlerFn: Function,
+  slug: string[] | string,
+) => {
+  const PageHandlerTest = async (shouldUpdate: boolean = false) => {
+    const { getPathsBySlug, getPropsBySlug } = handlerFn({
+      postDir: testPath,
+    });
+
+    const proplist = await getPropsBySlug(slug);
+    const pathlist = await getPathsBySlug();
+    const testResult = await snapShotTest(
+      { proplist, pathlist },
+      `./pageHandler/${name}`,
+      shouldUpdate,
+    );
+    return testResult;
+  };
+
+  return PageHandlerTest;
+};
+
+export const categoryPageHandlerTest = makePageHandlerTest(
+  'category',
+  getCategoryPageHandler,
+  ['테스트용-게시물들'],
+);
+
+export const PostPageHandlerTest = makePageHandlerTest(
+  'post',
+  getPostPageHandler,
+  '2020-06-20-리덕스-저자-직강-정리',
+);
+
+export const PageHandlerTest = makePageHandlerTest('page', getPageHandler, [
+  'page',
+  '1',
+]);
+
+export const TagHandlerTest = makePageHandlerTest('tag', getTagPageHandler, [
+  '자바스크립트',
+]);

@@ -17,6 +17,8 @@ export const snapShotTest = async (
 
   const saveSnapshot = async () => {
     const newJSON = JSON.stringify(data, null, 2);
+    const dirName = path.dirname(snapshotFilePath);
+    await fsPromise.mkdir(dirName, { recursive: true });
     fsPromise.writeFile(snapshotFilePath, newJSON, { flag: 'w' });
   };
 
