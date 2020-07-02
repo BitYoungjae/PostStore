@@ -10,7 +10,7 @@
     "build": "rollup -c"
   },
   "files": [
-    "./dist"
+    "dist/**/*"
   ],
   "keywords": [
     "next.js",
@@ -20,7 +20,7 @@
     "next.js plugin"
   ],
   "author": {
-    "name": "BitYounjgae(Joo Youngjae)",
+    "name": "BitYounjgae",
     "email": "bityoungjae@gmail.com",
     "url": "https://bityoungjae.com"
   },
