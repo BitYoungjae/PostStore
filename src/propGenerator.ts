@@ -165,10 +165,10 @@ const makePostPropList = (
     if (!post) continue;
 
     const postData = post.postData;
-    const categories = postData?.categories;
+    const categories = postData.categories;
     let relatedPosts: PostData[] = [];
 
-    if (categories?.length > 0) {
+    if (categories.length > 0) {
       relatedPosts = getPostsByCategories(rootNode, categories)
         .filter((node) => node.slug !== slug)
         .map((node) => node.postData);
