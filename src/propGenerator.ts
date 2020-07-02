@@ -1,6 +1,7 @@
 import { PostData } from './postParser';
 import { FileNode, PostNode } from './utils/getNodeTree';
 import { PathList, Path } from './pathGenerator';
+import type { ObjectMap, SubTypeWithoutObjectMap } from './utils/helperTypes';
 import {
   getCategoriesAll,
   getPostsAll,
@@ -33,22 +34,17 @@ export interface GlobalProp {
   tagCount: number;
 }
 
-interface PropMap<T> {
-  [key: string]: T;
-}
-
-export type PropType<K extends keyof PropList> = PropList[K] extends PropMap<
-  infer R
->
-  ? R
-  : never;
+export type PropListSubType<K extends keyof PropList> = SubTypeWithoutObjectMap<
+  PropList,
+  K
+>;
 
 export interface PropList {
   global: GlobalProp;
-  category: PropMap<PostListProp>;
-  page: PropMap<PostListProp>;
-  tag: PropMap<PostListProp>;
-  post: PropMap<PostProp>;
+  category: ObjectMap<PostListProp>;
+  page: ObjectMap<PostListProp>;
+  tag: ObjectMap<PostListProp>;
+  post: ObjectMap<PostProp>;
 }
 
 interface getPropListProps {
@@ -120,9 +116,9 @@ interface getPropProps {
   perPage?: number;
 }
 
-const makePropList = (options: getPropProps): PropMap<PostListProp> => {
+const makePropList = (options: getPropProps): ObjectMap<PostListProp> => {
   const { rootNode, pathList, slugName, perPage = 10, getPostsFn } = options;
-  const propMap: PropMap<PostListProp> = {};
+  const propMap: ObjectMap<PostListProp> = {};
 
   for (const path of pathList) {
     const slug = path.params[slugName] as string[];

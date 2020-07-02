@@ -1,12 +1,12 @@
 import { getStore, getStoreProps } from './store';
-import { GlobalProp, PropList, PropType } from './propGenerator';
+import { GlobalProp, PropList, PropListSubType } from './propGenerator';
 import { Path, PathList } from './pathGenerator';
 
 type PageCategory = keyof PropList & keyof PathList;
 
 interface PageProp<T extends PageCategory> {
   global: GlobalProp;
-  main: PropType<T>;
+  main: PropListSubType<T>;
 }
 
 export type PostPageProp = PageProp<'post'>;
@@ -35,7 +35,7 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
       perPage,
     });
 
-    const propList = store.propList[pageCategory] as PropType<T>;
+    const propList = store.propList[pageCategory] as PropListSubType<T>;
     const key = Array.isArray(slug) ? slug.join('/') : slug;
 
     return {
