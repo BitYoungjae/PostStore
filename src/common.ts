@@ -11,9 +11,9 @@ export interface SlugOption {
 
 export const isDev = globalThis.__DEV__;
 
-export const isCategory = (node: FileNode): node is CategoryNode =>
+export const isCategoryNode = (node: FileNode): node is CategoryNode =>
   node.type === 'category';
-export const isPost = (node: FileNode): node is PostNode =>
+export const isPostNode = (node: FileNode): node is PostNode =>
   node.type === 'post';
 
 export const findCategory = (rootNode: FileNode, categories: string[]) => {
@@ -22,7 +22,7 @@ export const findCategory = (rootNode: FileNode, categories: string[]) => {
   for (const category of categories) {
     const finded = findNode(
       now,
-      (node) => isCategory(node) && node.slug === category,
+      (node) => isCategoryNode(node) && node.slug === category,
     );
     if (!finded) break;
     now = finded;
@@ -32,10 +32,10 @@ export const findCategory = (rootNode: FileNode, categories: string[]) => {
 };
 
 export const getPostsAll = (rootNode: FileNode) =>
-  findNodeAll(rootNode, isPost) as PostNode[];
+  findNodeAll(rootNode, isPostNode) as PostNode[];
 
 export const getCategoriesAll = (rootNode: FileNode) =>
-  findNodeAll(rootNode, isCategory);
+  findNodeAll(rootNode, isCategoryNode);
 
 export const getTagsAll = (rootNode: FileNode) => {
   const posts = getPostsAll(rootNode);
@@ -53,9 +53,9 @@ export const getPostBySlug = (
 ): PostNode | undefined => {
   const finded = findNode(
     rootNode,
-    (node) => isPost(node) && node.slug === slug,
+    (node) => isPostNode(node) && node.slug === slug,
   );
-  if (finded && isPost(finded)) return finded;
+  if (finded && isPostNode(finded)) return finded;
 };
 
 export const getPostsByCategories = (
@@ -70,7 +70,7 @@ export const getPostsByCategories = (
 
 export const getPostsByTags = (rootNode: FileNode, tags: string[]) => {
   return findNodeAll(rootNode, (node) => {
-    if (!isPost(node)) return false;
+    if (!isPostNode(node)) return false;
 
     let isMatch = false;
     const postTags = node.postData.tags;

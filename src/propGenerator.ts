@@ -15,6 +15,7 @@ import {
   getPageNum,
   getPostsByTags,
   getPostBySlug,
+  isDev,
 } from './common';
 
 export interface PostListProp {
@@ -28,10 +29,20 @@ export interface PostProp extends PostData {
   relatedPosts: PostData[];
 }
 
+interface NodeProp {
+  slug: string;
+  name: string;
+  count: number;
+  children: NodeProp[];
+}
+
 export interface GlobalProp {
   postCount: number;
   categoryCount: number;
   tagCount: number;
+  categoryTree?: NodeProp;
+  tagTree?: NodeProp;
+  buildTime: number;
 }
 
 export type PropListSubType<K extends keyof PropList> = SubTypeWithoutObjectMap<
@@ -100,11 +111,13 @@ const getGlobalProps = (rootNode: FileNode): PropList['global'] => {
   const categoryCount = getCategoriesAll(rootNode).length - 1;
   const postCount = getPostsAll(rootNode).length;
   const tagCount = getTagsAll(rootNode).length;
+  const buildTime = isDev ? 0 : Date.now();
 
   return {
     categoryCount,
     postCount,
     tagCount,
+    buildTime,
   };
 };
 

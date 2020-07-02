@@ -1,7 +1,7 @@
 import { FileNode } from './utils/getNodeTree';
 import {
-  isCategory,
-  isPost,
+  isCategoryNode,
+  isPostNode,
   getPostsAll,
   SlugOption,
   getTagsAll,
@@ -46,7 +46,7 @@ export const getCategoriesPaths = (
   }
 
   for (const node of rootNode.children) {
-    if (isCategory(node)) {
+    if (isCategoryNode(node)) {
       const category = [...parents, node.slug];
       result.push(...getCategoriesPaths(node, perPage, category));
     }
@@ -67,7 +67,7 @@ export const getTagsPaths = (
     const pagePaths = getPagePaths(
       rootNode,
       perPage,
-      (node) => isPost(node) && node.postData.tags.includes(tag),
+      (node) => isPostNode(node) && node.postData.tags.includes(tag),
     );
     pagePaths.forEach((path) => tagPaths.push([tag, ...path]));
   }
@@ -78,7 +78,7 @@ export const getTagsPaths = (
 export const getPagePaths = (
   rootNode: FileNode,
   perPage = 5,
-  nodeCondition: (node: FileNode) => boolean = isPost,
+  nodeCondition: (node: FileNode) => boolean = isPostNode,
 ) => {
   const pagePaths: string[][] = [];
 
