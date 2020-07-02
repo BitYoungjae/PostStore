@@ -2,6 +2,36 @@
 
 PostStore는 NEXT.JS와 함께 마크다운 기반 블로그를 만들기 위한 도구입니다.
 
+## 테스트
+
+## jest 단위 테스트
+
+```bash
+npm test
+```
+
+![jest 테스트](images/jest.jpg)
+
+### 스냅샷 테스트
+
+```bash
+npm run snapshot update
+```
+
+![스냅샷 업데이트](images/snapshot-cli-update.jpg)
+
+```bash
+npm run snapshot test
+```
+
+![스냅샷 테스트](images/snapshot-cli-test.jpg)
+
+```bash
+npm run snapshot all
+```
+
+![스냅샷 일괄진행](images/snapshot-cli-all.jpg)
+
 ## 주요 기록
 
 ### 2020-07-02
@@ -12,6 +42,7 @@ PostStore는 NEXT.JS와 함께 마크다운 기반 블로그를 만들기 위한
 - 카테고리 순서와 게시물 순서의 일관성을 유지하기 위해 트리 생성시 정렬 기능 추가.
   - [src/utils/getNodeTree.ts 코드](src/utils/getNodeTree.ts#L82-L115)
   - [sortTest 스냅샷 링크](tests/snapshot/sortTest.snapshot.json)
+- 스냅샷 테스트 관련 cli 추가
 
 ### 2020-07-01
 
