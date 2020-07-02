@@ -1,22 +1,16 @@
 import { getStore, getStoreProps } from './store';
-import {
-  GlobalProp,
-  PostListProp,
-  PostProp,
-  PropList,
-  PropType,
-} from './propGenerator';
+import { GlobalProp, PropList, PropType } from './propGenerator';
 import { Path, PathList } from './pathGenerator';
 
 type PageCategory = keyof PropList & keyof PathList;
 
-interface PageProp<T> {
+interface PageProp<T extends PageCategory> {
   global: GlobalProp;
-  main: T;
+  main: PropType<T>;
 }
 
-export type PostPageProp = PageProp<PostProp>;
-export type PostListPageProp = PageProp<PostListProp>;
+export type PostPageProp = PageProp<'post'>;
+export type PostListPageProp = PageProp<'category'>;
 
 const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
   postDir,
@@ -34,9 +28,7 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
     return pathList;
   }
 
-  async function getPropsBySlug(
-    slug: string | string[],
-  ): Promise<PageProp<PropType<T>>> {
+  async function getPropsBySlug(slug: string | string[]): Promise<PageProp<T>> {
     const store = await getStore({
       postDir,
       slugOption,
