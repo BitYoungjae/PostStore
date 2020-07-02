@@ -16,6 +16,7 @@ import {
   getPostsByTags,
   getPostBySlug,
   isDev,
+  isCategoryNode,
 } from './common';
 
 export interface PostListProp {
@@ -29,19 +30,22 @@ export interface PostProp extends PostData {
   relatedPosts: PostData[];
 }
 
-interface NodeProp {
+interface PropInfo {
   slug: string;
   name: string;
-  count: number;
-  children: NodeProp[];
+  postCount: number;
+}
+
+interface PropInfoNode extends PropInfo {
+  children?: PropInfoNode[];
 }
 
 export interface GlobalProp {
   postCount: number;
   categoryCount: number;
   tagCount: number;
-  categoryTree?: NodeProp;
-  tagTree?: NodeProp;
+  categoryTree?: PropInfoNode;
+  tagList?: PropInfo[];
   buildTime: number;
 }
 
@@ -112,13 +116,45 @@ const getGlobalProps = (rootNode: FileNode): PropList['global'] => {
   const postCount = getPostsAll(rootNode).length;
   const tagCount = getTagsAll(rootNode).length;
   const buildTime = isDev ? 0 : Date.now();
+  const categoryTree = makeCategoryTree(rootNode);
+  const tagList = makeTagList(rootNode);
 
   return {
     categoryCount,
     postCount,
     tagCount,
+    categoryTree,
+    tagList,
     buildTime,
   };
+};
+
+const makeCategoryTree = (rootNode: FileNode): PropInfoNode => {
+  const newNode: PropInfoNode = {
+    name: rootNode.name,
+    slug: rootNode.slug,
+    postCount: getPostsAll(rootNode).length,
+  };
+
+  for (const child of rootNode.children!) {
+    if (isCategoryNode(child)) {
+      if (!newNode.children) newNode.children = [];
+      newNode.children.push(makeCategoryTree(child));
+    }
+  }
+
+  return newNode;
+};
+
+const makeTagList = (rootNode: FileNode): PropInfo[] => {
+  const tags = getTagsAll(rootNode);
+  const infoList = tags.map((tag) => ({
+    name: tag,
+    slug: tag,
+    postCount: getPostsByTags(rootNode, [tag]).length,
+  }));
+
+  return infoList;
 };
 
 interface makePropListProps {
