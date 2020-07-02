@@ -1,19 +1,30 @@
 {
   "name": "poststore",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "PostStore can be used with NEXT.JS to create markdown-based blogs.",
   "main": "./dist/index.js",
   "module": "./dist/esm/index.mjs",
   "scripts": {
     "test": "jest --verbose",
-    "snapshot": "ts-node ./scripts/snapshot.ts"
+    "snapshot": "ts-node ./scripts/snapshot.ts",
+    "build": "rollup -c"
   },
   "files": [
     "./dist"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "next.js",
+    "blog",
+    "post",
+    "blog-builder",
+    "next.js plugin"
+  ],
+  "author": {
+    "name": "BitYounjgae(Joo Youngjae)",
+    "email": "bityoungjae@gmail.com",
+    "url": "https://bityoungjae.com"
+  },
+  "license": "MIT",
   "dependencies": {
     "date-fns": "^2.14.0",
     "gray-matter": "^4.0.2",
@@ -50,5 +61,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BitYoungjae/PostStore.git"
   }
 }
