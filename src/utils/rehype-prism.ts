@@ -20,7 +20,8 @@ const getLanguage = (node: rehypeNode) => {
   if (!Array.isArray(className)) return '';
 
   const languageClass = className.find((name) => name.startsWith(langPrefix));
-  const language = languageClass?.substr(langPrefix.length);
+  if (!languageClass) return '';
+  const language = languageClass.substr(langPrefix.length);
 
   return language;
 };
