@@ -89,9 +89,15 @@ export const getMainPageHandler = ({
 
     if (!mainProp) {
       console.log(
-        chalk`{red.bold Caution :} Since There are no posts in the {yellow.bold ${postDir}} path., the following default values is delivered.`,
+        chalk`{red.bold Caution :} Since There are no posts in the {yellow.bold (${postDir})} path, the following default values is delivered.`,
       );
-      console.log(JSON.stringify(emptyProp));
+      console.log('\u001b[2m──────────────\u001b[22m');
+      console.log(
+        chalk`{blue.bold Default Prop :}\n{yellow ${JSON.stringify({
+          global,
+          main: emptyProp,
+        })}}`,
+      );
     }
 
     return {
