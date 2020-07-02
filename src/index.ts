@@ -5,6 +5,7 @@ import {
   getPageHandler,
   getPostPageHandler,
   getTagPageHandler,
+  getMainPageHandler,
 } from './pageHandler';
 
 export type { PostListPageProp, PostPageProp };
@@ -14,4 +15,5 @@ export {
   getPageHandler,
   getPostPageHandler,
   getTagPageHandler,
+  getMainPageHandler,
 };
