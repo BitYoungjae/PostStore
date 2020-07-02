@@ -108,16 +108,21 @@ const getGlobalProps = (rootNode: FileNode): PropList['global'] => {
   };
 };
 
-interface getPropProps {
+interface makePropListProps {
   rootNode: FileNode;
   pathList: Path[];
   slugName: string;
-  getPostsFn: (rootNode: FileNode, slug?: string[]) => PostNode[];
+  getPostsFn?: (rootNode: FileNode, slug?: string[]) => PostNode[];
   perPage?: number;
 }
 
-const makePropList = (options: getPropProps): ObjectMap<PostListProp> => {
-  const { rootNode, pathList, slugName, perPage = 10, getPostsFn } = options;
+const makePropList = ({
+  rootNode,
+  pathList,
+  slugName,
+  perPage = 10,
+  getPostsFn = getPostsAll,
+}: makePropListProps): ObjectMap<PostListProp> => {
   const propMap: ObjectMap<PostListProp> = {};
 
   for (const path of pathList) {
