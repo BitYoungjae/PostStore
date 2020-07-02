@@ -85,7 +85,7 @@ export const getPropList = ({
     getPostsFn: getPostsAll,
   });
 
-  const post = makePostPropList(rootNode, pathList.post, slugOption.post!);
+  const post = makePostPropList(rootNode, pathList.post, slugOption.post);
 
   return {
     global,
