@@ -37,6 +37,8 @@
     "remark-parse": "^8.0.2",
     "remark-rehype": "^7.0.0",
     "unified": "^9.0.0",
+    "ora": "^4.0.4",
+    "chalk": "^4.1.0",
     "unist-util-visit": "^2.0.2"
   },
   "devDependencies": {
@@ -46,11 +48,9 @@
     "@types/lodash.isequal": "^4.5.5",
     "@types/node": "^14.0.13",
     "@types/prismjs": "^1.16.1",
-    "chalk": "^4.1.0",
     "cz-conventional-changelog": "^3.2.0",
     "jest": "^26.1.0",
     "lodash.isequal": "^4.5.0",
-    "ora": "^4.0.4",
     "rollup": "^2.18.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "ts-jest": "^26.1.1",
