@@ -6,7 +6,7 @@ import { isDev } from '../common';
 const ALGORITHM = 'sha1';
 const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
 
-export const getCachedData = <T>(content: string): T | void => {
+export const getCachedData = <T>(content: string): T | undefined => {
   if (isDev) return;
 
   const hash = makeHash(content);
