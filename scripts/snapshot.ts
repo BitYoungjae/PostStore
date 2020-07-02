@@ -10,9 +10,9 @@ const main = async () => {
   } else if (command === 'test') {
     await test();
   } else if (command === 'all') {
-    await update();
-    console.log(hr);
     await test();
+    console.log(hr);
+    await update();
   }
 };
 
@@ -22,7 +22,7 @@ const update = async () => {
   for (const generator of snapshotList) {
     const generatorName = !generator.name ? '익명 제너레이터' : generator.name;
 
-    await generator();
+    await generator(true);
     spinner.info(chalk`{blue.bold ${generatorName}} 스냅샷 생성완료.`);
   }
 
@@ -38,7 +38,7 @@ const test = async () => {
   for (const generator of snapshotList) {
     const generatorName = !generator.name ? '익명 제너레이터' : generator.name;
 
-    const testResult = await generator();
+    const testResult = await generator(false);
     testResultList.push(testResult);
 
     if (testResult) {

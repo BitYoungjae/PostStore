@@ -15,16 +15,16 @@ export const snapShotTest = async (
 ): Promise<boolean> => {
   const snapshotFilePath = makeSnapShotFilePath(snapshotPath, snapshotName);
 
-  const saveSnapshot = () => {
+  const saveSnapshot = async () => {
     const newJSON = JSON.stringify(data, null, 2);
-    fsPromise.writeFile(snapshotFilePath, newJSON, 'utf-8');
+    fsPromise.writeFile(snapshotFilePath, newJSON, { flag: 'w' });
   };
 
   try {
     const prevJSON = await fsPromise.readFile(snapshotFilePath, 'utf-8');
     const prevData = JSON.parse(prevJSON);
 
-    if (shouldUpdate) saveSnapshot();
+    if (shouldUpdate) await saveSnapshot();
 
     return isEqual(data, prevData);
   } catch (e) {

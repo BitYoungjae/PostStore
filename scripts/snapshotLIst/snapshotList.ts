@@ -14,17 +14,19 @@ export const getRootNode = async () => {
   return rootNode;
 };
 
-export type SnapshotGenerator = () => Promise<boolean>;
+export type SnapshotGenerator = (shoudUpdate: boolean) => Promise<boolean>;
 
-export async function propListSnapshot(): Promise<boolean> {
+export async function propListSnapshot(
+  shoudUpdate: boolean = false,
+): Promise<boolean> {
   const store = await getStore({ postDir: testPath, perPage: 2 });
 
   const tests = [
-    snapShotTest(store.propList.category, 'propList.category'),
-    snapShotTest(store.propList.tag, 'propList.tag'),
-    snapShotTest(store.propList.page, 'propList.page'),
-    snapShotTest(store.propList.post, 'propList.post'),
-    snapShotTest(store.propList.global, 'propList.global'),
+    snapShotTest(store.propList.category, 'propList.category', shoudUpdate),
+    snapShotTest(store.propList.tag, 'propList.tag', shoudUpdate),
+    snapShotTest(store.propList.page, 'propList.page', shoudUpdate),
+    snapShotTest(store.propList.post, 'propList.post', shoudUpdate),
+    snapShotTest(store.propList.global, 'propList.global', shoudUpdate),
   ];
 
   const testResults = (await Promise.all(tests)).every(
@@ -34,22 +36,32 @@ export async function propListSnapshot(): Promise<boolean> {
   return testResults;
 }
 
-export async function getCategoriesPathSnapshot(): Promise<boolean> {
+export async function getCategoriesPathSnapshot(
+  shoudUpdate: boolean = false,
+): Promise<boolean> {
   const rootNode = await getRootNode();
   const categories = getCategoriesPaths(rootNode);
-  const testResult = await snapShotTest(categories, 'getCategoriesPaths');
+  const testResult = await snapShotTest(
+    categories,
+    'getCategoriesPaths',
+    shoudUpdate,
+  );
 
   return testResult;
 }
 
-export async function getNodeTreeSnapshot(): Promise<boolean> {
+export async function getNodeTreeSnapshot(
+  shoudUpdate: boolean = false,
+): Promise<boolean> {
   const rootNode = await getRootNode();
-  const testResult = await snapShotTest(rootNode, 'fileTree');
+  const testResult = await snapShotTest(rootNode, 'fileTree', shoudUpdate);
 
   return testResult;
 }
 
-export async function sortTestSnapshot(): Promise<boolean> {
+export async function sortTestSnapshot(
+  shoudUpdate: boolean = false,
+): Promise<boolean> {
   const rootNode = await getRootNode();
 
   const sortByDate = onlyFileName(
@@ -65,6 +77,7 @@ export async function sortTestSnapshot(): Promise<boolean> {
   const testResult = await snapShotTest(
     { sortByDate, sortByName, sortByComplex },
     'sortTest',
+    shoudUpdate,
   );
 
   return testResult;
