@@ -9,6 +9,9 @@ PostStore는 NEXT.JS와 함께 마크다운 기반 블로그를 만들기 위한
 - 증분 빌드 초안 구현 ([src/utils/incrementalBuild.ts](src/utils/incrementalBuild.ts))
 - 개발 모드 식별을 위한 환경변수 `isDev` 추가 ([src/common.ts](src/common.ts))
 - tsConfig 기준 code quality 관련 옵션 추가 및 해당 옵션에 맞는 코드 리팩터링 진행.
+- 카테고리 순서와 게시물 순서의 일관성을 유지하기 위해 트리 생성시 정렬 기능 추가.
+  - [src/utils/getNodeTree.ts 코드](http://src/utils/getNodeTree.ts#L82-L115)
+  - [sortTest 스냅샷 링크](tests/snapshot/sortTest.snapshot.json)
 
 ### 2020-07-01
 
