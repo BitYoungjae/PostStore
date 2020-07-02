@@ -2,6 +2,7 @@
   "page/1": {
     "count": 2,
     "currentPage": 1,
+    "perPage": 2,
     "postList": [
       {
         "slug": "2020-06-23-객체에-대하여",
@@ -49,6 +50,7 @@
   "page/2": {
     "count": 2,
     "currentPage": 2,
+    "perPage": 2,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -95,6 +97,7 @@
   "page/3": {
     "count": 2,
     "currentPage": 3,
+    "perPage": 2,
     "postList": [
       {
         "slug": "2020-06-30-리액트의-핵심",
@@ -143,6 +146,7 @@
   "page/4": {
     "count": 2,
     "currentPage": 4,
+    "perPage": 2,
     "postList": [
       {
         "slug": "2020-06-20-리덕스-저자-직강-정리",
@@ -186,6 +190,7 @@
   "page/5": {
     "count": 2,
     "currentPage": 5,
+    "perPage": 2,
     "postList": [
       {
         "slug": "1990-04-10-최상위-게시물",
@@ -220,6 +225,7 @@
   "page/6": {
     "count": 1,
     "currentPage": 6,
+    "perPage": 2,
     "postList": [
       {
         "slug": "1990-04-10-프론트매터가-없는-게시물",
