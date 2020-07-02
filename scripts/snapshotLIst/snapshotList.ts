@@ -4,6 +4,7 @@ import { snapShotTest, onlyFileName } from '../lib/snapshotTest';
 import { getCategoriesPaths } from '../../src/pathGenerator';
 import { getNodeTree, FileNode } from '../../src/utils/getNodeTree';
 import { getPostsByCategories } from '../../src/common';
+import { getMainPageHandler } from '../../src/pageHandler';
 
 let rootNode: FileNode;
 
@@ -78,6 +79,23 @@ export async function sortTestSnapshot(
     { sortByDate, sortByName, sortByComplex },
     'sortTest',
     shoudUpdate,
+  );
+
+  return testResult;
+}
+
+export async function getMainPageHandlerSnapshot(
+  shouldUpdate: boolean = false,
+) {
+  const { getMainProps } = getMainPageHandler({
+    postDir: testPath,
+  });
+
+  const mainProps = await getMainProps();
+  const testResult = await snapShotTest(
+    mainProps,
+    'getMainPageHandler',
+    shouldUpdate,
   );
 
   return testResult;

@@ -1,25 +1,25 @@
 {
   "type": "category",
   "name": "testPosts",
-  "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts",
+  "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts",
   "slug": "testposts",
   "children": [
     {
       "type": "category",
       "name": "테스트용 게시물들",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들",
       "slug": "테스트용-게시물들",
       "children": [
         {
           "type": "category",
           "name": "날짜순 정렬",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬",
           "slug": "날짜순-정렬",
           "children": [
             {
               "type": "post",
               "name": "6.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/6.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/6.md",
               "slug": "2020-01-06-6",
               "postData": {
                 "slug": "2020-01-06-6",
@@ -34,7 +34,7 @@
             {
               "type": "post",
               "name": "5.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/5.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/5.md",
               "slug": "2020-01-05-5",
               "postData": {
                 "slug": "2020-01-05-5",
@@ -49,7 +49,7 @@
             {
               "type": "post",
               "name": "4.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/4.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/4.md",
               "slug": "2020-01-04-4",
               "postData": {
                 "slug": "2020-01-04-4",
@@ -64,7 +64,7 @@
             {
               "type": "post",
               "name": "3.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/3.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/3.md",
               "slug": "2020-01-03-3",
               "postData": {
                 "slug": "2020-01-03-3",
@@ -79,7 +79,7 @@
             {
               "type": "post",
               "name": "2.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/2.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/2.md",
               "slug": "2020-01-02-2",
               "postData": {
                 "slug": "2020-01-02-2",
@@ -94,7 +94,7 @@
             {
               "type": "post",
               "name": "1.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/1.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜순 정렬/1.md",
               "slug": "2020-01-01-1",
               "postData": {
                 "slug": "2020-01-01-1",
@@ -111,13 +111,13 @@
         {
           "type": "category",
           "name": "복합 정렬",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬",
           "slug": "복합-정렬",
           "children": [
             {
               "type": "post",
               "name": "1. 세번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/1. 세번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/1. 세번째 날짜.md",
               "slug": "2020-01-03-1.-세번째-날짜",
               "postData": {
                 "slug": "2020-01-03-1.-세번째-날짜",
@@ -132,7 +132,7 @@
             {
               "type": "post",
               "name": "2. 세번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/2. 세번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/2. 세번째 날짜.md",
               "slug": "2020-01-03-2.-세번째-날짜",
               "postData": {
                 "slug": "2020-01-03-2.-세번째-날짜",
@@ -147,7 +147,7 @@
             {
               "type": "post",
               "name": "3. 세번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/3. 세번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/3. 세번째 날짜.md",
               "slug": "2020-01-03-3.-세번째-날짜",
               "postData": {
                 "slug": "2020-01-03-3.-세번째-날짜",
@@ -162,7 +162,7 @@
             {
               "type": "post",
               "name": "1. 두번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/1. 두번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/1. 두번째 날짜.md",
               "slug": "2020-01-02-1.-두번째-날짜",
               "postData": {
                 "slug": "2020-01-02-1.-두번째-날짜",
@@ -177,7 +177,7 @@
             {
               "type": "post",
               "name": "2. 두번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/2. 두번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/2. 두번째 날짜.md",
               "slug": "2020-01-02-2.-두번째-날짜",
               "postData": {
                 "slug": "2020-01-02-2.-두번째-날짜",
@@ -192,7 +192,7 @@
             {
               "type": "post",
               "name": "3. 두번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/3. 두번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/3. 두번째 날짜.md",
               "slug": "2020-01-02-3.-두번째-날짜",
               "postData": {
                 "slug": "2020-01-02-3.-두번째-날짜",
@@ -207,7 +207,7 @@
             {
               "type": "post",
               "name": "1. 첫번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/1. 첫번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/1. 첫번째 날짜.md",
               "slug": "2020-01-01-1.-첫번째-날짜",
               "postData": {
                 "slug": "2020-01-01-1.-첫번째-날짜",
@@ -222,7 +222,7 @@
             {
               "type": "post",
               "name": "2. 첫번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/2. 첫번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/2. 첫번째 날짜.md",
               "slug": "2020-01-01-2.-첫번째-날짜",
               "postData": {
                 "slug": "2020-01-01-2.-첫번째-날짜",
@@ -237,7 +237,7 @@
             {
               "type": "post",
               "name": "3. 첫번째 날짜.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/3. 첫번째 날짜.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/복합 정렬/3. 첫번째 날짜.md",
               "slug": "2020-01-01-3.-첫번째-날짜",
               "postData": {
                 "slug": "2020-01-01-3.-첫번째-날짜",
@@ -254,13 +254,13 @@
         {
           "type": "category",
           "name": "제목순 정렬",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬",
           "slug": "제목순-정렬",
           "children": [
             {
               "type": "post",
               "name": "1. 첫번째 게시물.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/1. 첫번째 게시물.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/1. 첫번째 게시물.md",
               "slug": "1990-04-10-1.-첫번째-게시물",
               "postData": {
                 "slug": "1990-04-10-1.-첫번째-게시물",
@@ -275,7 +275,7 @@
             {
               "type": "post",
               "name": "12345.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/12345.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/12345.md",
               "slug": "1990-04-10-12345",
               "postData": {
                 "slug": "1990-04-10-12345",
@@ -290,7 +290,7 @@
             {
               "type": "post",
               "name": "2. 두번째 게시물.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/2. 두번째 게시물.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/2. 두번째 게시물.md",
               "slug": "1990-04-10-2.-두번째-게시물",
               "postData": {
                 "slug": "1990-04-10-2.-두번째-게시물",
@@ -305,7 +305,7 @@
             {
               "type": "post",
               "name": "34567.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/34567.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/34567.md",
               "slug": "1990-04-10-34567",
               "postData": {
                 "slug": "1990-04-10-34567",
@@ -320,7 +320,7 @@
             {
               "type": "post",
               "name": "DEFGG.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/DEFGG.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/DEFGG.md",
               "slug": "1990-04-10-defgg",
               "postData": {
                 "slug": "1990-04-10-defgg",
@@ -335,7 +335,7 @@
             {
               "type": "post",
               "name": "abcde.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/abcde.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/abcde.md",
               "slug": "1990-04-10-abcde",
               "postData": {
                 "slug": "1990-04-10-abcde",
@@ -350,7 +350,7 @@
             {
               "type": "post",
               "name": "가나다라.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/가나다라.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/가나다라.md",
               "slug": "1990-04-10-가나다라",
               "postData": {
                 "slug": "1990-04-10-가나다라",
@@ -365,7 +365,7 @@
             {
               "type": "post",
               "name": "마바사아.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/마바사아.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/마바사아.md",
               "slug": "1990-04-10-마바사아",
               "postData": {
                 "slug": "1990-04-10-마바사아",
@@ -382,7 +382,7 @@
         {
           "type": "post",
           "name": "프론트매터가 없는 게시물.md",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/프론트매터가 없는 게시물.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/프론트매터가 없는 게시물.md",
           "slug": "1990-04-10-프론트매터가-없는-게시물",
           "postData": {
             "slug": "1990-04-10-프론트매터가-없는-게시물",
@@ -397,7 +397,7 @@
         {
           "type": "post",
           "name": "날짜 없는 게시물.md",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/테스트용 게시물들/날짜 없는 게시물.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/날짜 없는 게시물.md",
           "slug": "1990-04-10-날짜-없는-게시물",
           "postData": {
             "slug": "1990-04-10-날짜-없는-게시물",
@@ -417,19 +417,19 @@
     {
       "type": "category",
       "name": "Javascript",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Javascript",
       "slug": "javascript",
       "children": [
         {
           "type": "category",
           "name": "특별 시리즈",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/특별 시리즈",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Javascript/특별 시리즈",
           "slug": "특별-시리즈",
           "children": [
             {
               "type": "post",
               "name": "자바스크립트의 모든 것 1탄.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/특별 시리즈/자바스크립트의 모든 것 1탄.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Javascript/특별 시리즈/자바스크립트의 모든 것 1탄.md",
               "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
               "postData": {
                 "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -450,7 +450,7 @@
         {
           "type": "post",
           "name": "자바스크립트 개껌이지!!!  😄.md",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/자바스크립트 개껌이지!!!  😄.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Javascript/자바스크립트 개껌이지!!!  😄.md",
           "slug": "2020-06-23-자바스크립트-개껌이지",
           "postData": {
             "slug": "2020-06-23-자바스크립트-개껌이지",
@@ -468,7 +468,7 @@
         {
           "type": "post",
           "name": "객체에 대하여.md",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Javascript/객체에 대하여.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Javascript/객체에 대하여.md",
           "slug": "2020-06-23-객체에-대하여",
           "postData": {
             "slug": "2020-06-23-객체에-대하여",
@@ -488,19 +488,19 @@
     {
       "type": "category",
       "name": "React",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/React",
       "slug": "react",
       "children": [
         {
           "type": "category",
           "name": "꿀팁 정리",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/꿀팁 정리",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/React/꿀팁 정리",
           "slug": "꿀팁-정리",
           "children": [
             {
               "type": "post",
               "name": "개꿀팁 공유합니다.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/꿀팁 정리/개꿀팁 공유합니다.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/React/꿀팁 정리/개꿀팁 공유합니다.md",
               "slug": "2020-06-29-개꿀팁-공유합니다",
               "postData": {
                 "slug": "2020-06-29-개꿀팁-공유합니다",
@@ -520,13 +520,13 @@
         {
           "type": "category",
           "name": "리액트 핵심정리",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/리액트 핵심정리",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/React/리액트 핵심정리",
           "slug": "리액트-핵심정리",
           "children": [
             {
               "type": "post",
               "name": "리액트의 핵심!!.md",
-              "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/리액트 핵심정리/리액트의 핵심!!.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/React/리액트 핵심정리/리액트의 핵심!!.md",
               "slug": "2020-06-30-리액트의-핵심",
               "postData": {
                 "slug": "2020-06-30-리액트의-핵심",
@@ -546,7 +546,7 @@
         {
           "type": "post",
           "name": "행복합니다 정말이요.md",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/React/행복합니다 정말이요.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/React/행복합니다 정말이요.md",
           "slug": "2020-06-27-행복합니다-정말이요",
           "postData": {
             "slug": "2020-06-27-행복합니다-정말이요",
@@ -566,13 +566,13 @@
     {
       "type": "category",
       "name": "Redux",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Redux",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Redux",
       "slug": "redux",
       "children": [
         {
           "type": "post",
           "name": "사랑해요 헬지.md",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Redux/사랑해요 헬지.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Redux/사랑해요 헬지.md",
           "slug": "2020-06-27-사랑해요-헬지",
           "postData": {
             "slug": "2020-06-27-사랑해요-헬지",
@@ -590,7 +590,7 @@
         {
           "type": "post",
           "name": "리덕스 저자 직강 정리.md",
-          "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/Redux/리덕스 저자 직강 정리.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Redux/리덕스 저자 직강 정리.md",
           "slug": "2020-06-20-리덕스-저자-직강-정리",
           "postData": {
             "slug": "2020-06-20-리덕스-저자-직강-정리",
@@ -610,7 +610,7 @@
     {
       "type": "post",
       "name": "최상위 게시물.md",
-      "path": "/Users/youngjaejoo/WorkSpaces/Projects/bityoungjae.com/packages/PostStore/tests/testPosts/최상위 게시물.md",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/최상위 게시물.md",
       "slug": "1990-04-10-최상위-게시물",
       "postData": {
         "slug": "1990-04-10-최상위-게시물",
