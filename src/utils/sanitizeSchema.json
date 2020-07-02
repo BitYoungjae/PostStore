@@ -1,5 +1,5 @@
 {
-  "strip": ["script"],
+  "stript": ["script"],
   "clobberPrefix": "user-content-",
   "clobber": ["name", "id"],
   "ancestors": {
