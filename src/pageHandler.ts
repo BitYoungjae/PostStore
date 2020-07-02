@@ -1,5 +1,11 @@
 import { getStore, getStoreProps } from './store';
-import { GlobalProp, PropList, PropListSubType } from './propGenerator';
+import chalk from 'chalk';
+import {
+  GlobalProp,
+  PropList,
+  PropListSubType,
+  PostListProp,
+} from './propGenerator';
 import { Path, PathList } from './pathGenerator';
 
 type PageCategory = keyof PropList & keyof PathList;
@@ -37,10 +43,17 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
 
     const propList = store.propList[pageCategory] as PropListSubType<T>;
     const key = Array.isArray(slug) ? slug.join('/') : slug;
+    const mainProp = propList[key];
+
+    if (!mainProp) {
+      throw new Error(
+        `The data corresponding to the slug(${key}) does not exist.`,
+      );
+    }
 
     return {
       global: store.propList.global,
-      main: propList[key],
+      main: mainProp,
     };
   }
 
@@ -48,6 +61,46 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
     getPathsBySlug,
     getPropsBySlug,
   };
+};
+
+export const getMainPageHandler = ({
+  postDir,
+  slugOption,
+  perPage = 10,
+}: getStoreProps) => {
+  async function getMainProps(): Promise<PageProp<'page'>> {
+    const store = await getStore({
+      postDir,
+      slugOption,
+      perPage,
+    });
+
+    const propList = store.propList.page;
+    const mainKey = 'page/1';
+    const mainProp = propList[mainKey];
+
+    const emptyProp: PostListProp = {
+      count: 0,
+      currentPage: 0,
+      postList: [],
+      totalPage: 0,
+      perPage,
+    };
+
+    if (!mainProp) {
+      console.log(
+        chalk`{red.bold Caution :} Since there are no posts, the following default values is delivered.`,
+      );
+      console.log(JSON.stringify(emptyProp));
+    }
+
+    return {
+      global: store.propList.global,
+      main: mainProp == null ? emptyProp : mainProp,
+    };
+  }
+
+  return getMainProps;
 };
 
 export const getCategoryPageHandler = makePageHandler('category');
