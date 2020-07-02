@@ -12,6 +12,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from './utils/sanitizeSchema.json';
 import { slugify } from './utils/slugify';
 import { getCachedData, saveCache } from './utils/incrementalBuild';
+import { isDev } from './common';
 
 const fsPromise = fs.promises;
 
@@ -28,18 +29,6 @@ export interface PostData {
   prevPost?: PostLink;
   nextPost?: PostLink;
 }
-
-const getPostTimestamp = async (
-  filePath: string,
-  date?: Date,
-): Promise<number> => {
-  if (date == null) {
-    const ctime = (await fsPromise.stat(filePath)).ctime;
-    return ctime.valueOf();
-  }
-
-  return (date as Date).valueOf();
-};
 
 export const parsePost = async (filePath: string) => {
   const rawText = await fsPromise.readFile(filePath, 'utf8');
@@ -93,6 +82,20 @@ const parseSlug = (filePath: string, timestamp: number): string => {
   const slugified = slugify(datePrepended);
 
   return slugified;
+};
+
+const getPostTimestamp = async (
+  filePath: string,
+  date?: Date,
+): Promise<number> => {
+  if (date == null) {
+    if (isDev) return new Date('1990-04-10').valueOf();
+
+    const ctime = (await fsPromise.stat(filePath)).ctime;
+    return ctime.valueOf();
+  }
+
+  return (date as Date).valueOf();
 };
 
 const prependDate = (name: string, timestamp: number): string => {
