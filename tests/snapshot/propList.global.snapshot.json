@@ -1,16 +1,16 @@
 {
   "categoryCount": 10,
-  "postCount": 33,
+  "postCount": 34,
   "tagCount": 17,
   "categoryTree": {
     "name": "testPosts",
     "slug": "testposts",
-    "postCount": 33,
+    "postCount": 34,
     "children": [
       {
         "name": "테스트용 게시물들",
         "slug": "테스트용-게시물들",
-        "postCount": 24,
+        "postCount": 25,
         "children": [
           {
             "name": "날짜순 정렬",
@@ -20,7 +20,7 @@
           {
             "name": "복합 정렬",
             "slug": "복합-정렬",
-            "postCount": 8
+            "postCount": 9
           },
           {
             "name": "제목순 정렬",
