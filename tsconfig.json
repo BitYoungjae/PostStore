@@ -1,27 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "skipLibCheck": true,
-    "strict": false,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": true,
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Basic Options */
+    "target": "ES2020" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
+    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */,
+    "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
     "declaration": true,
-    "incremental": true,
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@atom/*": ["components/atom/*"],
-      "@layout/*": ["components/layout/*"],
-      "@lib/*": ["lib/*"]
-    }
+    "removeComments": true /* Do not emit comments to output. */,
+    "noEmit": true /* Do not emit outputs. */,
+    "strict": false /* Enable all strict type-checking options. */,
+    "strictNullChecks": true /* Enable strict null checks. */,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "resolveJsonModule": true,
+    "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["node_modules", "tests", "dist", "scripts"]
 }
