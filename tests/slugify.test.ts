@@ -26,6 +26,6 @@ test('slugify test', () => {
   );
 
   expect(slugify('Testing Asynchronous Code')).toBe(
-    'testing-asynchronous-code',
+    'Testing-Asynchronous-Code',
   );
 });
