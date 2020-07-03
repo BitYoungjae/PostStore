@@ -1,8 +1,8 @@
 {
   "page/1": {
-    "count": 2,
+    "count": 10,
     "currentPage": 1,
-    "perPage": 2,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-01-06-6",
@@ -39,15 +39,7 @@
           "slug": "2020-01-04-4",
           "title": "4번"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/2": {
-    "count": 2,
-    "currentPage": 2,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-04-4",
         "title": "4번",
@@ -87,15 +79,7 @@
           "slug": "2020-01-02-2",
           "title": "2번"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/3": {
-    "count": 2,
-    "currentPage": 3,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-02-2",
         "title": "2번",
@@ -135,15 +119,7 @@
           "slug": "2020-01-03-1.-세번째-날짜",
           "title": "세번째 날짜"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/4": {
-    "count": 2,
-    "currentPage": 4,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-03-1.-세번째-날짜",
         "title": "세번째 날짜",
@@ -183,15 +159,7 @@
           "slug": "2020-01-03-3.-세번째-날짜",
           "title": "세번째 날짜"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/5": {
-    "count": 2,
-    "currentPage": 5,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-03-3.-세번째-날짜",
         "title": "세번째 날짜",
@@ -233,12 +201,12 @@
         }
       }
     ],
-    "totalPage": 20
+    "totalPage": 4
   },
-  "page/6": {
-    "count": 2,
-    "currentPage": 6,
-    "perPage": 2,
+  "page/2": {
+    "count": 10,
+    "currentPage": 2,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-01-02-2.-두번째-날짜",
@@ -279,15 +247,7 @@
           "slug": "2020-01-01-1.-첫번째-날짜",
           "title": "첫번째 날짜"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/7": {
-    "count": 2,
-    "currentPage": 7,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-01-1.-첫번째-날짜",
         "title": "첫번째 날짜",
@@ -327,15 +287,7 @@
           "slug": "2020-01-01-3.-첫번째-날짜",
           "title": "첫번째 날짜"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/8": {
-    "count": 2,
-    "currentPage": 8,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-01-3.-첫번째-날짜",
         "title": "첫번째 날짜",
@@ -376,15 +328,7 @@
           "slug": "2020-01-01-또-다른-이름96932",
           "title": "중복 게시물"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/9": {
-    "count": 2,
-    "currentPage": 9,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-01-또-다른-이름96932",
         "title": "중복 게시물",
@@ -425,15 +369,7 @@
           "slug": "2020-01-01-같은-이름173bf",
           "title": "중복 게시물"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/10": {
-    "count": 2,
-    "currentPage": 10,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-01-01-같은-이름173bf",
         "title": "중복 게시물",
@@ -475,12 +411,12 @@
         }
       }
     ],
-    "totalPage": 20
+    "totalPage": 4
   },
-  "page/11": {
-    "count": 2,
-    "currentPage": 11,
-    "perPage": 2,
+  "page/3": {
+    "count": 10,
+    "currentPage": 3,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-01-01-또-다른-이름",
@@ -521,15 +457,7 @@
           "slug": "1990-04-10-12345",
           "title": "오로지 제목만으로 정렬합니다."
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/12": {
-    "count": 2,
-    "currentPage": 12,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "1990-04-10-12345",
         "title": "오로지 제목만으로 정렬합니다.",
@@ -569,15 +497,7 @@
           "slug": "1990-04-10-34567",
           "title": "오로지 제목만으로 정렬합니다."
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/13": {
-    "count": 2,
-    "currentPage": 13,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "1990-04-10-34567",
         "title": "오로지 제목만으로 정렬합니다.",
@@ -617,15 +537,7 @@
           "slug": "1990-04-10-abcde",
           "title": "오로지 제목만으로 정렬합니다."
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/14": {
-    "count": 2,
-    "currentPage": 14,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "1990-04-10-abcde",
         "title": "오로지 제목만으로 정렬합니다.",
@@ -665,15 +577,7 @@
           "slug": "1990-04-10-마바사아",
           "title": "오로지 제목만으로 정렬합니다."
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/15": {
-    "count": 2,
-    "currentPage": 15,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "1990-04-10-마바사아",
         "title": "오로지 제목만으로 정렬합니다.",
@@ -714,12 +618,12 @@
         }
       }
     ],
-    "totalPage": 20
+    "totalPage": 4
   },
-  "page/16": {
-    "count": 2,
-    "currentPage": 16,
-    "perPage": 2,
+  "page/4": {
+    "count": 10,
+    "currentPage": 4,
+    "perPage": 10,
     "postList": [
       {
         "slug": "1990-04-10-날짜-없는-게시물",
@@ -758,15 +662,7 @@
           "slug": "2020-06-23-자바스크립트-개껌이지",
           "title": "개껌이라니까?"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/17": {
-    "count": 2,
-    "currentPage": 17,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-06-23-자바스크립트-개껌이지",
         "title": "개껌이라니까?",
@@ -806,15 +702,7 @@
           "slug": "2020-06-23-자바스크립트-개껌이지",
           "title": "개껌이라니까?"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/18": {
-    "count": 2,
-    "currentPage": 18,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-06-29-개꿀팁-공유합니다",
         "title": "리액트 꾸울팁 공유!!",
@@ -856,15 +744,7 @@
           "slug": "2020-06-27-행복합니다-정말이요",
           "title": "정말 행복하시나요"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/19": {
-    "count": 2,
-    "currentPage": 19,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-06-27-행복합니다-정말이요",
         "title": "정말 행복하시나요",
@@ -900,15 +780,7 @@
           "slug": "2020-06-20-리덕스-저자-직강-정리",
           "title": "리덕스 저자 직강 정리"
         }
-      }
-    ],
-    "totalPage": 20
-  },
-  "page/20": {
-    "count": 2,
-    "currentPage": 20,
-    "perPage": 2,
-    "postList": [
+      },
       {
         "slug": "2020-06-20-리덕스-저자-직강-정리",
         "title": "리덕스 저자 직강 정리",
@@ -937,6 +809,6 @@
         "isPublished": true
       }
     ],
-    "totalPage": 20
+    "totalPage": 4
   }
 }
