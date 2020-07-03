@@ -2,7 +2,7 @@
   "type": "category",
   "name": "testPosts",
   "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts",
-  "slug": "testposts",
+  "slug": "testPosts",
   "children": [
     {
       "type": "category",
@@ -253,6 +253,97 @@
         },
         {
           "type": "category",
+          "name": "이름이 중복되는 경우",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/이름이 중복되는 경우",
+          "slug": "이름이-중복되는-경우",
+          "children": [
+            {
+              "type": "category",
+              "name": "중첩된 경로",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/이름이 중복되는 경우/중첩된 경로",
+              "slug": "중첩된-경로",
+              "children": [
+                {
+                  "type": "post",
+                  "name": "같은 이름.md",
+                  "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/이름이 중복되는 경우/중첩된 경로/같은 이름.md",
+                  "slug": "2020-01-01-같은-이름xeLCj",
+                  "postData": {
+                    "slug": "2020-01-01-같은-이름xeLCj",
+                    "title": "중복 게시물",
+                    "tags": [],
+                    "date": 1577836800000,
+                    "html": "<p>내용도 같음</p>",
+                    "isPublished": true,
+                    "categories": []
+                  }
+                },
+                {
+                  "type": "post",
+                  "name": "또 다른 이름!!!.md",
+                  "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/이름이 중복되는 경우/중첩된 경로/또 다른 이름!!!.md",
+                  "slug": "2020-01-01-또-다른-이름xeLCj",
+                  "postData": {
+                    "slug": "2020-01-01-또-다른-이름xeLCj",
+                    "title": "중복 게시물",
+                    "tags": [],
+                    "date": 1577836800000,
+                    "html": "<p>내용도 같음</p>",
+                    "isPublished": true,
+                    "categories": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "post",
+              "name": "같은 이름!.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/이름이 중복되는 경우/같은 이름!.md",
+              "slug": "2020-01-01-같은-이름",
+              "postData": {
+                "slug": "2020-01-01-같은-이름",
+                "title": "중복 게시물",
+                "tags": [],
+                "date": 1577836800000,
+                "html": "<p>내용도 같음</p>",
+                "isPublished": true,
+                "categories": []
+              }
+            },
+            {
+              "type": "post",
+              "name": "같은 이름.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/이름이 중복되는 경우/같은 이름.md",
+              "slug": "2020-01-01-같은-이름rnuHU",
+              "postData": {
+                "slug": "2020-01-01-같은-이름rnuHU",
+                "title": "중복 게시물",
+                "tags": [],
+                "date": 1577836800000,
+                "html": "<p>내용도 같음</p>",
+                "isPublished": true,
+                "categories": []
+              }
+            },
+            {
+              "type": "post",
+              "name": "또 다른 이름.md",
+              "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/이름이 중복되는 경우/또 다른 이름.md",
+              "slug": "2020-01-01-또-다른-이름",
+              "postData": {
+                "slug": "2020-01-01-또-다른-이름",
+                "title": "중복 게시물",
+                "tags": [],
+                "date": 1577836800000,
+                "html": "<p>내용도 같음</p>",
+                "isPublished": true,
+                "categories": []
+              }
+            }
+          ]
+        },
+        {
+          "type": "category",
           "name": "제목순 정렬",
           "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬",
           "slug": "제목순-정렬",
@@ -321,9 +412,9 @@
               "type": "post",
               "name": "DEFGG.md",
               "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/테스트용 게시물들/제목순 정렬/DEFGG.md",
-              "slug": "1990-04-10-defgg",
+              "slug": "1990-04-10-DEFGG",
               "postData": {
-                "slug": "1990-04-10-defgg",
+                "slug": "1990-04-10-DEFGG",
                 "title": "오로지 제목만으로 정렬합니다.",
                 "tags": [],
                 "date": 639705600000,
@@ -418,7 +509,7 @@
       "type": "category",
       "name": "Javascript",
       "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Javascript",
-      "slug": "javascript",
+      "slug": "Javascript",
       "children": [
         {
           "type": "category",
@@ -489,7 +580,7 @@
       "type": "category",
       "name": "React",
       "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/React",
-      "slug": "react",
+      "slug": "React",
       "children": [
         {
           "type": "category",
@@ -567,7 +658,7 @@
       "type": "category",
       "name": "Redux",
       "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Redux",
-      "slug": "redux",
+      "slug": "Redux",
       "children": [
         {
           "type": "post",

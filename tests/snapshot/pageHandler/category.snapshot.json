@@ -1,18 +1,18 @@
 {
   "proplist": {
     "global": {
-      "categoryCount": 10,
-      "postCount": 34,
+      "categoryCount": 12,
+      "postCount": 39,
       "tagCount": 17,
       "categoryTree": {
         "name": "testPosts",
-        "slug": "testposts",
-        "postCount": 34,
+        "slug": "testPosts",
+        "postCount": 39,
         "children": [
           {
             "name": "테스트용 게시물들",
             "slug": "테스트용-게시물들",
-            "postCount": 25,
+            "postCount": 30,
             "children": [
               {
                 "name": "날짜순 정렬",
@@ -25,6 +25,18 @@
                 "postCount": 9
               },
               {
+                "name": "이름이 중복되는 경우",
+                "slug": "이름이-중복되는-경우",
+                "postCount": 5,
+                "children": [
+                  {
+                    "name": "중첩된 경로",
+                    "slug": "중첩된-경로",
+                    "postCount": 2
+                  }
+                ]
+              },
+              {
                 "name": "제목순 정렬",
                 "slug": "제목순-정렬",
                 "postCount": 8
@@ -33,7 +45,7 @@
           },
           {
             "name": "Javascript",
-            "slug": "javascript",
+            "slug": "Javascript",
             "postCount": 3,
             "children": [
               {
@@ -45,7 +57,7 @@
           },
           {
             "name": "React",
-            "slug": "react",
+            "slug": "React",
             "postCount": 3,
             "children": [
               {
@@ -62,7 +74,7 @@
           },
           {
             "name": "Redux",
-            "slug": "redux",
+            "slug": "Redux",
             "postCount": 2
           }
         ]
@@ -436,6 +448,44 @@
       "params": {
         "slug": [
           "테스트용-게시물들",
+          "이름이-중복되는-경우"
+        ]
+      }
+    },
+    {
+      "params": {
+        "slug": [
+          "테스트용-게시물들",
+          "이름이-중복되는-경우",
+          "page",
+          "1"
+        ]
+      }
+    },
+    {
+      "params": {
+        "slug": [
+          "테스트용-게시물들",
+          "이름이-중복되는-경우",
+          "중첩된-경로"
+        ]
+      }
+    },
+    {
+      "params": {
+        "slug": [
+          "테스트용-게시물들",
+          "이름이-중복되는-경우",
+          "중첩된-경로",
+          "page",
+          "1"
+        ]
+      }
+    },
+    {
+      "params": {
+        "slug": [
+          "테스트용-게시물들",
           "제목순-정렬"
         ]
       }
@@ -453,14 +503,14 @@
     {
       "params": {
         "slug": [
-          "javascript"
+          "Javascript"
         ]
       }
     },
     {
       "params": {
         "slug": [
-          "javascript",
+          "Javascript",
           "page",
           "1"
         ]
@@ -469,7 +519,7 @@
     {
       "params": {
         "slug": [
-          "javascript",
+          "Javascript",
           "특별-시리즈"
         ]
       }
@@ -477,7 +527,7 @@
     {
       "params": {
         "slug": [
-          "javascript",
+          "Javascript",
           "특별-시리즈",
           "page",
           "1"
@@ -487,14 +537,14 @@
     {
       "params": {
         "slug": [
-          "react"
+          "React"
         ]
       }
     },
     {
       "params": {
         "slug": [
-          "react",
+          "React",
           "page",
           "1"
         ]
@@ -503,7 +553,7 @@
     {
       "params": {
         "slug": [
-          "react",
+          "React",
           "꿀팁-정리"
         ]
       }
@@ -511,7 +561,7 @@
     {
       "params": {
         "slug": [
-          "react",
+          "React",
           "꿀팁-정리",
           "page",
           "1"
@@ -521,7 +571,7 @@
     {
       "params": {
         "slug": [
-          "react",
+          "React",
           "리액트-핵심정리"
         ]
       }
@@ -529,7 +579,7 @@
     {
       "params": {
         "slug": [
-          "react",
+          "React",
           "리액트-핵심정리",
           "page",
           "1"
@@ -539,14 +589,14 @@
     {
       "params": {
         "slug": [
-          "redux"
+          "Redux"
         ]
       }
     },
     {
       "params": {
         "slug": [
-          "redux",
+          "Redux",
           "page",
           "1"
         ]

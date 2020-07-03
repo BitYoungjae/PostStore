@@ -39,6 +39,28 @@
   ],
   [
     "테스트용-게시물들",
+    "이름이-중복되는-경우"
+  ],
+  [
+    "테스트용-게시물들",
+    "이름이-중복되는-경우",
+    "page",
+    "1"
+  ],
+  [
+    "테스트용-게시물들",
+    "이름이-중복되는-경우",
+    "중첩된-경로"
+  ],
+  [
+    "테스트용-게시물들",
+    "이름이-중복되는-경우",
+    "중첩된-경로",
+    "page",
+    "1"
+  ],
+  [
+    "테스트용-게시물들",
     "제목순-정렬"
   ],
   [
@@ -48,56 +70,56 @@
     "1"
   ],
   [
-    "javascript"
+    "Javascript"
   ],
   [
-    "javascript",
+    "Javascript",
     "page",
     "1"
   ],
   [
-    "javascript",
+    "Javascript",
     "특별-시리즈"
   ],
   [
-    "javascript",
+    "Javascript",
     "특별-시리즈",
     "page",
     "1"
   ],
   [
-    "react"
+    "React"
   ],
   [
-    "react",
+    "React",
     "page",
     "1"
   ],
   [
-    "react",
+    "React",
     "꿀팁-정리"
   ],
   [
-    "react",
+    "React",
     "꿀팁-정리",
     "page",
     "1"
   ],
   [
-    "react",
+    "React",
     "리액트-핵심정리"
   ],
   [
-    "react",
+    "React",
     "리액트-핵심정리",
     "page",
     "1"
   ],
   [
-    "redux"
+    "Redux"
   ],
   [
-    "redux",
+    "Redux",
     "page",
     "1"
   ]
