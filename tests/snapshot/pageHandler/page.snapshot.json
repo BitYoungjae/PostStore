@@ -2,17 +2,17 @@
   "proplist": {
     "global": {
       "categoryCount": 12,
-      "postCount": 39,
+      "postCount": 40,
       "tagCount": 17,
       "categoryTree": {
         "name": "testPosts",
         "slug": "testPosts",
-        "postCount": 39,
+        "postCount": 40,
         "children": [
           {
             "name": "테스트용 게시물들",
             "slug": "테스트용-게시물들",
-            "postCount": 30,
+            "postCount": 31,
             "children": [
               {
                 "name": "날짜순 정렬",
@@ -27,7 +27,7 @@
               {
                 "name": "이름이 중복되는 경우",
                 "slug": "이름이-중복되는-경우",
-                "postCount": 5,
+                "postCount": 6,
                 "children": [
                   {
                     "name": "중첩된 경로",
