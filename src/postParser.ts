@@ -12,7 +12,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from './utils/sanitizeSchema.json';
 import { slugify } from './utils/slugify';
 import { getCachedData, saveCache } from './utils/incrementalBuild';
-import { isDev, isTest } from './common';
+import { isDev, isTest, makeHash } from './common';
 
 const fsPromise = fs.promises;
 
@@ -30,7 +30,10 @@ export interface PostData {
   nextPost?: PostLink;
 }
 
-export const parsePost = async (filePath: string): Promise<PostData> => {
+export const parsePost = async (
+  filePath: string,
+  slugMap: Map<string, boolean>,
+): Promise<PostData> => {
   const rawText = await fsPromise.readFile(filePath, 'utf8');
   const cachedData = getCachedData<PostData>(rawText);
 
@@ -42,7 +45,7 @@ export const parsePost = async (filePath: string): Promise<PostData> => {
   } = matter(rawText);
 
   const timestamp = await getPostTimestamp(filePath, date);
-  const slug = parseSlug(filePath, timestamp);
+  const slug = makeUnique(parseSlug(filePath, timestamp), filePath, slugMap);
   const html = await markdownToHTML(content);
 
   const post: PostData = {
@@ -100,4 +103,26 @@ const getPostTimestamp = async (
 
 const prependDate = (name: string, timestamp: number): string => {
   return `${format(new Date(timestamp), 'yyyy-MM-dd')}-${name}`;
+};
+
+const makeUnique = (
+  slug: string,
+  nodePath: string,
+  slugMap: Map<string, boolean>,
+  salt = 0,
+) => {
+  const isDupl = slugMap.get(slug);
+  const nowDir = path.dirname(nodePath);
+  const parentDir = path.resolve(nowDir, '..');
+  const relativeDir = path.relative(parentDir, nowDir);
+
+  if (isDupl) {
+    const hash = salt === 0 ? '' : makeHash(relativeDir).substr(0, 5);
+    const saltedSlug = slug + hash;
+
+    return makeUnique(saltedSlug, nodePath, slugMap, salt + 1);
+  }
+
+  slugMap.set(slug, true);
+  return slug;
 };

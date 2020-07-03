@@ -30,17 +30,18 @@ export interface CategoryNode extends FileNode {
   type: 'category';
   children: FileNode[];
 }
-
 interface getNodeTreeProps {
   nodePath: string;
   type?: FileNode['type'];
+  slugMap?: Map<string, boolean>;
 }
 
 export async function getNodeTree({
   nodePath,
   type = 'category',
+  slugMap = new Map(),
 }: getNodeTreeProps): Promise<FileNode> {
-  const newNode: FileNode = await createNode(nodePath, type);
+  const newNode: FileNode = await createNode(nodePath, type, slugMap);
 
   if (isPostNode(newNode)) return newNode;
 
@@ -60,12 +61,14 @@ export async function getNodeTree({
       const newCategoryNode = await getNodeTree({
         nodePath: nextNodePath,
         type: 'category',
+        slugMap,
       });
       newNode.children.push(newCategoryNode);
     } else if (isMarkdown(node)) {
       const newPostNode = (await getNodeTree({
         nodePath: nextNodePath,
         type: 'post',
+        slugMap,
       })) as PostNode;
 
       const { isPublished, html } = newPostNode.postData;
@@ -83,6 +86,7 @@ export async function getNodeTree({
 const createNode = async (
   nodePath: string,
   type: FileNode['type'],
+  slugMap: Map<string, boolean>,
 ): Promise<FileNode> => {
   const name = path.basename(nodePath).normalize();
 
@@ -93,7 +97,7 @@ const createNode = async (
   };
 
   if (type === 'post') {
-    const postData = await parsePost(nodePath);
+    const postData = await parsePost(nodePath, slugMap);
     const slug = postData.slug;
 
     newNode.slug = slug;
