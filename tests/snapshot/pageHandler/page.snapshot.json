@@ -176,14 +176,14 @@
         {
           "slug": "2020-01-06-6",
           "title": "6번",
-          "tags": [],
           "date": 1578268800000,
           "html": "<p>제목은 6번이지만, 가장 최근에 작성 되었어요.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
+          "isPublished": true,
           "nextPost": {
             "slug": "2020-01-05-5",
             "title": "5번"
@@ -192,14 +192,14 @@
         {
           "slug": "2020-01-05-5",
           "title": "5번",
-          "tags": [],
           "date": 1578182400000,
           "html": "<p>제목은 5번이지만, 작성한지는 다섯번째로 오래되었어요.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-06-6",
             "title": "6번"
@@ -212,14 +212,14 @@
         {
           "slug": "2020-01-04-4",
           "title": "4번",
-          "tags": [],
           "date": 1578096000000,
           "html": "<p>제목은 4번이지만, 작성한지는 네번째로 오래되었어요.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-05-5",
             "title": "5번"
@@ -232,14 +232,14 @@
         {
           "slug": "2020-01-03-3",
           "title": "3번",
-          "tags": [],
           "date": 1578009600000,
           "html": "<p>제목은 3번이지만, 작성한지는 세번째로 오래되었어요.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-04-4",
             "title": "4번"
@@ -252,14 +252,14 @@
         {
           "slug": "2020-01-02-2",
           "title": "2번",
-          "tags": [],
           "date": 1577923200000,
           "html": "<p>제목은 2번이지만, 작성한지는 두번째로 오래되었어요.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-03-3",
             "title": "3번"
@@ -272,14 +272,14 @@
         {
           "slug": "2020-01-01-1",
           "title": "1번",
-          "tags": [],
           "date": 1577836800000,
           "html": "<p>제목은 1번이지만, 작성한지는 제일 오래되었어요.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-02-2",
             "title": "2번"
@@ -292,14 +292,14 @@
         {
           "slug": "2020-01-03-1.-세번째-날짜",
           "title": "세번째 날짜",
-          "tags": [],
           "date": 1578009600000,
           "html": "<p>모두 01-03에 작성 되었죠.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-01-1",
             "title": "1번"
@@ -312,14 +312,14 @@
         {
           "slug": "2020-01-03-2.-세번째-날짜",
           "title": "세번째 날짜",
-          "tags": [],
           "date": 1578009600000,
           "html": "<p>모두 01-03에 작성 되었죠.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-03-1.-세번째-날짜",
             "title": "세번째 날짜"
@@ -332,14 +332,14 @@
         {
           "slug": "2020-01-03-3.-세번째-날짜",
           "title": "세번째 날짜",
-          "tags": [],
           "date": 1578009600000,
           "html": "<p>모두 01-03에 작성 되었죠.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-03-2.-세번째-날짜",
             "title": "세번째 날짜"
@@ -352,14 +352,14 @@
         {
           "slug": "2020-01-02-1.-두번째-날짜",
           "title": "두번째 날짜",
-          "tags": [],
           "date": 1577923200000,
           "html": "<p>모두 01-02에 작성 되었죠.</p>",
-          "isPublished": true,
+          "tags": [],
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
+          "isPublished": true,
           "prevPost": {
             "slug": "2020-01-03-3.-세번째-날짜",
             "title": "세번째 날짜"
