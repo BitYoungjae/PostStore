@@ -2,7 +2,7 @@
   "특별-시리즈": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -25,7 +25,7 @@
   "특별-시리즈/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",

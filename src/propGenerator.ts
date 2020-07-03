@@ -1,12 +1,7 @@
-import { PostData } from './postParser';
-import { FileNode, PostNode } from './utils/getNodeTree';
-import { PathList, Path } from './pathGenerator';
-import type { ObjectMap, SubTypeWithoutObjectMap } from './utils/helperTypes';
 import {
   getCategoriesAll,
   getPostsAll,
   getTagsAll,
-  SlugOption,
   getPostsByCategories,
   getTotalPage,
   isPageSlug,
@@ -19,90 +14,61 @@ import {
   isCategoryNode,
   isTest,
 } from './common';
-
-export interface PostListProp {
-  count: number;
-  currentPage: number;
-  perPage: number;
-  totalPage: number;
-  postList: PostData[];
-}
-
-export interface PostProp extends PostData {
-  relatedPosts: PostData[];
-}
-
-interface PropInfo {
-  slug: string;
-  name: string;
-  postCount: number;
-}
-
-interface PropInfoNode extends PropInfo {
-  children?: PropInfoNode[];
-}
-
-export interface GlobalProp {
-  postCount: number;
-  categoryCount: number;
-  tagCount: number;
-  categoryTree?: PropInfoNode;
-  tagList?: PropInfo[];
-  buildTime: number;
-}
-
-export type PropListSubType<K extends keyof PropList> = SubTypeWithoutObjectMap<
+import {
+  FileNode,
+  PathList,
+  PageParamOption,
   PropList,
-  K
->;
-
-export interface PropList {
-  global: GlobalProp;
-  category: ObjectMap<PostListProp>;
-  page: ObjectMap<PostListProp>;
-  tag: ObjectMap<PostListProp>;
-  post: ObjectMap<PostProp>;
-}
+  Path,
+  PostNode,
+  ObjectMap,
+  ListProp,
+  PostData,
+  PropInfoNode,
+  PropInfo,
+  PerPageOption,
+} from './typings';
 
 interface getPropListProps {
   rootNode: FileNode;
   pathList: PathList;
-  slugOption: Required<SlugOption>;
-  perPage?: number;
+  paramOption: Required<PageParamOption>;
+  perPageOption: Required<PerPageOption>;
 }
 
-export const getPropList = ({
+export const makePropList = ({
   rootNode,
   pathList,
-  slugOption,
-  perPage = 10,
+  paramOption,
+  perPageOption,
 }: getPropListProps): PropList => {
-  const global: PropList['global'] = getGlobalProps(rootNode);
-  const category: PropList['category'] = makePropList({
+  const global: PropList['global'] = makeGlobalProp(rootNode);
+
+  const category: PropList['category'] = makeListPageProp({
     rootNode,
-    perPage,
     pathList: pathList.category,
-    slugName: slugOption.category,
+    perPage: perPageOption.category,
+    pageParam: paramOption.category,
     getPostsFn: getPostsByCategories,
   });
 
-  const tag: PropList['tag'] = makePropList({
+  const tag: PropList['tag'] = makeListPageProp({
     rootNode,
-    perPage,
     pathList: pathList.tag,
-    slugName: slugOption.tag,
+    perPage: perPageOption.tag,
+    pageParam: paramOption.tag,
     getPostsFn: getPostsByTags,
   });
 
-  const page: PropList['page'] = makePropList({
+  const page: PropList['page'] = makeListPageProp({
     rootNode,
-    perPage,
+    perPage: perPageOption.page,
     pathList: pathList.page,
-    slugName: slugOption.page,
+    pageParam: paramOption.page,
     getPostsFn: getPostsAll,
   });
 
-  const post = makePostPropList(rootNode, pathList.post, slugOption.post);
+  const post = makePostPageProp(rootNode, pathList.post, paramOption.post);
 
   return {
     global,
@@ -113,7 +79,7 @@ export const getPropList = ({
   };
 };
 
-const getGlobalProps = (rootNode: FileNode): PropList['global'] => {
+const makeGlobalProp = (rootNode: FileNode): PropList['global'] => {
   const categoryCount = getCategoriesAll(rootNode).length - 1;
   const postCount = getPostsAll(rootNode).length;
   const tagCount = getTagsAll(rootNode).length;
@@ -162,22 +128,22 @@ const makeTagList = (rootNode: FileNode): PropInfo[] => {
 interface makePropListProps {
   rootNode: FileNode;
   pathList: Path[];
-  slugName: string;
+  pageParam: string;
   getPostsFn?: (rootNode: FileNode, slug?: string[]) => PostNode[];
   perPage?: number;
 }
 
-const makePropList = ({
+const makeListPageProp = ({
   rootNode,
   pathList,
-  slugName,
+  pageParam,
   perPage = 10,
   getPostsFn = getPostsAll,
-}: makePropListProps): ObjectMap<PostListProp> => {
-  const propMap: ObjectMap<PostListProp> = {};
+}: makePropListProps): ObjectMap<ListProp> => {
+  const propMap: ObjectMap<ListProp> = {};
 
   for (const path of pathList) {
-    const slug = path.params[slugName] as string[];
+    const slug = path.params[pageParam] as string[];
     const isPage = isPageSlug(slug);
     const trimmedSlug = trimPagePath(slug);
     const posts = getPostsFn(rootNode, trimmedSlug);
@@ -189,7 +155,7 @@ const makePropList = ({
     );
     const count = postList.length;
 
-    const prop: PostListProp = {
+    const prop: ListProp = {
       count,
       currentPage,
       perPage,
@@ -203,15 +169,15 @@ const makePropList = ({
   return propMap;
 };
 
-const makePostPropList = (
+const makePostPageProp = (
   rootNode: FileNode,
   pathList: Path[],
-  slugName: string,
+  pageParam: string,
 ): PropList['post'] => {
   const postMap: PropList['post'] = {};
 
   for (const path of pathList) {
-    const slug = path.params[slugName] as string;
+    const slug = path.params[pageParam] as string;
     const post = getPostBySlug(rootNode, slug);
 
     if (!post) continue;

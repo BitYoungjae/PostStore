@@ -1,59 +1,31 @@
 import { getStore, getStoreProps } from './store';
 import chalk from 'chalk';
-import {
-  GlobalProp,
-  PropList,
-  PropListSubType,
-  PostListProp,
-} from './propGenerator';
-import { Path, PathList } from './pathGenerator';
 import { getStyledErrorMsg } from './common';
+import { PageCategory, Path, PageProp, MainProp, ListProp } from './typings';
 
-type PageCategory = keyof PropList & keyof PathList;
-
-interface PageProp<T extends PageCategory> {
-  global: GlobalProp;
-  main: PropListSubType<T>;
-}
-
-export type PostPageProp = PageProp<'post'>;
-export type PostListPageProp = PageProp<'category'>;
-
-const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
-  postDir,
-  slugOption,
-  perPage = 10,
-  shouldUpdate,
-}: getStoreProps) => {
+const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
+  storeOption: getStoreProps,
+) => {
   async function getPathsBySlug(): Promise<Path[]> {
-    const store = await getStore({
-      postDir,
-      slugOption,
-      perPage,
-      shouldUpdate,
-    });
-
+    const store = await getStore(storeOption);
     const pathList = store.pathList[pageCategory];
+
     return pathList;
   }
 
-  async function getPropsBySlug(slug: string | string[]): Promise<PageProp<T>> {
-    const store = await getStore({
-      postDir,
-      slugOption,
-      perPage,
-      shouldUpdate,
-    });
-
-    const propList = store.propList[pageCategory] as PropListSubType<T>;
-    const key = Array.isArray(slug) ? slug.join('/') : slug;
+  async function getPropsBySlug(
+    param: string | string[],
+  ): Promise<PageProp<T>> {
+    const store = await getStore(storeOption);
+    const propList = store.propList[pageCategory] as MainProp<T>;
+    const key = Array.isArray(param) ? param.join('/') : param;
     const mainProp = propList[key];
 
     if (!mainProp) {
       throw new Error(
         getStyledErrorMsg(
-          `The data corresponding to the slug does not exist.`,
-          `input slug : ${slug}`,
+          `The data corresponding to the param does not exist.`,
+          `input param : ${param}`,
         ),
       );
     }
@@ -70,35 +42,25 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
   };
 };
 
-export const getMainPageHandler = ({
-  postDir,
-  slugOption,
-  perPage = 10,
-  shouldUpdate,
-}: getStoreProps) => {
+export const getMainPageHandler = (storeOption: getStoreProps) => {
   async function getMainProps(): Promise<PageProp<'page'>> {
-    const store = await getStore({
-      postDir,
-      slugOption,
-      perPage,
-      shouldUpdate,
-    });
+    const store = await getStore(storeOption);
 
     const propList = store.propList.page;
     const mainKey = 'page/1';
     const mainProp = propList[mainKey];
 
-    const emptyProp: PostListProp = {
+    const emptyProp: ListProp = {
       count: 0,
       currentPage: 0,
       postList: [],
       totalPage: 0,
-      perPage,
+      perPage: 0,
     };
 
     if (!mainProp) {
       console.log(
-        chalk`{red.bold Caution :} Since There are no posts in the {yellow.bold (${postDir})} path, the following default values is delivered.`,
+        chalk`{red.bold Caution :} Since There are no posts in the {yellow.bold (${storeOption.postDir})} path, the following default values is delivered.`,
       );
       console.log('\u001b[2m──────────────\u001b[22m');
       console.log(

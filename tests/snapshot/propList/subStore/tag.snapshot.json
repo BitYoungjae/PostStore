@@ -2,7 +2,7 @@
   "자바스크립트": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -25,7 +25,7 @@
   "자바스크립트/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -48,7 +48,7 @@
   "모든-것": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -71,7 +71,7 @@
   "모든-것/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -94,7 +94,7 @@
   "총집편": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -117,7 +117,7 @@
   "총집편/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
@@ -140,7 +140,7 @@
   "개소리": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-자바스크립트-개껌이지",
@@ -160,7 +160,7 @@
   "개소리/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-자바스크립트-개껌이지",
@@ -180,7 +180,7 @@
   "삽소리": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-자바스크립트-개껌이지",
@@ -200,7 +200,7 @@
   "삽소리/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-자바스크립트-개껌이지",
@@ -220,7 +220,7 @@
   "객체": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-객체에-대하여",
@@ -240,7 +240,7 @@
   "객체/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-객체에-대하여",
@@ -260,7 +260,7 @@
   "오브제엑트": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-객체에-대하여",
@@ -280,7 +280,7 @@
   "오브제엑트/page/1": {
     "count": 1,
     "currentPage": 1,
-    "perPage": 5,
+    "perPage": 10,
     "postList": [
       {
         "slug": "2020-06-23-객체에-대하여",

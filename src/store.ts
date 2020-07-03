@@ -1,72 +1,74 @@
-import { getNodeTree, FileNode } from './utils/getNodeTree';
-import { PropList, getPropList } from './propGenerator';
-import { PathList, getPathList, Path } from './pathGenerator';
-import {
-  SlugOption,
-  getPostsByCategories,
-  pagePathFilter,
-  isTest,
-  isDev,
-} from './common';
-import { PostData } from './postParser';
 import { buildInfoFileSave } from './utils/incrementalBuild';
+import {
+  PageParamOption,
+  PerPageOption,
+  PostStore,
+  FileNode,
+  Path,
+  PostData,
+} from './typings';
+import { isDev, isTest, pagePathFilter, getPostsByCategories } from './common';
+import { getNodeTree } from './utils/getNodeTree';
+import { getPathList } from './pathGenerator';
+import { makePropList } from './propGenerator';
 
-export interface PostStore {
-  postDir: string;
-  rootNode: FileNode;
-  propList: PropList;
-  pathList: PathList;
-}
+const defaultParam = 'slug';
+const defaultCount = 10;
+const defaultParamOption: Required<PageParamOption> = {
+  page: defaultParam,
+  category: defaultParam,
+  post: defaultParam,
+  tag: defaultParam,
+};
+const defaultCountOption: Required<PerPageOption> = {
+  page: defaultCount,
+  category: defaultCount,
+  tag: defaultCount,
+};
 
 export interface getStoreProps {
   postDir: string;
-  slugOption?: SlugOption;
-  perPage?: number;
+  perPage?: number | PerPageOption;
+  pageParam?: string | PageParamOption;
   shouldUpdate?: boolean;
-  incrementalBuild?: boolean;
+  incremental?: boolean;
 }
-
-const defaultSlugs: Required<SlugOption> = {
-  category: 'slug',
-  tag: 'slug',
-  post: 'slug',
-  page: 'slug',
-};
 
 const storeMap: Map<string, PostStore> = new Map();
 
 export const getStore = async ({
   postDir,
   perPage = 10,
-  slugOption = defaultSlugs,
+  pageParam = 'slug',
   shouldUpdate = isDev || isTest,
-  incrementalBuild = true,
+  incremental = true,
 }: getStoreProps): Promise<PostStore> => {
   const cachedStore = storeMap.get(postDir);
   if (cachedStore && !shouldUpdate) return cachedStore;
 
-  const filledSlugOption: Required<SlugOption> = {
-    ...defaultSlugs,
-    ...slugOption,
-  };
+  const [paramOption, perPageOption] = normalizeOption(pageParam, perPage);
 
   const rootNode = await getNodeTree({
     rootPath: postDir,
   });
 
   const pathList = getPathList({
-    perPage,
-    slugOption: filledSlugOption,
+    paramOption,
+    perPageOption,
     rootNode: rootNode,
   });
 
-  appendExtraToPost(rootNode, pathList.category, filledSlugOption.category);
+  appendExtraToPost({
+    rootNode,
+    categoryPathList: pathList.category,
+    categoryParamName: paramOption.category,
+  });
 
-  const propList = getPropList({
-    perPage,
-    slugOption: filledSlugOption,
-    pathList: pathList,
+  const propList = makePropList({
+    paramOption,
+    perPageOption,
     rootNode: rootNode,
+    pathList: pathList,
   });
 
   const store: PostStore = {
@@ -76,19 +78,25 @@ export const getStore = async ({
     propList,
   };
 
-  if (incrementalBuild) buildInfoFileSave();
+  if (incremental) buildInfoFileSave();
 
   storeMap.set(postDir, store);
 
   return store;
 };
 
-const appendExtraToPost = (
-  rootNode: FileNode,
-  categoryPathList: Path[],
-  categorySlug: string,
-) => {
-  const trimmedCategories = pagePathFilter(categoryPathList, categorySlug);
+interface appendExtraToPostProps {
+  rootNode: FileNode;
+  categoryPathList: Path[];
+  categoryParamName: string;
+}
+
+const appendExtraToPost = ({
+  rootNode,
+  categoryPathList,
+  categoryParamName,
+}: appendExtraToPostProps) => {
+  const trimmedCategories = pagePathFilter(categoryPathList, categoryParamName);
 
   for (const category of trimmedCategories) {
     const posts = getPostsByCategories(rootNode, category);
@@ -108,4 +116,20 @@ const appendExtraToPost = (
       prev = now;
     }
   }
+};
+
+export const normalizeOption = (
+  paramOption: getStoreProps['pageParam'],
+  PerPageOption: getStoreProps['perPage'],
+): [Required<PageParamOption>, Required<PerPageOption>] => {
+  let paramOptionResult =
+    typeof paramOption === 'object'
+      ? { ...defaultParamOption, ...paramOption }
+      : defaultParamOption;
+  let countOptionResult =
+    typeof PerPageOption === 'object'
+      ? { ...defaultCountOption, ...PerPageOption }
+      : defaultCountOption;
+
+  return [paramOptionResult, countOptionResult];
 };

@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-import { PostData, makePost } from '../postParser';
+import { makePost } from '../postParser';
 import { slugify } from './slugify';
 import { isCategoryNode, isPostNode } from '../common';
+import { FileNode, PostNode, CategoryNode } from '../typings';
 
 const fsPromise = fs.promises;
 const markdownRegex = new RegExp(/\.mdx?$/);
@@ -12,24 +13,6 @@ const isDirectory = (dirent: fs.Dirent) => dirent.isDirectory();
 const isMarkdown = (dirent: fs.Dirent) =>
   dirent.isFile() && markdownRegex.test(dirent.name);
 
-export interface FileNode {
-  type: 'category' | 'post';
-  name: string;
-  slug: string;
-  path: string;
-  postData?: PostData;
-  children?: FileNode[];
-}
-
-export interface PostNode extends FileNode {
-  type: 'post';
-  postData: PostData;
-}
-
-export interface CategoryNode extends FileNode {
-  type: 'category';
-  children: FileNode[];
-}
 interface getNodeTreeProps {
   rootPath: string;
   slugMap?: Map<string, boolean>;

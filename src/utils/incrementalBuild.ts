@@ -4,6 +4,15 @@ import { isTest, makeHash } from '../common';
 
 const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
 
+interface BuildInfo<T> {
+  [filePath: string]: {
+    hash: string;
+    content: T;
+  };
+}
+
+let buildInfo: BuildInfo<unknown>;
+
 export const getCachedData = <T>(
   filePath: string,
   newContent: string,
@@ -32,15 +41,6 @@ export const saveCache = <T>(filePath: string, content: string, data: T) => {
 
   buildInfo[filePath] = cacheData;
 };
-
-interface BuildInfo<T> {
-  [filePath: string]: {
-    hash: string;
-    content: T;
-  };
-}
-
-let buildInfo: BuildInfo<unknown>;
 
 const loadBuildInfo = (
   buildInfoPath: string,

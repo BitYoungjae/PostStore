@@ -1,14 +1,13 @@
 import {
-  PostListPageProp,
-  PostPageProp,
   getCategoryPageHandler,
   getPageHandler,
   getPostPageHandler,
   getTagPageHandler,
   getMainPageHandler,
 } from './pageHandler';
+import { ListPageProp, PostPageProp } from './typings';
 
-export type { PostListPageProp, PostPageProp };
+export type { ListPageProp, PostPageProp };
 
 export {
   getCategoryPageHandler,

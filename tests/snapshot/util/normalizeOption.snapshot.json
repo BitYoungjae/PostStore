@@ -1,0 +1,28 @@
+{
+  "primitive": [
+    {
+      "page": "slug",
+      "category": "slug",
+      "post": "slug",
+      "tag": "slug"
+    },
+    {
+      "page": 10,
+      "category": 10,
+      "tag": 10
+    }
+  ],
+  "object": [
+    {
+      "page": "pageeee",
+      "category": "categoryeeee",
+      "post": "slug",
+      "tag": "slug"
+    },
+    {
+      "page": 10,
+      "category": 7,
+      "tag": 10
+    }
+  ]
+}
