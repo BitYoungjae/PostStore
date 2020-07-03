@@ -30,35 +30,46 @@ export interface PostData {
   nextPost?: PostLink;
 }
 
-export const parsePost = async (
+interface CachedPostData extends Pick<PostData, 'html' | 'tags'> {}
+
+export const makePost = async (
   filePath: string,
   slugMap: Map<string, boolean>,
 ): Promise<PostData> => {
   const rawText = await fsPromise.readFile(filePath, 'utf8');
-  const cachedData = getCachedData<PostData>(rawText);
-
-  if (cachedData != null) return cachedData;
+  const cachedData = getCachedData<CachedPostData>(rawText);
 
   const {
     data: { title, date, tags = [], published = true },
     content = '',
   } = matter(rawText);
 
-  const timestamp = await getPostTimestamp(filePath, date);
-  const slug = makeUnique(parseSlug(filePath, timestamp), filePath, slugMap);
-  const html = await markdownToHTML(content);
+  const refinedDate = await refinePostDate(filePath, date);
+  const parsedSlug = makeUnique(
+    parseSlug(filePath, refinedDate),
+    filePath,
+    slugMap,
+  );
 
-  const post: PostData = {
-    slug,
-    title: title ? title : slug,
-    tags: (tags as string[]).map((tag) => slugify(tag)),
-    date: timestamp,
-    html,
-    isPublished: published ? true : false,
-    categories: [],
-  };
+  const post = await createPostData(
+    {
+      title,
+      tags,
+      slug: parsedSlug,
+      date: refinedDate,
+      categories: [],
+      isPublished: published,
+    },
+    content,
+    cachedData,
+  );
 
-  saveCache(rawText, post);
+  if (!cachedData)
+    saveCache(rawText, {
+      html: post.html,
+      tags: post.tags,
+    } as CachedPostData);
+
   return post;
 };
 
@@ -87,7 +98,7 @@ const parseSlug = (filePath: string, timestamp: number): string => {
   return slugified;
 };
 
-const getPostTimestamp = async (
+const refinePostDate = async (
   filePath: string,
   date?: Date,
 ): Promise<number> => {
@@ -137,4 +148,20 @@ const makeUnique = (
 
   slugMap.set(result, true);
   return result;
+};
+
+const createPostData = async (
+  { slug, title, date, tags, categories, isPublished }: Omit<PostData, 'html'>,
+  rawContent: string,
+  cachedData?: CachedPostData,
+): Promise<PostData> => {
+  return {
+    slug,
+    title: !title ? slug : title,
+    date,
+    html: cachedData ? cachedData.html : await markdownToHTML(rawContent),
+    tags: cachedData ? cachedData.tags : tags.map((tag) => slugify(tag)),
+    categories: categories ? categories : [],
+    isPublished,
+  };
 };

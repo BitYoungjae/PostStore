@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { PostData, parsePost } from '../postParser';
+import { PostData, makePost } from '../postParser';
 import { slugify } from './slugify';
 import { isCategoryNode, isPostNode } from '../common';
 
@@ -97,7 +97,7 @@ const createNode = async (
   };
 
   if (type === 'post') {
-    const postData = await parsePost(nodePath, slugMap);
+    const postData = await makePost(nodePath, slugMap);
     const slug = postData.slug;
 
     newNode.slug = slug;
