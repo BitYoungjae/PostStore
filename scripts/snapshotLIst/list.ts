@@ -1,9 +1,10 @@
+import path from 'path';
 import { testPath } from '../../tests/lib/env';
 import { getStore } from '../../src/store';
 import { snapShotTest, pickProp } from '../lib/snapshotTest';
-import { getCategoriesPaths } from '../../src/pathGenerator';
 import { getNodeTree, FileNode } from '../../src/utils/getNodeTree';
 import { getPostsByCategories } from '../../src/common';
+import { makePost } from '../../src/postParser';
 import {
   getMainPageHandler,
   getCategoryPageHandler,
@@ -41,20 +42,6 @@ export async function propListSnapshot(
   return testResults;
 }
 
-export async function getCategoriesPathSnapshot(
-  shoudUpdate: boolean = false,
-): Promise<boolean> {
-  const rootNode = await getRootNode();
-  const categories = getCategoriesPaths(rootNode);
-  const testResult = await snapShotTest(
-    categories,
-    './etc/getCategoriesPaths',
-    shoudUpdate,
-  );
-
-  return testResult;
-}
-
 export async function getNodeTreeSnapshot(
   shoudUpdate: boolean = false,
 ): Promise<boolean> {
@@ -88,7 +75,7 @@ export async function sortTestSnapshot(
 
   const testResult = await snapShotTest(
     { sortByDate, sortByName, sortByComplex },
-    './tree/sortTest',
+    './util/sortTest',
     shoudUpdate,
   );
 
@@ -163,8 +150,23 @@ export async function duplicatedNameTest(shoudUpdate: boolean = false) {
 
   const testResult = await snapShotTest(
     slugs,
-    './etc/duplicatedNames',
+    './util/duplicatedNames',
     shoudUpdate,
   );
+  return testResult;
+}
+
+export async function makePostSnapshotTest(shouldUpdate: boolean = false) {
+  const postData = await makePost(
+    path.resolve(testPath, './Javascript/객체에 대하여.md'),
+    new Map(),
+  );
+
+  const testResult = await snapShotTest(
+    postData,
+    './core/makePost',
+    shouldUpdate,
+  );
+
   return testResult;
 }
