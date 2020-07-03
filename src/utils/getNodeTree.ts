@@ -32,22 +32,17 @@ export interface CategoryNode extends FileNode {
 }
 interface getNodeTreeProps {
   rootPath: string;
-  type?: FileNode['type'];
   slugMap?: Map<string, boolean>;
 }
 
 export async function getNodeTree({
   rootPath,
-  type = 'category',
   slugMap = new Map(),
 }: getNodeTreeProps): Promise<FileNode> {
-  const node: FileNode = await createNode({
-    type,
+  const node: FileNode = await createCategoryNode({
     slugMap,
     nodePath: rootPath,
   });
-
-  if (isPostNode(node)) return node;
 
   const subFileList = await fsPromise.readdir(rootPath, {
     withFileTypes: true,
@@ -66,7 +61,6 @@ export async function getNodeTree({
       childNode = await getNodeTree({
         slugMap,
         rootPath: currentFilePath,
-        type: 'category',
       });
 
       // 자손이 없는 카테고리는 트리에서 제외
@@ -74,10 +68,9 @@ export async function getNodeTree({
         continue;
       }
     } else if (isMarkdown(currentFile)) {
-      childNode = await getNodeTree({
+      childNode = await createPostNode({
         slugMap,
-        rootPath: currentFilePath,
-        type: 'post',
+        nodePath: currentFilePath,
       });
 
       // publish 상태가 아니거나 본문이 없는 게시물은 트리에서 제외
@@ -97,13 +90,11 @@ export async function getNodeTree({
 
 interface createNodeProps {
   nodePath: string;
-  type: FileNode['type'];
   slugMap: Map<string, boolean>;
 }
 
-const createNode = async ({
+const createNode = (type: FileNode['type']) => async ({
   nodePath,
-  type,
   slugMap,
 }: createNodeProps): Promise<FileNode> => {
   const name = path.basename(nodePath).normalize();
@@ -120,12 +111,15 @@ const createNode = async ({
     newNode.slug = slug;
     newNode.postData = postData;
 
-    return newNode as FileNode;
+    return newNode as PostNode;
   }
 
   newNode.slug = slugify(name);
-  return newNode as FileNode;
+  return newNode as CategoryNode;
 };
+
+const createCategoryNode = createNode('category');
+const createPostNode = createNode('post');
 
 const sortChildren = (nodeList: FileNode[]): FileNode[] => {
   const categoryList = nodeList.filter(isCategoryNode);
