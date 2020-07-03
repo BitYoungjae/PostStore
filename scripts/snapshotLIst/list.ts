@@ -1,6 +1,6 @@
 import { testPath } from '../../tests/lib/env';
 import { getStore } from '../../src/store';
-import { snapShotTest, onlyFileName } from '../lib/snapshotTest';
+import { snapShotTest, pickProp } from '../lib/snapshotTest';
 import { getCategoriesPaths } from '../../src/pathGenerator';
 import { getNodeTree, FileNode } from '../../src/utils/getNodeTree';
 import { getPostsByCategories } from '../../src/common';
@@ -73,14 +73,17 @@ export async function sortTestSnapshot(
 ): Promise<boolean> {
   const rootNode = await getRootNode();
 
-  const sortByDate = onlyFileName(
+  const sortByDate = pickProp(
     getPostsByCategories(rootNode, ['테스트용-게시물들', '날짜순-정렬']),
+    'name',
   );
-  const sortByName = onlyFileName(
+  const sortByName = pickProp(
     getPostsByCategories(rootNode, ['테스트용-게시물들', '제목순-정렬']),
+    'name',
   );
-  const sortByComplex = onlyFileName(
+  const sortByComplex = pickProp(
     getPostsByCategories(rootNode, ['테스트용-게시물들', '복합-정렬']),
+    'name',
   );
 
   const testResult = await snapShotTest(
@@ -152,3 +155,16 @@ export const PageHandlerTest = makePageHandlerTest('page', getPageHandler, [
 export const TagHandlerTest = makePageHandlerTest('tag', getTagPageHandler, [
   '자바스크립트',
 ]);
+
+export async function duplicatedNameTest(shoudUpdate: boolean = false) {
+  const rootNode = await getRootNode();
+  const targetPosts = getPostsByCategories(rootNode, ['이름이-중복되는-경우']);
+  const slugs = pickProp(targetPosts, 'slug');
+
+  const testResult = await snapShotTest(
+    slugs,
+    './etc/duplicatedNames',
+    shoudUpdate,
+  );
+  return testResult;
+}
