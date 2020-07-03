@@ -129,5 +129,7 @@ export const getStyledErrorMsg = (msg: string, inputValue?: string) => {
 };
 
 const ALGORITHM = 'sha1';
-export const makeHash = (content: string) =>
-  crypto.createHash(ALGORITHM).update(content, 'utf8').digest('base64');
+export const makeHash = (
+  content: string,
+  encoding: crypto.HexBase64Latin1Encoding = 'base64',
+) => crypto.createHash(ALGORITHM).update(content, 'utf8').digest(encoding);

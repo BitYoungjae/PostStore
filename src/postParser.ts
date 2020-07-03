@@ -110,19 +110,31 @@ const makeUnique = (
   nodePath: string,
   slugMap: Map<string, boolean>,
   salt = 0,
+  newSlug?: string,
 ) => {
-  const isDupl = slugMap.get(slug);
+  let result: string;
+  let isDupl: boolean | undefined;
+
+  if (newSlug) {
+    isDupl = slugMap.get(newSlug);
+    result = newSlug;
+  } else {
+    isDupl = slugMap.get(slug);
+    result = slug;
+  }
+
   const nowDir = path.dirname(nodePath);
   const parentDir = path.resolve(nowDir, '..');
   const relativeDir = path.relative(parentDir, nowDir);
 
   if (isDupl) {
-    const hash = salt === 0 ? '' : makeHash(relativeDir).substr(0, 5);
-    const saltedSlug = slug + hash;
+    const hash =
+      salt === 0 ? '' : makeHash(relativeDir + `${salt}`, 'hex').substr(0, 5);
 
-    return makeUnique(saltedSlug, nodePath, slugMap, salt + 1);
+    const saltedSlug = slug + hash;
+    return makeUnique(slug, nodePath, slugMap, salt + 1, saltedSlug);
   }
 
-  slugMap.set(slug, true);
-  return slug;
+  slugMap.set(result, true);
+  return result;
 };
