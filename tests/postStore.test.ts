@@ -5,7 +5,7 @@ import { testPath } from './lib/env';
 let rootNode: FileNode;
 
 beforeAll(async () => {
-  rootNode = await getNodeTree({ nodePath: testPath });
+  rootNode = await getNodeTree({ rootPath: testPath });
 });
 
 test('getPostsByCategories', async () => {
