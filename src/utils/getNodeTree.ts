@@ -31,65 +31,82 @@ export interface CategoryNode extends FileNode {
   children: FileNode[];
 }
 interface getNodeTreeProps {
-  nodePath: string;
+  rootPath: string;
   type?: FileNode['type'];
   slugMap?: Map<string, boolean>;
 }
 
 export async function getNodeTree({
-  nodePath,
+  rootPath,
   type = 'category',
   slugMap = new Map(),
 }: getNodeTreeProps): Promise<FileNode> {
-  const newNode: FileNode = await createNode(nodePath, type, slugMap);
+  const node: FileNode = await createNode({
+    type,
+    slugMap,
+    nodePath: rootPath,
+  });
 
-  if (isPostNode(newNode)) return newNode;
+  if (isPostNode(node)) return node;
 
-  const children = await fsPromise.readdir(nodePath, {
+  const subFileList = await fsPromise.readdir(rootPath, {
     withFileTypes: true,
     encoding: 'utf-8',
   });
 
-  if (!children.length) return newNode;
+  if (!subFileList.length) return node;
 
-  newNode.children = [];
+  node.children = [];
 
-  for (const node of children) {
-    const nextNodePath = `${nodePath}/${node.name}`;
+  for (const currentFile of subFileList) {
+    const currentFilePath = `${rootPath}/${currentFile.name}`;
+    let childNode: FileNode;
 
-    if (isDirectory(node)) {
-      const newCategoryNode = await getNodeTree({
-        nodePath: nextNodePath,
+    if (isDirectory(currentFile)) {
+      childNode = await getNodeTree({
+        slugMap,
+        rootPath: currentFilePath,
         type: 'category',
-        slugMap,
       });
-      newNode.children.push(newCategoryNode);
-    } else if (isMarkdown(node)) {
-      const newPostNode = (await getNodeTree({
-        nodePath: nextNodePath,
-        type: 'post',
+
+      // 자손이 없는 카테고리는 트리에서 제외
+      if (!childNode.children || childNode.children.length === 0) {
+        continue;
+      }
+    } else if (isMarkdown(currentFile)) {
+      childNode = await getNodeTree({
         slugMap,
-      })) as PostNode;
+        rootPath: currentFilePath,
+        type: 'post',
+      });
 
-      const { isPublished, html } = newPostNode.postData;
+      // publish 상태가 아니거나 본문이 없는 게시물은 트리에서 제외
+      const { isPublished, html } = (childNode as PostNode).postData;
       if (!isPublished || !html) continue;
-
-      newNode.children.push(newPostNode);
+    } else {
+      continue;
     }
+
+    node.children.push(childNode);
   }
 
-  newNode.children = sortChildren(newNode.children);
+  node.children = sortChildren(node.children);
 
-  return newNode;
+  return node;
 }
 
-const createNode = async (
-  nodePath: string,
-  type: FileNode['type'],
-  slugMap: Map<string, boolean>,
-): Promise<FileNode> => {
-  const name = path.basename(nodePath).normalize();
+interface createNodeProps {
+  nodePath: string;
+  type: FileNode['type'];
+  slugMap: Map<string, boolean>;
+}
 
+const createNode = async ({
+  nodePath,
+  type,
+  slugMap,
+}: createNodeProps): Promise<FileNode> => {
+  const name = path.basename(nodePath).normalize();
   const newNode: Partial<FileNode> = {
     type,
     name,
