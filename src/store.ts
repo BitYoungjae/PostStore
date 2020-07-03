@@ -9,6 +9,7 @@ import {
   isDev,
 } from './common';
 import { PostData } from './postParser';
+import { buildInfoFileSave } from './utils/incrementalBuild';
 
 interface PostStore {
   postDir: string;
@@ -22,6 +23,7 @@ export interface getStoreProps {
   slugOption?: SlugOption;
   perPage?: number;
   shouldUpdate?: boolean;
+  incrementalBuild?: boolean;
 }
 
 const defaultSlugs: Required<SlugOption> = {
@@ -38,6 +40,7 @@ export const getStore = async ({
   perPage = 10,
   slugOption = defaultSlugs,
   shouldUpdate = isDev || isTest,
+  incrementalBuild = true,
 }: getStoreProps): Promise<PostStore> => {
   if (store && !shouldUpdate) return store;
 
@@ -71,6 +74,8 @@ export const getStore = async ({
     pathList,
     propList,
   };
+
+  if (incrementalBuild) buildInfoFileSave();
 
   return store;
 };
