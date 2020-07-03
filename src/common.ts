@@ -13,6 +13,8 @@ export interface SlugOption {
 
 export const isDev = process.env['NODE_ENV'] === 'development' ? true : false;
 export const isTest = process.env['NODE_ENV'] === 'test' ? true : false;
+export const isProduction =
+  process.env['NODE_ENV'] === 'production' ? true : false;
 
 export const isCategoryNode = (node: FileNode): node is CategoryNode =>
   node.type === 'category';
