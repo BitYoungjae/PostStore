@@ -46,6 +46,32 @@ npm run snapshot all
 - Multiple Store 기능 추가
   - 서로 다른 경로를 갖는 다수의 store 를 생성함으로써, 하나의 프로젝트에서 다수의 서브 페이지를 생성할 수 있게됨.
   - 하나의 프로젝트에서 블로그 관련, 기술 문서 관련 store를 별개로 생성해 관리 가능.
+  - `perPageOption` 추가. 리스트 페이지 별로 페이지 당 게시물 출력 수를 각각 지정 가능.
+
+#### 현재 기준 구현된 Configuration
+
+```ts
+interface PostStoreConfig {
+  storeOption: {
+    [key: string]: {
+      path: string;
+      shouldUpdate: boolean;
+      incremental: boolean;
+      perPage: {
+        category: number;
+        tag: number;
+        page: number;
+      };
+      pageParam: {
+        post: string;
+        category: string;
+        tag: string;
+        page: string;
+      };
+    };
+  };
+}
+```
 
 ### 2020-07-02
 
