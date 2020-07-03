@@ -1,26 +1,12 @@
-import { FileNode } from './utils/getNodeTree';
 import {
   isCategoryNode,
   isPostNode,
   getPostsAll,
-  SlugOption,
   getTagsAll,
   getTotalPage,
 } from './common';
 import { findNodeAll } from './utils/visit';
-
-export interface Path {
-  params: {
-    [paramName: string]: string | string[];
-  };
-}
-
-export interface PathList {
-  post: Path[];
-  category: Path[];
-  tag: Path[];
-  page: Path[];
-}
+import { Path, FileNode, SlugOption, PathList } from './typings';
 
 export const convertToPath = (paramName: string) => (
   slug: string | string[],

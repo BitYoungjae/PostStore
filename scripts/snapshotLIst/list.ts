@@ -1,8 +1,8 @@
 import path from 'path';
 import { testPath } from '../../tests/lib/env';
-import { getStore, PostStore } from '../../src/store';
+import { getStore } from '../../src/store';
 import { snapShotTest, pickProp } from '../lib/snapshotTest';
-import { getNodeTree, FileNode } from '../../src/utils/getNodeTree';
+import { getNodeTree } from '../../src/utils/getNodeTree';
 import { getPostsByCategories } from '../../src/common';
 import { makePost } from '../../src/postParser';
 import {
@@ -12,6 +12,7 @@ import {
   getPageHandler,
   getTagPageHandler,
 } from '../../src/pageHandler';
+import { FileNode, PostStore } from '../../src/typings';
 
 let rootNode: FileNode;
 

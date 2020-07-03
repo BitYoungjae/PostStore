@@ -1,23 +1,7 @@
 import { getStore, getStoreProps } from './store';
 import chalk from 'chalk';
-import {
-  GlobalProp,
-  PropList,
-  PropListSubType,
-  PostListProp,
-} from './propGenerator';
-import { Path, PathList } from './pathGenerator';
 import { getStyledErrorMsg } from './common';
-
-type PageCategory = keyof PropList & keyof PathList;
-
-interface PageProp<T extends PageCategory> {
-  global: GlobalProp;
-  main: PropListSubType<T>;
-}
-
-export type PostPageProp = PageProp<'post'>;
-export type PostListPageProp = PageProp<'category'>;
+import { PageCategory, Path, PageProp, MainProp, ListProp } from './typings';
 
 const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
   postDir,
@@ -45,7 +29,7 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
       shouldUpdate,
     });
 
-    const propList = store.propList[pageCategory] as PropListSubType<T>;
+    const propList = store.propList[pageCategory] as MainProp<T>;
     const key = Array.isArray(slug) ? slug.join('/') : slug;
     const mainProp = propList[key];
 
@@ -88,7 +72,7 @@ export const getMainPageHandler = ({
     const mainKey = 'page/1';
     const mainProp = propList[mainKey];
 
-    const emptyProp: PostListProp = {
+    const emptyProp: ListProp = {
       count: 0,
       currentPage: 0,
       postList: [],

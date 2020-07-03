@@ -1,6 +1,7 @@
 import { getPostsByCategories, getPostBySlug } from '../src/common';
-import { FileNode, getNodeTree } from '../src/utils/getNodeTree';
+import { getNodeTree } from '../src/utils/getNodeTree';
 import { testPath } from './lib/env';
+import { FileNode } from '../src/typings';
 
 let rootNode: FileNode;
 

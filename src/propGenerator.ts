@@ -1,12 +1,7 @@
-import { PostData } from './postParser';
-import { FileNode, PostNode } from './utils/getNodeTree';
-import { PathList, Path } from './pathGenerator';
-import type { ObjectMap, SubTypeWithoutObjectMap } from './utils/helperTypes';
 import {
   getCategoriesAll,
   getPostsAll,
   getTagsAll,
-  SlugOption,
   getPostsByCategories,
   getTotalPage,
   isPageSlug,
@@ -19,50 +14,19 @@ import {
   isCategoryNode,
   isTest,
 } from './common';
-
-export interface PostListProp {
-  count: number;
-  currentPage: number;
-  perPage: number;
-  totalPage: number;
-  postList: PostData[];
-}
-
-export interface PostProp extends PostData {
-  relatedPosts: PostData[];
-}
-
-interface PropInfo {
-  slug: string;
-  name: string;
-  postCount: number;
-}
-
-interface PropInfoNode extends PropInfo {
-  children?: PropInfoNode[];
-}
-
-export interface GlobalProp {
-  postCount: number;
-  categoryCount: number;
-  tagCount: number;
-  categoryTree?: PropInfoNode;
-  tagList?: PropInfo[];
-  buildTime: number;
-}
-
-export type PropListSubType<K extends keyof PropList> = SubTypeWithoutObjectMap<
+import {
+  FileNode,
+  PathList,
+  SlugOption,
   PropList,
-  K
->;
-
-export interface PropList {
-  global: GlobalProp;
-  category: ObjectMap<PostListProp>;
-  page: ObjectMap<PostListProp>;
-  tag: ObjectMap<PostListProp>;
-  post: ObjectMap<PostProp>;
-}
+  Path,
+  PostNode,
+  ObjectMap,
+  ListProp,
+  PostData,
+  PropInfoNode,
+  PropInfo,
+} from './typings';
 
 interface getPropListProps {
   rootNode: FileNode;
@@ -173,8 +137,8 @@ const makePropList = ({
   slugName,
   perPage = 10,
   getPostsFn = getPostsAll,
-}: makePropListProps): ObjectMap<PostListProp> => {
-  const propMap: ObjectMap<PostListProp> = {};
+}: makePropListProps): ObjectMap<ListProp> => {
+  const propMap: ObjectMap<ListProp> = {};
 
   for (const path of pathList) {
     const slug = path.params[slugName] as string[];
@@ -189,7 +153,7 @@ const makePropList = ({
     );
     const count = postList.length;
 
-    const prop: PostListProp = {
+    const prop: ListProp = {
       count,
       currentPage,
       perPage,

@@ -13,22 +13,9 @@ import sanitizeSchema from './utils/sanitizeSchema.json';
 import { slugify } from './utils/slugify';
 import { getCachedData, saveCache } from './utils/incrementalBuild';
 import { isTest, makeHash } from './common';
+import { PostData } from './typings';
 
 const fsPromise = fs.promises;
-
-interface PostLink extends Pick<PostData, 'slug' | 'title'> {}
-
-export interface PostData {
-  slug: string;
-  title: string;
-  tags: string[];
-  html: string;
-  date: number;
-  isPublished: boolean;
-  categories: string[];
-  prevPost?: PostLink;
-  nextPost?: PostLink;
-}
 
 interface CachedPostData extends Pick<PostData, 'html' | 'tags'> {}
 

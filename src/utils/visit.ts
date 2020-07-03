@@ -1,4 +1,4 @@
-import { FileNode } from './getNodeTree';
+import { FileNode } from '../typings';
 
 export function* visit(
   rootNode: FileNode,

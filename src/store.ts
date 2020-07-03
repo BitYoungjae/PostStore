@@ -1,29 +1,24 @@
-import { getNodeTree, FileNode } from './utils/getNodeTree';
-import { PropList, getPropList } from './propGenerator';
-import { PathList, getPathList, Path } from './pathGenerator';
+import { buildInfoFileSave } from './utils/incrementalBuild';
 import {
   SlugOption,
-  getPostsByCategories,
-  pagePathFilter,
-  isTest,
-  isDev,
-} from './common';
-import { PostData } from './postParser';
-import { buildInfoFileSave } from './utils/incrementalBuild';
-
-export interface PostStore {
-  postDir: string;
-  rootNode: FileNode;
-  propList: PropList;
-  pathList: PathList;
-}
+  PageOption,
+  PostStore,
+  FileNode,
+  Path,
+  PostData,
+} from './typings';
+import { isDev, isTest, pagePathFilter, getPostsByCategories } from './common';
+import { getNodeTree } from './utils/getNodeTree';
+import { getPathList } from './pathGenerator';
+import { getPropList } from './propGenerator';
 
 export interface getStoreProps {
   postDir: string;
-  slugOption?: SlugOption;
   perPage?: number;
+  slugOption?: SlugOption;
+  pageOption?: PageOption;
   shouldUpdate?: boolean;
-  incrementalBuild?: boolean;
+  incremental?: boolean;
 }
 
 const defaultSlugs: Required<SlugOption> = {
@@ -40,7 +35,7 @@ export const getStore = async ({
   perPage = 10,
   slugOption = defaultSlugs,
   shouldUpdate = isDev || isTest,
-  incrementalBuild = true,
+  incremental = true,
 }: getStoreProps): Promise<PostStore> => {
   const cachedStore = storeMap.get(postDir);
   if (cachedStore && !shouldUpdate) return cachedStore;
@@ -76,7 +71,7 @@ export const getStore = async ({
     propList,
   };
 
-  if (incrementalBuild) buildInfoFileSave();
+  if (incremental) buildInfoFileSave();
 
   storeMap.set(postDir, store);
 

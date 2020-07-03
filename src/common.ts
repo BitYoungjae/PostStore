@@ -1,15 +1,8 @@
 import crypto from 'crypto';
-import { FileNode, PostNode, CategoryNode } from './utils/getNodeTree';
 import { findNode, findNodeAll } from './utils/visit';
-import { Path } from './pathGenerator';
 import chalk from 'chalk';
-
-export interface SlugOption {
-  category?: string;
-  tag?: string;
-  post?: string;
-  page?: string;
-}
+import { FileNode, CategoryNode, PostNode } from './typings';
+import { Path } from './typings';
 
 export const isDev = process.env['NODE_ENV'] === 'development' ? true : false;
 export const isTest = process.env['NODE_ENV'] === 'test' ? true : false;
