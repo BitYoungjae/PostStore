@@ -37,6 +37,13 @@ npm run snapshot all
 
 ## 주요 기록
 
+### 2020-07-03
+
+- 게시물 이름이 중복되는 경우에 대한 핸들링 추가.
+  - 중복될 경우 hash를 붙이되, hash는 우선 경로 단위, 동일 경로에도 중복이 발생될 경우 salt를 늘려가며 재귀적 변경.
+  - [관련 코드 링크](src/postParser.ts#L108-L128)
+  - [스냅샷 링크](tests/snapshot/etc/duplicatedNames.snapshot.json)
+
 ### 2020-07-02
 
 - 증분 빌드 초안 구현 ([src/utils/incrementalBuild.ts](src/utils/incrementalBuild.ts))
