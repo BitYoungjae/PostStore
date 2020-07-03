@@ -19,7 +19,6 @@ export const saveCache = <T>(content: string, data: T) => {
   const hash = makeHash(content);
   const deepCopied = JSON.parse(JSON.stringify(data));
   buildInfo[hash] = deepCopied;
-  buildInfoFileSave();
 };
 
 interface BuildInfo<T> {
@@ -27,6 +26,7 @@ interface BuildInfo<T> {
 }
 
 let buildInfo: BuildInfo<unknown>;
+
 const loadBuildInfo = (
   buildInfoPath: string,
   shouldUpdate: boolean = false,
@@ -43,18 +43,11 @@ const loadBuildInfo = (
   return buildInfo;
 };
 
-const debounce = (fn: Function, time: number = 1000) => {
-  let timerId: NodeJS.Timeout;
-  return () => {
-    if (timerId) clearTimeout(timerId);
-
-    timerId = setTimeout(() => {
-      fn();
-    }, time);
-  };
-};
-
-const buildInfoFileSave = debounce(async () => {
+export const buildInfoFileSave = () => {
   const stringified = JSON.stringify(buildInfo, null, 2);
-  await fs.promises.writeFile(buildInfoPath, stringified, 'utf8');
-});
+  const writeBuildInfo = () => {
+    fs.promises.writeFile(buildInfoPath, stringified, 'utf8');
+    buildInfo = {};
+  };
+  fs.promises.unlink(buildInfoPath).then(writeBuildInfo, writeBuildInfo);
+};
