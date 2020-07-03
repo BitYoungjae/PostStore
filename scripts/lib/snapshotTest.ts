@@ -2,11 +2,10 @@ import { snapshotPath } from '../../tests/lib/env';
 import path from 'path';
 import fs from 'fs';
 import isEqual from 'lodash.isequal';
-import { FileNode } from '../../src/utils/getNodeTree';
 const fsPromise = fs.promises;
 
-export const onlyFileName = (nodeList: FileNode[]) =>
-  nodeList.map((node) => node.name.normalize());
+export const pickProp = <T, K extends keyof T>(nodeList: T[], key: K): T[K][] =>
+  nodeList.map((node) => node[key]);
 
 export const snapShotTest = async (
   data: any,
