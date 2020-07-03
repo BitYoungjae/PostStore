@@ -7,6 +7,7 @@ import {
   PostListProp,
 } from './propGenerator';
 import { Path, PathList } from './pathGenerator';
+import { getStyledErrorMsg } from './common';
 
 type PageCategory = keyof PropList & keyof PathList;
 
@@ -50,7 +51,10 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => ({
 
     if (!mainProp) {
       throw new Error(
-        `The data corresponding to the slug(${key}) does not exist.`,
+        getStyledErrorMsg(
+          `The data corresponding to the slug does not exist.`,
+          `input slug : ${slug}`,
+        ),
       );
     }
 
