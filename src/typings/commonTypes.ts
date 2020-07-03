@@ -5,8 +5,9 @@ import { PathList } from './pathTypes';
 
 export type PageCategory = keyof PropList & keyof PathList;
 
-export interface SlugOption extends Partial<Clone<PageCategory, string>> {}
-export interface PageOption extends Partial<Clone<PageCategory, number>> {}
+export interface PageParamOption extends Partial<Clone<PageCategory, string>> {}
+export interface PerPageOption
+  extends Partial<Omit<Clone<PageCategory, number>, 'post'>> {}
 
 export interface PostStore {
   postDir: string;

@@ -1,6 +1,6 @@
 import path from 'path';
 import { testPath } from '../../tests/lib/env';
-import { getStore } from '../../src/store';
+import { getStore, normalizeOption } from '../../src/store';
 import { snapShotTest, pickProp } from '../lib/snapshotTest';
 import { getNodeTree } from '../../src/utils/getNodeTree';
 import { getPostsByCategories } from '../../src/common';
@@ -178,6 +178,56 @@ export async function makePostSnapshotTest(shouldUpdate: boolean = false) {
   const testResult = await snapShotTest(
     postData,
     './core/makePost',
+    shouldUpdate,
+  );
+
+  return testResult;
+}
+
+export async function perPageOptionTest(shouldUpdate: boolean = false) {
+  const store = await getStore({
+    postDir: path.resolve(testPath, './테스트용 게시물들'),
+    perPage: {
+      page: 2,
+      category: 3,
+      tag: 4,
+    },
+    shouldUpdate: true,
+  });
+
+  const data = {
+    page: store.propList.page,
+    category: store.propList.category,
+    tag: store.propList.tag,
+  };
+
+  const testResult = await snapShotTest(
+    data,
+    './util/perPageOption',
+    shouldUpdate,
+  );
+
+  return testResult;
+}
+
+export async function normalizeOptionTest(shouldUpdate: boolean = false) {
+  const primitive = normalizeOption('abc', 7);
+  const object = normalizeOption(
+    {
+      page: 'pageeee',
+      category: 'categoryeeee',
+    },
+    { category: 7 },
+  );
+
+  const data = {
+    primitive,
+    object,
+  };
+
+  const testResult = await snapShotTest(
+    data,
+    './util/normalizeOption',
     shouldUpdate,
   );
 

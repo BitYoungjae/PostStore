@@ -5,9 +5,9 @@ import {
   getTagPageHandler,
   getMainPageHandler,
 } from './pageHandler';
-import { PostListPageProp, PostPageProp } from './typings';
+import { ListPageProp, PostPageProp } from './typings';
 
-export type { PostListPageProp, PostPageProp };
+export type { ListPageProp, PostPageProp };
 
 export {
   getCategoryPageHandler,

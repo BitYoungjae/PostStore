@@ -6,7 +6,13 @@ import {
   getTotalPage,
 } from './common';
 import { findNodeAll } from './utils/visit';
-import { Path, FileNode, SlugOption, PathList } from './typings';
+import {
+  Path,
+  FileNode,
+  PageParamOption,
+  PathList,
+  PerPageOption,
+} from './typings';
 
 export const convertToPath = (paramName: string) => (
   slug: string | string[],
@@ -82,32 +88,36 @@ export const getPagePaths = (
 
 interface getPathListProps {
   rootNode: FileNode;
-  slugOption: Required<SlugOption>;
-  perPage: number;
+  paramOption: Required<PageParamOption>;
+  perPageOption: Required<PerPageOption>;
 }
 
-export const getPathList = (options: getPathListProps): PathList => {
-  const { rootNode, slugOption, perPage } = options;
-
-  const {
-    category: categorySlug,
-    page: pageSlug,
-    post: postSlug,
-    tag: tagSlug,
-  } = slugOption;
-
-  const convertToPostPath = convertToPath(postSlug);
-  const convertToCategoryPath = convertToPath(categorySlug);
-  const convertToPagePath = convertToPath(pageSlug);
-  const convertToTagPath = convertToPath(tagSlug);
+export const getPathList = ({
+  rootNode,
+  paramOption: {
+    category: categoryParam,
+    page: pageParam,
+    post: postParam,
+    tag: tagParam,
+  },
+  perPageOption: {
+    page: pagesPerMain,
+    category: pagesPerCategoryPage,
+    tag: pagesPerTagPage,
+  },
+}: getPathListProps): PathList => {
+  const convertToPostPath = convertToPath(postParam);
+  const convertToCategoryPath = convertToPath(categoryParam);
+  const convertToPagePath = convertToPath(pageParam);
+  const convertToTagPath = convertToPath(tagParam);
 
   const postList = getPostsAll(rootNode);
   const post = postList.map(({ slug }) => convertToPostPath(slug));
-  const category = getCategoriesPaths(rootNode, perPage).map(
+  const category = getCategoriesPaths(rootNode, pagesPerCategoryPage).map(
     convertToCategoryPath,
   );
-  const page = getPagePaths(rootNode, perPage).map(convertToPagePath);
-  const tag = getTagsPaths(rootNode, perPage).map(convertToTagPath);
+  const page = getPagePaths(rootNode, pagesPerMain).map(convertToPagePath);
+  const tag = getTagsPaths(rootNode, pagesPerTagPage).map(convertToTagPath);
 
   return {
     post,
