@@ -1,9 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import crypto from 'crypto';
-import { isTest } from '../common';
+import { isTest, makeHash } from '../common';
 
-const ALGORITHM = 'sha1';
 const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
 
 export const getCachedData = <T>(content: string): T | undefined => {
@@ -44,9 +42,6 @@ const loadBuildInfo = (
 
   return buildInfo;
 };
-
-const makeHash = (content: string) =>
-  crypto.createHash(ALGORITHM).update(content, 'utf8').digest('base64');
 
 const debounce = (fn: Function, time: number = 1000) => {
   let timerId: NodeJS.Timeout;

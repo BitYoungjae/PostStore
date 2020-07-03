@@ -1,6 +1,8 @@
+import crypto from 'crypto';
 import { FileNode, PostNode, CategoryNode } from './utils/getNodeTree';
 import { findNode, findNodeAll } from './utils/visit';
 import { Path } from './pathGenerator';
+import chalk from 'chalk';
 
 export interface SlugOption {
   category?: string;
@@ -117,3 +119,15 @@ export const pagePathFilter = (pathList: Path[], slug: string) =>
   pathList
     .map((path) => path.params[slug])
     .filter((slug) => !isPageSlug(slug as string[])) as string[][];
+
+export const getStyledErrorMsg = (msg: string, inputValue?: string) => {
+  const styledMsg = chalk`{red.bold Error :} {yellow ${msg}}{green.bold ${
+    inputValue ? ` (${inputValue})` : ''
+  }}`;
+
+  return styledMsg;
+};
+
+const ALGORITHM = 'sha1';
+export const makeHash = (content: string) =>
+  crypto.createHash(ALGORITHM).update(content, 'utf8').digest('base64');
