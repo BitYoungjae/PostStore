@@ -1,0 +1,44 @@
+{
+  "2020-06-22-자바스크립트의-모든-것-1탄": {
+    "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
+    "title": "자바스크립트의 모든 거엇!",
+    "date": 1592784000000,
+    "html": "<h2 id=\"슬러기파이에-대해-알아보자\">슬러기파이에 대해 알아보자</h2>\n<pre><code class=\"language-js\"><span class=\"token keyword\">const</span> spaceRegex <span class=\"token operator\">=</span> <span class=\"token regex\">/\\s+/g</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">const</span> nonAllowedRegex <span class=\"token operator\">=</span> <span class=\"token regex\">/[^가-힇a-z\\d\\s\\.\\-]/gi</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">const</span> slugify <span class=\"token operator\">=</span> <span class=\"token punctuation\">(</span>name<span class=\"token operator\">:</span> string<span class=\"token punctuation\">,</span> delimeter <span class=\"token operator\">=</span> <span class=\"token string\">'-'</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">const</span> result <span class=\"token operator\">=</span> name\n    <span class=\"token punctuation\">.</span><span class=\"token function\">replace</span><span class=\"token punctuation\">(</span>nonAllowedRegex<span class=\"token punctuation\">,</span> <span class=\"token string\">''</span><span class=\"token punctuation\">)</span>\n    <span class=\"token punctuation\">.</span><span class=\"token function\">trim</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span>\n    <span class=\"token punctuation\">.</span><span class=\"token function\">replace</span><span class=\"token punctuation\">(</span>spaceRegex<span class=\"token punctuation\">,</span> delimeter<span class=\"token punctuation\">)</span>\n    <span class=\"token punctuation\">.</span><span class=\"token function\">toLowerCase</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>\n\n  <span class=\"token keyword\">return</span> result<span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">export</span> <span class=\"token punctuation\">{</span> slugify <span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n</code></pre>",
+    "tags": [
+      "자바스크립트",
+      "모든-것",
+      "총집편"
+    ],
+    "categories": [
+      "특별-시리즈"
+    ],
+    "isPublished": true,
+    "relatedPosts": []
+  },
+  "2020-06-23-자바스크립트-개껌이지": {
+    "slug": "2020-06-23-자바스크립트-개껌이지",
+    "title": "개껌이라니까?",
+    "date": 1592870400000,
+    "html": "<h2 id=\"웃기는-소리하네\">웃기는 소리하네</h2>\n<p>그런 웃기는 소리하지마쇼.</p>",
+    "tags": [
+      "개소리",
+      "삽소리"
+    ],
+    "categories": [],
+    "isPublished": true,
+    "relatedPosts": []
+  },
+  "2020-06-23-객체에-대하여": {
+    "slug": "2020-06-23-객체에-대하여",
+    "title": "객체에 대하여 알아봅시다",
+    "date": 1592870400000,
+    "html": "<h2 id=\"형태\">형태</h2>\n<pre><code class=\"language-js\"><span class=\"token keyword\">const</span> object <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n  abc<span class=\"token operator\">:</span> <span class=\"token number\">333</span><span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span>\n</code></pre>",
+    "tags": [
+      "객체",
+      "오브제엑트"
+    ],
+    "categories": [],
+    "isPublished": true,
+    "relatedPosts": []
+  }
+}

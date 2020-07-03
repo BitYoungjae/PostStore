@@ -11,7 +11,7 @@ import {
 import { PostData } from './postParser';
 import { buildInfoFileSave } from './utils/incrementalBuild';
 
-interface PostStore {
+export interface PostStore {
   postDir: string;
   rootNode: FileNode;
   propList: PropList;
@@ -33,7 +33,7 @@ const defaultSlugs: Required<SlugOption> = {
   page: 'slug',
 };
 
-let store: PostStore;
+const storeMap: Map<string, PostStore> = new Map();
 
 export const getStore = async ({
   postDir,
@@ -42,7 +42,8 @@ export const getStore = async ({
   shouldUpdate = isDev || isTest,
   incrementalBuild = true,
 }: getStoreProps): Promise<PostStore> => {
-  if (store && !shouldUpdate) return store;
+  const cachedStore = storeMap.get(postDir);
+  if (cachedStore && !shouldUpdate) return cachedStore;
 
   const filledSlugOption: Required<SlugOption> = {
     ...defaultSlugs,
@@ -50,7 +51,7 @@ export const getStore = async ({
   };
 
   const rootNode = await getNodeTree({
-    nodePath: postDir,
+    rootPath: postDir,
   });
 
   const pathList = getPathList({
@@ -68,7 +69,7 @@ export const getStore = async ({
     rootNode: rootNode,
   });
 
-  store = {
+  const store: PostStore = {
     postDir,
     rootNode,
     pathList,
@@ -76,6 +77,8 @@ export const getStore = async ({
   };
 
   if (incrementalBuild) buildInfoFileSave();
+
+  storeMap.set(postDir, store);
 
   return store;
 };

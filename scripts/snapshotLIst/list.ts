@@ -1,6 +1,6 @@
 import path from 'path';
 import { testPath } from '../../tests/lib/env';
-import { getStore } from '../../src/store';
+import { getStore, PostStore } from '../../src/store';
 import { snapShotTest, pickProp } from '../lib/snapshotTest';
 import { getNodeTree, FileNode } from '../../src/utils/getNodeTree';
 import { getPostsByCategories } from '../../src/common';
@@ -18,21 +18,33 @@ let rootNode: FileNode;
 const getRootNode = async () => {
   if (rootNode) return rootNode;
 
-  rootNode = await getNodeTree({ nodePath: testPath });
+  rootNode = await getNodeTree({ rootPath: testPath });
   return rootNode;
 };
 
-export async function propListSnapshot(
+export async function propListAndMultipleStoreSnapshot(
   shoudUpdate: boolean = false,
 ): Promise<boolean> {
-  const store = await getStore({ postDir: testPath, perPage: 2 });
+  const store = await getStore({ postDir: testPath });
+  const subStore = await getStore({
+    postDir: path.resolve(testPath, './Javascript'),
+    perPage: 5,
+  });
+
+  const makePropListSnapshot = (
+    store: PostStore,
+    pathPrefix: string,
+    shoudUpdate: boolean,
+  ) => {
+    const keys = Object.keys(store.propList);
+    return keys.map((key) =>
+      snapShotTest(store.propList[key], pathPrefix + key, shoudUpdate),
+    );
+  };
 
   const tests = [
-    snapShotTest(store.propList.category, './propList/category', shoudUpdate),
-    snapShotTest(store.propList.tag, './propList/tag', shoudUpdate),
-    snapShotTest(store.propList.page, './propList/page', shoudUpdate),
-    snapShotTest(store.propList.post, './propList/post', shoudUpdate),
-    snapShotTest(store.propList.global, './propList/global', shoudUpdate),
+    ...makePropListSnapshot(store, './propList/store/', shoudUpdate),
+    ...makePropListSnapshot(subStore, './propList/subStore/', shoudUpdate),
   ];
 
   const testResults = (await Promise.all(tests)).every(

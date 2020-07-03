@@ -1,0 +1,55 @@
+{
+  "categoryCount": 1,
+  "postCount": 3,
+  "tagCount": 7,
+  "categoryTree": {
+    "name": "Javascript",
+    "slug": "Javascript",
+    "postCount": 3,
+    "children": [
+      {
+        "name": "특별 시리즈",
+        "slug": "특별-시리즈",
+        "postCount": 1
+      }
+    ]
+  },
+  "tagList": [
+    {
+      "name": "자바스크립트",
+      "slug": "자바스크립트",
+      "postCount": 1
+    },
+    {
+      "name": "모든-것",
+      "slug": "모든-것",
+      "postCount": 1
+    },
+    {
+      "name": "총집편",
+      "slug": "총집편",
+      "postCount": 1
+    },
+    {
+      "name": "개소리",
+      "slug": "개소리",
+      "postCount": 1
+    },
+    {
+      "name": "삽소리",
+      "slug": "삽소리",
+      "postCount": 1
+    },
+    {
+      "name": "객체",
+      "slug": "객체",
+      "postCount": 1
+    },
+    {
+      "name": "오브제엑트",
+      "slug": "오브제엑트",
+      "postCount": 1
+    }
+  ],
+  "buildTime": 0
+}

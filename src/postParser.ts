@@ -12,7 +12,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from './utils/sanitizeSchema.json';
 import { slugify } from './utils/slugify';
 import { getCachedData, saveCache } from './utils/incrementalBuild';
-import { isDev, isTest, makeHash } from './common';
+import { isTest, makeHash } from './common';
 
 const fsPromise = fs.promises;
 
@@ -37,7 +37,7 @@ export const makePost = async (
   slugMap: Map<string, boolean>,
 ): Promise<PostData> => {
   const rawText = await fsPromise.readFile(filePath, 'utf8');
-  const cachedData = getCachedData<CachedPostData>(rawText);
+  const cachedData = getCachedData<CachedPostData>(filePath, rawText);
 
   const {
     data: { title, date, tags = [], published = true },
@@ -65,7 +65,7 @@ export const makePost = async (
   );
 
   if (!cachedData)
-    saveCache(rawText, {
+    saveCache(filePath, rawText, {
       html: post.html,
       tags: post.tags,
     } as CachedPostData);
@@ -103,7 +103,8 @@ const refinePostDate = async (
   date?: Date,
 ): Promise<number> => {
   if (date == null) {
-    if (isDev || isTest) return new Date('1990-04-10').valueOf();
+    // 스냅샷 테스트의 균일성을 위해, 테스트 시에는 모두 동일 날짜로 처리.
+    if (isTest) return new Date('1990-04-10').valueOf();
 
     const ctime = (await fsPromise.stat(filePath)).ctime;
     return ctime.valueOf();

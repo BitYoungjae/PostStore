@@ -4,25 +4,40 @@ import { isTest, makeHash } from '../common';
 
 const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
 
-export const getCachedData = <T>(content: string): T | undefined => {
+export const getCachedData = <T>(
+  filePath: string,
+  newContent: string,
+): T | undefined => {
   if (isTest) return;
 
-  const hash = makeHash(content);
+  const newHash = makeHash(newContent);
   const buildInfo = loadBuildInfo(buildInfoPath);
+  const cachedInfo = buildInfo[filePath];
 
-  return buildInfo[hash] as T;
+  if (!cachedInfo) return;
+
+  const { hash: oldHash, content } = cachedInfo;
+  if (newHash === oldHash) return content as T;
 };
 
-export const saveCache = <T>(content: string, data: T) => {
+export const saveCache = <T>(filePath: string, content: string, data: T) => {
   if (isTest) return;
 
   const hash = makeHash(content);
   const deepCopied = JSON.parse(JSON.stringify(data));
-  buildInfo[hash] = deepCopied;
+  const cacheData = {
+    hash,
+    content: deepCopied,
+  };
+
+  buildInfo[filePath] = cacheData;
 };
 
 interface BuildInfo<T> {
-  [hash: string]: T;
+  [filePath: string]: {
+    hash: string;
+    content: T;
+  };
 }
 
 let buildInfo: BuildInfo<unknown>;
@@ -45,9 +60,11 @@ const loadBuildInfo = (
 
 export const buildInfoFileSave = () => {
   const stringified = JSON.stringify(buildInfo, null, 2);
+
+  if (!stringified) return;
+
   const writeBuildInfo = () => {
     fs.promises.writeFile(buildInfoPath, stringified, 'utf8');
-    buildInfo = {};
   };
   fs.promises.unlink(buildInfoPath).then(writeBuildInfo, writeBuildInfo);
 };
