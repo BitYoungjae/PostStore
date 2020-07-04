@@ -16,16 +16,23 @@ export interface PostStore {
   pathList: PathList;
 }
 
-export interface PostData {
+export interface PostData extends CorePostData, ExtraPostData {}
+
+export interface CorePostData {
   slug: string;
   title: string;
   tags: string[];
   html: string;
   date: number;
   isPublished: boolean;
+}
+
+export interface ExtraPostData {
   categories: string[];
   prevPost?: PostLink;
   nextPost?: PostLink;
 }
 
 interface PostLink extends Pick<PostData, 'slug' | 'title'> {}
+
+export type SlugMap = Map<string, boolean>;

@@ -86,7 +86,7 @@ const pick = async (name: string) => {
     return;
   }
 
-  const testResult = await pickedGenerator();
+  const testResult = await pickedGenerator(false);
 
   spinner.info(pickedGenerator.name);
 

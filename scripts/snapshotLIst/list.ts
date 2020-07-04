@@ -170,10 +170,9 @@ export async function duplicatedNameTest(shoudUpdate: boolean = false) {
 }
 
 export async function makePostSnapshotTest(shouldUpdate: boolean = false) {
-  const postData = await makePost(
-    path.resolve(testPath, './Javascript/객체에 대하여.md'),
-    new Map(),
-  );
+  const postData = await makePost({
+    filePath: path.resolve(testPath, './Javascript/객체에 대하여.md'),
+  });
 
   const testResult = await snapShotTest(
     postData,
@@ -192,7 +191,6 @@ export async function perPageOptionTest(shouldUpdate: boolean = false) {
       category: 3,
       tag: 4,
     },
-    shouldUpdate: true,
   });
 
   const data = {

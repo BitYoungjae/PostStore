@@ -13,18 +13,27 @@ import sanitizeSchema from './utils/sanitizeSchema.json';
 import { slugify } from './utils/slugify';
 import { getCachedData, saveCache } from './utils/incrementalBuild';
 import { isTest, makeHash } from './common';
-import { PostData } from './typings';
+import { PostData, SlugMap } from './typings';
 
 const fsPromise = fs.promises;
 
 interface CachedPostData extends Pick<PostData, 'html' | 'tags'> {}
 
-export const makePost = async (
-  filePath: string,
-  slugMap: Map<string, boolean>,
-): Promise<PostData> => {
+interface makePostProps {
+  filePath: string;
+  slugMap?: SlugMap;
+  useCache?: boolean;
+}
+
+export const makePost = async ({
+  filePath,
+  slugMap,
+  useCache = true,
+}: makePostProps): Promise<PostData> => {
   const rawText = await fsPromise.readFile(filePath, 'utf8');
-  const cachedData = getCachedData<CachedPostData>(filePath, rawText);
+  const cachedData = useCache
+    ? getCachedData<CachedPostData>(filePath, rawText)
+    : undefined;
 
   const {
     data: { title, date, tags = [], published = true },
@@ -32,17 +41,16 @@ export const makePost = async (
   } = matter(rawText);
 
   const refinedDate = await refinePostDate(filePath, date);
-  const parsedSlug = makeUnique(
-    parseSlug(filePath, refinedDate),
-    filePath,
-    slugMap,
-  );
+  const parsedSlug = parseSlug(filePath, refinedDate);
+  const refinedSlug = !slugMap
+    ? parsedSlug
+    : makeUnique(parsedSlug, filePath, slugMap);
 
   const post = await createPostData(
     {
       title,
       tags,
-      slug: parsedSlug,
+      slug: refinedSlug,
       date: refinedDate,
       categories: [],
       isPublished: published,
@@ -51,7 +59,7 @@ export const makePost = async (
     cachedData,
   );
 
-  if (!cachedData)
+  if (!cachedData || !useCache)
     saveCache(filePath, rawText, {
       html: post.html,
       tags: post.tags,

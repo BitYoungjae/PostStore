@@ -1,3 +1,5 @@
+import path from 'path';
+import { watch, FSWatcher } from 'chokidar';
 import { buildInfoFileSave } from './utils/incrementalBuild';
 import {
   PageParamOption,
@@ -6,11 +8,20 @@ import {
   FileNode,
   Path,
   PostData,
+  CorePostData,
 } from './typings';
-import { isDev, isTest, pagePathFilter, getPostsByCategories } from './common';
+import {
+  isDev,
+  isTest,
+  pagePathFilter,
+  getPostsByCategories,
+  isSubDir,
+  getPostByPath,
+} from './common';
 import { getNodeTree } from './utils/getNodeTree';
 import { getPathList } from './pathGenerator';
 import { makePropList } from './propGenerator';
+import { makePost } from './postParser';
 
 const defaultParam = 'slug';
 const defaultCount = 10;
@@ -31,6 +42,7 @@ export interface getStoreProps {
   perPage?: number | PerPageOption;
   pageParam?: string | PageParamOption;
   shouldUpdate?: boolean;
+  watchMode?: boolean;
   incremental?: boolean;
 }
 
@@ -40,12 +52,127 @@ export const getStore = async ({
   postDir,
   perPage = 10,
   pageParam = 'slug',
-  shouldUpdate = isDev || isTest,
+  shouldUpdate = isTest,
+  watchMode = isDev || true,
   incremental = true,
 }: getStoreProps): Promise<PostStore> => {
   const cachedStore = storeMap.get(postDir);
-  if (cachedStore && !shouldUpdate) return cachedStore;
+  if (cachedStore && (!shouldUpdate || watchMode)) return cachedStore;
 
+  const store = await makeStore({ postDir, perPage, pageParam, incremental });
+  if (watchMode) startWatchMode({ postDir, perPage, pageParam, incremental });
+
+  return store;
+};
+
+const watcherMap: Map<string, FSWatcher> = new Map();
+
+const startWatchMode = ({
+  postDir,
+  pageParam,
+  perPage,
+  incremental,
+}: makeStoreProps): void => {
+  const watcher = watch(postDir, {
+    ignoreInitial: true,
+    persistent: true,
+    interval: 1000,
+    binaryInterval: 3000,
+  });
+  watcherMap.set(postDir, watcher);
+
+  // 현재 watcherMap keyList 중에 postDir의 상위경로가 있는지 확인 후, 있다면 해당 watcher에서 현재 경로 제거
+  unwatchToParents(postDir);
+
+  /*
+   * Watcher: File Change Handler
+   * 파일에 대한 change event일 경우 store 재생성 대신 postData에 대한 재가공만 진행할 것.
+   * store 빌드 과정에서만 알 수 있는 ExtraPostData는 업데이트에서 제외해야 함.
+   * 또한, slug 역시 store 빌드 과정에서 중복 방지 해시 및 ctime에 의해 가변되는 extra 데이터가 있으므로 업데이트에서 제외해야함.
+   */
+  const changeWatchHandler = async (filePath: string) => {
+    if (!isMarkDownFile(filePath)) return;
+
+    const store = storeMap.get(postDir)!;
+
+    const post = getPostByPath(store.rootNode, filePath);
+    if (!post) {
+      console.log(
+        `${store.rootNode.name} 기존 포스트가 없어서 스토어 재생성함`,
+      );
+      await makeStore({ postDir, perPage, pageParam, incremental });
+      return;
+    }
+
+    const { postData } = post;
+    const newPostData = await makePost({ filePath, useCache: false });
+
+    updatePostData(postData, newPostData, ['title', 'html', 'tags', 'date']);
+    console.log(`현재 store : ${store.rootNode.name} 게시물만 업데이트 완료`);
+    if (incremental) buildInfoFileSave();
+  };
+
+  const restWatcherHandler = async (
+    eventName: string,
+    path: string,
+    detail: any,
+  ) => {
+    if (eventName === 'modified') return;
+
+    const store = storeMap.get(postDir)!;
+
+    if (detail.type === 'file') {
+      if (!isMarkDownFile(path)) return;
+      const post = getPostByPath(store.rootNode, path);
+      if (post) return;
+    }
+
+    await makeStore({
+      postDir,
+      perPage,
+      pageParam,
+      incremental,
+    });
+
+    console.log(`${store.rootNode.name} 스토어 재생성함`);
+  };
+
+  watcher.on('change', changeWatchHandler);
+  watcher.on('raw', restWatcherHandler);
+};
+
+const isMarkDownFile = (filePath: string) =>
+  path.extname(filePath).normalize().toLowerCase() === '.md';
+
+const getParentWatchers = (postDir: string) =>
+  [...watcherMap.keys()]
+    .filter((watcherKey) => isSubDir(watcherKey, postDir))
+    .map((key) => watcherMap.get(key)!);
+
+const unwatchToParents = (postDir: string) =>
+  getParentWatchers(postDir).forEach((watcher) => watcher.unwatch(postDir));
+
+const updatePostData = (
+  targetPostData: PostData,
+  newPostData: PostData,
+  keys: (keyof (PostData | CorePostData))[],
+) =>
+  keys.forEach((key) => {
+    (targetPostData[key] as any) = newPostData[key];
+  });
+
+interface makeStoreProps
+  extends Pick<
+    getStoreProps,
+    'postDir' | 'perPage' | 'pageParam' | 'incremental'
+  > {}
+
+const makeStore = async ({
+  postDir,
+  perPage,
+  pageParam,
+  incremental,
+}: makeStoreProps): Promise<PostStore> => {
   const [paramOption, perPageOption] = normalizeOption(pageParam, perPage);
 
   const rootNode = await getNodeTree({
@@ -79,7 +206,6 @@ export const getStore = async ({
   };
 
   if (incremental) buildInfoFileSave();
-
   storeMap.set(postDir, store);
 
   return store;

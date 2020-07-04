@@ -1,3 +1,4 @@
+import path from 'path';
 import crypto from 'crypto';
 import { findNode, findNodeAll } from './utils/visit';
 import chalk from 'chalk';
@@ -45,16 +46,19 @@ export const getTagsAll = (rootNode: FileNode) => {
   return [...tags];
 };
 
-export const getPostBySlug = (
+export const getPostBy = (propName: keyof PostNode) => (
   rootNode: FileNode,
-  slug: string,
+  value: string,
 ): PostNode | undefined => {
   const finded = findNode(
     rootNode,
-    (node) => isPostNode(node) && node.slug === slug,
+    (node) => isPostNode(node) && node[propName] === value,
   );
   if (finded && isPostNode(finded)) return finded;
 };
+
+export const getPostBySlug = getPostBy('slug');
+export const getPostByPath = getPostBy('path');
 
 export const getPostsByCategories = (
   rootNode: FileNode,
@@ -128,3 +132,18 @@ export const makeHash = (
   content: string,
   encoding: crypto.HexBase64Latin1Encoding = 'base64',
 ) => crypto.createHash(ALGORITHM).update(content, 'utf8').digest(encoding);
+
+export const isSubDir = (parent: string, child: string): boolean => {
+  const [normalizedParentPath, normalizedChildPath] = [parent, child].map(
+    path.normalize,
+  );
+
+  const relativePath = path.relative(normalizedParentPath, normalizedChildPath);
+
+  if (!relativePath) return false;
+
+  const splittedPath = relativePath.split(path.sep);
+  const isDotSegment = splittedPath[0] !== '..';
+
+  return isDotSegment ? true : false;
+};
