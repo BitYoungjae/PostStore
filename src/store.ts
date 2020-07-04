@@ -118,6 +118,9 @@ const startWatchMode = ({
     detail: any,
   ) => {
     if (eventName === 'modified') return;
+    if (eventName === 'created' && detail.type === 'folder') return;
+
+    console.log(detail);
 
     const store = storeMap.get(postDir)!;
 
