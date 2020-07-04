@@ -3,6 +3,10 @@ import visit from 'unist-util-visit';
 import Prism from 'prismjs';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
+import { getStyledErrorMsg } from './msgHandler';
+import loadLanguage from 'prismjs/components/';
+
+loadLanguage(['jsx', 'tsx', 'typescript', 'scss', 'sql', 'json', 'bash']);
 
 interface rehypeNode extends Node {
   tagName: string;
@@ -54,13 +58,25 @@ const nodeEditor = (node: rehypeNode) => {
 
     if (!language || !code) return;
 
-    const highlightedCode = Prism.highlight(
-      code,
-      Prism.languages[language],
-      language,
-    );
+    try {
+      const highlightedCode = Prism.highlight(
+        code,
+        Prism.languages[language],
+        language,
+      );
 
-    setCode(node, highlightedCode);
+      setCode(node, highlightedCode);
+    } catch {
+      console.log(
+        getStyledErrorMsg(
+          'Code Syntax highlighter error',
+          `language: ${language}, code: ${
+            code.replace('\n', '').substr(0, 32) + '...'
+          }`,
+        ),
+      );
+      return;
+    }
   }
 };
 
