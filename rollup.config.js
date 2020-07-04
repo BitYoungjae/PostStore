@@ -23,6 +23,7 @@ const option = {
     'path',
     'crypto',
     'process',
+    'prismjs/components/',
   ],
   plugins: [
     json(),
