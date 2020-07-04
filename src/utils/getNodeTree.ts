@@ -88,7 +88,7 @@ const createNode = (type: FileNode['type']) => async ({
   };
 
   if (type === 'post') {
-    const postData = await makePost(nodePath, slugMap);
+    const postData = await makePost({ filePath: nodePath, slugMap });
     const slug = postData.slug;
 
     newNode.slug = slug;
