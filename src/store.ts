@@ -114,7 +114,7 @@ const startWatchMode = ({
 
   const restWatcherHandler = async (
     eventName: string,
-    // path: string,
+    _: string,
     detail: any,
   ) => {
     if (['unknown', 'error', 'ready'].includes(eventName)) return;
