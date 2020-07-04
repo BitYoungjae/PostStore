@@ -10,10 +10,8 @@ import {
   getPageNum,
   getPostsByTags,
   getPostBySlug,
-  isDev,
   isCategoryNode,
-  isTest,
-} from './common';
+} from '../lib/common';
 import {
   FileNode,
   PathList,
@@ -27,7 +25,8 @@ import {
   PropInfoNode,
   PropInfo,
   PerPageOption,
-} from './typings';
+} from '../typings';
+import { MODE_DEV, MODE_TEST } from '../lib/constants';
 
 interface getPropListProps {
   rootNode: FileNode;
@@ -83,7 +82,7 @@ const makeGlobalProp = (rootNode: FileNode): PropList['global'] => {
   const categoryCount = getCategoriesAll(rootNode).length - 1;
   const postCount = getPostsAll(rootNode).length;
   const tagCount = getTagsAll(rootNode).length;
-  const buildTime = isDev || isTest ? 0 : Date.now();
+  const buildTime = MODE_DEV || MODE_TEST ? 0 : Date.now();
   const categoryTree = makeCategoryTree(rootNode);
   const tagList = makeTagList(rootNode);
 

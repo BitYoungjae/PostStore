@@ -1,5 +1,5 @@
-import { getPostsByCategories, getPostBySlug } from '../src/common';
-import { getNodeTree } from '../src/utils/getNodeTree';
+import { getPostsByCategories, getPostBySlug } from '../src/lib/common';
+import { getNodeTree } from '../src/core/getNodeTree';
 import { testPath } from './lib/env';
 import { FileNode } from '../src/typings';
 

@@ -1,10 +1,10 @@
 import path from 'path';
 import { testPath } from '../../tests/lib/env';
-import { getStore, normalizeOption } from '../../src/store';
+import { getStore } from '../../src/store/getStore';
 import { snapShotTest, pickProp } from '../lib/snapshotTest';
-import { getNodeTree } from '../../src/utils/getNodeTree';
-import { getPostsByCategories } from '../../src/common';
-import { makePost } from '../../src/postParser';
+import { getNodeTree } from '../../src/core/getNodeTree';
+import { getPostsByCategories } from '../../src/lib/common';
+import { makePost } from '../../src/core/postParser';
 import {
   getMainPageHandler,
   getCategoryPageHandler,
@@ -13,6 +13,7 @@ import {
   getTagPageHandler,
 } from '../../src/pageHandler';
 import { FileNode, PostStore } from '../../src/typings';
+import { normalizeOption } from '../../src/store/makeStore';
 
 let rootNode: FileNode;
 

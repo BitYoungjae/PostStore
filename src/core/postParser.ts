@@ -7,13 +7,14 @@ import remark from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 import rehypeSlug from 'rehype-slug';
 import rehypeHtml from 'rehype-stringify';
-import rehypePrism from './utils/rehype-prism';
+import rehypePrism from '../lib/rehype-prism';
 import rehypeSanitize from 'rehype-sanitize';
-import sanitizeSchema from './utils/sanitizeSchema.json';
-import { slugify } from './utils/slugify';
-import { getCachedData, saveCache } from './utils/incrementalBuild';
-import { isTest, makeHash } from './common';
-import { PostData, SlugMap } from './typings';
+import sanitizeSchema from '../lib/sanitizeSchema.json';
+import { slugify } from '../lib/slugify';
+import { getCachedData, saveCache } from './incrementalBuild';
+import { makeHash } from '../lib/common';
+import { PostData, SlugMap } from '../typings';
+import { MODE_TEST } from '../lib/constants';
 
 const fsPromise = fs.promises;
 
@@ -99,7 +100,7 @@ const refinePostDate = async (
 ): Promise<number> => {
   if (date == null) {
     // 스냅샷 테스트의 균일성을 위해, 테스트 시에는 모두 동일 날짜로 처리.
-    if (isTest) return new Date('1990-04-10').valueOf();
+    if (MODE_TEST) return new Date('1990-04-10').valueOf();
 
     const ctime = (await fsPromise.stat(filePath)).ctime;
     return ctime.valueOf();

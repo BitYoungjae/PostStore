@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
-import { makePost } from '../postParser';
-import { slugify } from './slugify';
-import { isCategoryNode, isPostNode } from '../common';
+import { makePost } from './postParser';
+import { slugify } from '../lib/slugify';
+import { isCategoryNode, isPostNode } from '../lib/common';
 import { FileNode, PostNode, CategoryNode } from '../typings';
+import { NODE_TYPE_CATEGORY, NODE_TYPE_POST } from '../lib/constants';
 
 const fsPromise = fs.promises;
 const markdownRegex = new RegExp(/\.mdx?$/);
@@ -87,7 +88,7 @@ const createNode = (type: FileNode['type']) => async ({
     path: nodePath,
   };
 
-  if (type === 'post') {
+  if (type === NODE_TYPE_POST) {
     const postData = await makePost({ filePath: nodePath, slugMap });
     const slug = postData.slug;
 
@@ -101,8 +102,8 @@ const createNode = (type: FileNode['type']) => async ({
   return newNode as CategoryNode;
 };
 
-const createCategoryNode = createNode('category');
-const createPostNode = createNode('post');
+const createCategoryNode = createNode(NODE_TYPE_CATEGORY);
+const createPostNode = createNode(NODE_TYPE_POST);
 
 const sortChildren = (nodeList: FileNode[]): FileNode[] => {
   const categoryList = nodeList.filter(isCategoryNode);

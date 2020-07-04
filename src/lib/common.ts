@@ -1,19 +1,19 @@
 import path from 'path';
 import crypto from 'crypto';
-import { findNode, findNodeAll } from './utils/visit';
+import { findNode, findNodeAll } from './visit';
 import chalk from 'chalk';
-import { FileNode, CategoryNode, PostNode } from './typings';
-import { Path } from './typings';
-
-export const isDev = process.env['NODE_ENV'] === 'development' ? true : false;
-export const isTest = process.env['NODE_ENV'] === 'test' ? true : false;
-export const isProduction =
-  process.env['NODE_ENV'] === 'production' ? true : false;
+import { FileNode, CategoryNode, PostNode } from '../typings';
+import { Path } from '../typings';
+import {
+  HASH_ALGORITHM,
+  NODE_TYPE_CATEGORY,
+  NODE_TYPE_POST,
+} from './constants';
 
 export const isCategoryNode = (node: FileNode): node is CategoryNode =>
-  node.type === 'category';
+  node.type === NODE_TYPE_CATEGORY;
 export const isPostNode = (node: FileNode): node is PostNode =>
-  node.type === 'post';
+  node.type === NODE_TYPE_POST;
 
 export const findCategory = (rootNode: FileNode, categories: string[]) => {
   let now: FileNode | undefined = rootNode;
@@ -127,11 +127,10 @@ export const getStyledErrorMsg = (msg: string, inputValue?: string) => {
   return styledMsg;
 };
 
-const ALGORITHM = 'sha1';
 export const makeHash = (
   content: string,
   encoding: crypto.HexBase64Latin1Encoding = 'base64',
-) => crypto.createHash(ALGORITHM).update(content, 'utf8').digest(encoding);
+) => crypto.createHash(HASH_ALGORITHM).update(content, 'utf8').digest(encoding);
 
 export const isSubDir = (parent: string, child: string): boolean => {
   const [normalizedParentPath, normalizedChildPath] = [parent, child].map(

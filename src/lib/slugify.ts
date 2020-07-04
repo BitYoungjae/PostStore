@@ -1,4 +1,4 @@
-import { getStyledErrorMsg } from '../common';
+import { getStyledErrorMsg } from './common';
 
 const spaceRegex = /\s+/g;
 const nonAllowedRegex = /[^가-힣a-z\d\s\.\-]/gi;

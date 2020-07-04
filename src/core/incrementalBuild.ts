@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { isTest, makeHash } from '../common';
+import { makeHash } from '../lib/common';
+import { MODE_TEST } from '../lib/constants';
 
 const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
 
@@ -17,7 +18,7 @@ export const getCachedData = <T>(
   filePath: string,
   newContent: string,
 ): T | undefined => {
-  if (isTest) return;
+  if (MODE_TEST) return;
 
   const newHash = makeHash(newContent);
   const buildInfo = loadBuildInfo(buildInfoPath);
@@ -30,7 +31,7 @@ export const getCachedData = <T>(
 };
 
 export const saveCache = <T>(filePath: string, content: string, data: T) => {
-  if (isTest) return;
+  if (MODE_TEST) return;
 
   const hash = makeHash(content);
   const deepCopied = JSON.parse(JSON.stringify(data));

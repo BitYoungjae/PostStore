@@ -4,15 +4,15 @@ import {
   getPostsAll,
   getTagsAll,
   getTotalPage,
-} from './common';
-import { findNodeAll } from './utils/visit';
+} from '../lib/common';
+import { findNodeAll } from '../lib/visit';
 import {
   Path,
   FileNode,
   PageParamOption,
   PathList,
   PerPageOption,
-} from './typings';
+} from '../typings';
 
 export const convertToPath = (paramName: string) => (
   slug: string | string[],
