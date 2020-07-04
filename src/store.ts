@@ -117,17 +117,18 @@ const startWatchMode = ({
     path: string,
     detail: any,
   ) => {
-    if (eventName === 'modified') return;
-    if (eventName === 'created' && detail.type === 'folder') return;
-
-    console.log(detail);
+    if (['unknown', 'error', 'ready'].includes(eventName)) return;
+    if (eventName === 'modified' && detail.type === 'file') return;
+    if (eventName === 'created' && detail.type === 'directory') return;
 
     const store = storeMap.get(postDir)!;
 
     if (detail.type === 'file') {
-      if (!isMarkDownFile(path)) return;
-      const post = getPostByPath(store.rootNode, path);
-      if (post) return;
+      // if (!isMarkDownFile(path)) return;
+      // const post = getPostByPath(store.rootNode, path);
+      // if (post) return;
+
+      console.log(detail);
     }
 
     await makeStore({
