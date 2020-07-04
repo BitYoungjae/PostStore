@@ -123,12 +123,12 @@ const startWatchMode = ({
 
     const store = storeMap.get(postDir)!;
 
+    console.log(detail);
+
     if (detail.type === 'file') {
       // if (!isMarkDownFile(path)) return;
       // const post = getPostByPath(store.rootNode, path);
       // if (post) return;
-
-      console.log(detail);
     }
 
     await makeStore({
