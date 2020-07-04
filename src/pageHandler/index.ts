@@ -1,6 +1,6 @@
 import { getStore, getStoreProps } from '../store/getStore';
 import chalk from 'chalk';
-import { getStyledErrorMsg } from '../lib/common';
+import { getStyledErrorMsg } from '../lib/msgHandler';
 import { PageCategory, Path, PageProp, MainProp, ListProp } from '../typings';
 
 const makePageHandler = <T extends PageCategory>(pageCategory: T) => (

@@ -1,12 +1,13 @@
+import path from 'path';
 import { watch, FSWatcher } from 'chokidar';
-import { getPostByPath, isSubDir } from '../lib/common';
+import { getPostByPath, isSubDir, debounce } from '../lib/common';
 import { makePost } from '../core/postParser';
 import { buildInfoFileSave } from '../core/incrementalBuild';
-import path from 'path';
 import { PostData, CorePostData } from '../typings';
 import { makeStoreProps, makeStore } from './makeStore';
 import { storeMap } from './common';
-import { PLATFROM_DARWIN } from '../lib/constants';
+import { getStyledInfoMsg } from '../lib/msgHandler';
+import { PLATFROM_DARWIN, MODE_TEST } from '../lib/constants';
 
 const watcherMap: Map<string, FSWatcher> = new Map();
 
@@ -16,16 +17,29 @@ export const startWatchMode = ({
   perPage,
   incremental,
 }: makeStoreProps): void => {
-  const watcher = watch(postDir, {
-    ignoreInitial: true,
-    persistent: true,
-    interval: 1000,
-    binaryInterval: 3000,
-  });
+  const parentWatcherKey = getParentWatcherKey(postDir);
+
+  const watcher = parentWatcherKey
+    ? watcherMap.get(parentWatcherKey)!
+    : watch(postDir, {
+        ignoreInitial: true,
+        interval: 200,
+        binaryInterval: 3000,
+        persistent: false,
+      });
+
   watcherMap.set(postDir, watcher);
 
-  // 현재 watcherMap keyList 중에 postDir의 상위경로가 있는지 확인 후, 있다면 해당 watcher에서 현재 경로 제거
-  unwatchToParents(postDir);
+  const updateStore = debounce(async (msg: string) => {
+    await makeStore({
+      postDir,
+      perPage,
+      pageParam,
+      incremental,
+    });
+
+    console.log(msg);
+  });
 
   /*
    * Watcher: File Change Handler
@@ -40,10 +54,12 @@ export const startWatchMode = ({
 
     const post = getPostByPath(store.rootNode, filePath);
     if (!post) {
-      console.log(
-        `${store.rootNode.name} 기존 포스트가 없어서 스토어 재생성함`,
+      updateStore(
+        getStyledInfoMsg(
+          `The store was updated because there is no existing post.`,
+          `Store name : ${store.rootNode.name}`,
+        ),
       );
-      await makeStore({ postDir, perPage, pageParam, incremental });
       return;
     }
 
@@ -51,7 +67,13 @@ export const startWatchMode = ({
     const newPostData = await makePost({ filePath, useCache: false });
 
     updatePostData(postData, newPostData, ['title', 'html', 'tags', 'date']);
-    console.log(`현재 store : ${store.rootNode.name} 게시물만 업데이트 완료`);
+
+    console.log(
+      getStyledInfoMsg(
+        `${newPostData.title} Post updated.`,
+        `Store name : ${store.rootNode.name}`,
+      ),
+    );
     if (incremental) buildInfoFileSave();
   };
 
@@ -61,33 +83,47 @@ export const startWatchMode = ({
    */
   const rawHandlerForDarwin = async (
     eventName: string,
-    path: string,
+    filePath: string,
     detail: any,
   ) => {
+    if (MODE_TEST)
+      console.log({
+        event: detail.event,
+        flags: detail.flags,
+        type: detail.type,
+      });
+
+    // 해당 store가 관리하는 경로가 아니라면 무시
+    const store = storeMap.get(postDir)!;
+    const fileDirPath = path.dirname(filePath);
+    if (!isSubDir(store.postDir, fileDirPath)) return;
+
     if (eventName === 'modified' && detail.type === 'file') {
-      await changeFileHandler(path);
+      await changeFileHandler(filePath);
       return;
     }
     if (detail.flags === 72704) return;
     if (['unknown', 'error', 'ready'].includes(eventName)) return;
-    if (eventName === 'created' && detail.type === 'directory') return;
-    if (['created', 'moved'].includes(eventName) && !isMarkDownFile(path))
+    if (
+      ['created', 'moved'].includes(eventName) &&
+      detail.type === 'file' &&
+      !isMarkDownFile(filePath)
+    )
       return;
 
-    await restEventHandler();
+    await restEventHandler(filePath, detail.type);
   };
 
-  const restEventHandler = async () => {
+  const restEventHandler = async (filePath: string, type = 'file') => {
     const store = storeMap.get(postDir)!;
-
-    await makeStore({
-      postDir,
-      perPage,
-      pageParam,
-      incremental,
-    });
-
-    console.log(`${store.rootNode.name} 스토어 재생성함`);
+    updateStore(
+      getStyledInfoMsg(
+        `The store was updated because a change in the ${path.basename(
+          filePath,
+        )} ${type}.`,
+        `Store name : ${store.rootNode.name}`,
+      ),
+    );
   };
 
   if (!PLATFROM_DARWIN) {
@@ -96,6 +132,10 @@ export const startWatchMode = ({
     watcher.on('addDir', restEventHandler);
     watcher.on('unlink', restEventHandler);
     watcher.on('unlinkDir', restEventHandler);
+    watcher.on('all', async (eventName, path) => {
+      if (eventName === 'change') return;
+      await restEventHandler(path);
+    });
     return;
   }
 
@@ -105,13 +145,8 @@ export const startWatchMode = ({
 const isMarkDownFile = (filePath: string) =>
   path.extname(filePath).normalize().toLowerCase() === '.md';
 
-const getParentWatchers = (postDir: string) =>
-  [...watcherMap.keys()]
-    .filter((watcherKey) => isSubDir(watcherKey, postDir))
-    .map((key) => watcherMap.get(key)!);
-
-const unwatchToParents = (postDir: string) =>
-  getParentWatchers(postDir).forEach((watcher) => watcher.unwatch(postDir));
+const getParentWatcherKey = (postDir: string) =>
+  [...watcherMap.keys()].find((watcherKey) => isSubDir(watcherKey, postDir));
 
 const updatePostData = (
   targetPostData: PostData,

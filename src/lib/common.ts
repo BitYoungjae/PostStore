@@ -1,7 +1,6 @@
 import path from 'path';
 import crypto from 'crypto';
 import { findNode, findNodeAll } from './visit';
-import chalk from 'chalk';
 import { FileNode, CategoryNode, PostNode } from '../typings';
 import { Path } from '../typings';
 import {
@@ -119,30 +118,37 @@ export const pagePathFilter = (pathList: Path[], slug: string) =>
     .map((path) => path.params[slug])
     .filter((slug) => !isPageSlug(slug as string[])) as string[][];
 
-export const getStyledErrorMsg = (msg: string, inputValue?: string) => {
-  const styledMsg = chalk`{red.bold Error :} {yellow ${msg}}{green.bold ${
-    inputValue ? ` (${inputValue})` : ''
-  }}`;
-
-  return styledMsg;
-};
-
 export const makeHash = (
   content: string,
   encoding: crypto.HexBase64Latin1Encoding = 'base64',
 ) => crypto.createHash(HASH_ALGORITHM).update(content, 'utf8').digest(encoding);
 
-export const isSubDir = (parent: string, child: string): boolean => {
+export const isSubDir = (
+  parent: string,
+  child: string,
+  includeSelf: boolean = true,
+): boolean => {
   const [normalizedParentPath, normalizedChildPath] = [parent, child].map(
     path.normalize,
   );
 
   const relativePath = path.relative(normalizedParentPath, normalizedChildPath);
 
-  if (!relativePath) return false;
+  if (!relativePath) return includeSelf;
 
   const splittedPath = relativePath.split(path.sep);
   const isDotSegment = splittedPath[0] !== '..';
 
   return isDotSegment ? true : false;
+};
+
+export const debounce = (fn: (...args: any) => any, time: number = 300) => {
+  let timerId: NodeJS.Timeout;
+  return (...args: any) => {
+    if (timerId) clearTimeout(timerId);
+
+    timerId = setTimeout(() => {
+      fn(...args);
+    }, time);
+  };
 };

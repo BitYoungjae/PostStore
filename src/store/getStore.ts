@@ -3,6 +3,7 @@ import { MODE_TEST, MODE_DEV } from '../lib/constants';
 import { storeMap } from './common';
 import { makeStore } from './makeStore';
 import { startWatchMode } from './watchMode';
+import { getStyledInfoMsg } from '../lib/msgHandler';
 
 export interface getStoreProps {
   postDir: string;
@@ -18,7 +19,7 @@ export const getStore = async ({
   perPage = 10,
   pageParam = 'slug',
   shouldUpdate = MODE_TEST,
-  watchMode = MODE_DEV,
+  watchMode = MODE_DEV || true,
   incremental = true,
 }: getStoreProps): Promise<PostStore> => {
   const cachedStore = storeMap.get(postDir);
@@ -26,6 +27,13 @@ export const getStore = async ({
 
   const store = await makeStore({ postDir, perPage, pageParam, incremental });
   if (watchMode) startWatchMode({ postDir, perPage, pageParam, incremental });
+
+  console.log(
+    getStyledInfoMsg(
+      'New store has been created.',
+      `name : ${store.rootNode.name}`,
+    ),
+  );
 
   return store;
 };
