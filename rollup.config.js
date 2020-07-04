@@ -17,7 +17,13 @@ const option = {
       format: 'es',
     },
   ],
-  external: [...Object.keys(pkg.dependencies || {}), 'fs', 'path', 'crypto'],
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+    'fs',
+    'path',
+    'crypto',
+    'process',
+  ],
   plugins: [
     json(),
     terser(),
