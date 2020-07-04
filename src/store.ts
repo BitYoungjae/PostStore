@@ -1,3 +1,5 @@
+import path from 'path';
+import { watch } from 'chokidar';
 import { buildInfoFileSave } from './utils/incrementalBuild';
 import {
   PageParamOption,
@@ -31,6 +33,7 @@ export interface getStoreProps {
   perPage?: number | PerPageOption;
   pageParam?: string | PageParamOption;
   shouldUpdate?: boolean;
+  watchMode?: boolean;
   incremental?: boolean;
 }
 
@@ -40,12 +43,42 @@ export const getStore = async ({
   postDir,
   perPage = 10,
   pageParam = 'slug',
-  shouldUpdate = isDev || isTest,
+  shouldUpdate = isTest,
+  watchMode = isDev,
   incremental = true,
 }: getStoreProps): Promise<PostStore> => {
   const cachedStore = storeMap.get(postDir);
-  if (cachedStore && !shouldUpdate) return cachedStore;
+  if (cachedStore && (!shouldUpdate || watchMode)) return cachedStore;
 
+  const store = await makeStore({ postDir, perPage, pageParam });
+  storeMap.set(postDir, store);
+
+  if (incremental) buildInfoFileSave();
+  if (watchMode) startWatchMode({ postDir, perPage, pageParam });
+
+  return store;
+};
+
+const startWatchMode = ({
+  postDir,
+  pageParam,
+  perPage,
+}: makeStoreProps): void => {
+  watch(path.resolve(process.cwd(), postDir)).on('all', async (eventName) => {
+    console.log(eventName);
+    const store = await makeStore({ postDir, perPage, pageParam });
+    storeMap.set(postDir, store);
+  });
+};
+
+interface makeStoreProps
+  extends Pick<getStoreProps, 'postDir' | 'perPage' | 'pageParam'> {}
+
+const makeStore = async ({
+  postDir,
+  perPage,
+  pageParam,
+}: makeStoreProps): Promise<PostStore> => {
   const [paramOption, perPageOption] = normalizeOption(pageParam, perPage);
 
   const rootNode = await getNodeTree({
@@ -77,10 +110,6 @@ export const getStore = async ({
     pathList,
     propList,
   };
-
-  if (incremental) buildInfoFileSave();
-
-  storeMap.set(postDir, store);
 
   return store;
 };
