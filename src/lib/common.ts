@@ -123,6 +123,8 @@ export const makeHash = (
   encoding: crypto.HexBase64Latin1Encoding = 'base64',
 ) => crypto.createHash(HASH_ALGORITHM).update(content, 'utf8').digest(encoding);
 
+export const makeSetLike = <T>(arr: T[]): T[] => [...new Set(arr)];
+
 export const isSubDir = (
   parent: string,
   child: string,
