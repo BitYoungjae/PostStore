@@ -1,15 +1,13 @@
 import path from 'path';
-import { watch, FSWatcher } from 'chokidar';
+import { watch } from 'chokidar';
 import { getPostByPath, isSubDir, debounce } from '../lib/common';
 import { makePost } from '../core/postParser';
 import { buildInfoFileSave } from '../core/incrementalBuild';
 import { PostData, CorePostData } from '../typings';
 import { makeStoreProps, makeStore } from './makeStore';
-import { storeMap } from './common';
+import { storeMap, watcherMap } from './common';
 import { getStyledInfoMsg } from '../lib/msgHandler';
 import { PLATFROM_DARWIN, MODE_TEST } from '../lib/constants';
-
-const watcherMap: Map<string, FSWatcher> = new Map();
 
 export const startWatchMode = ({
   postDir,
