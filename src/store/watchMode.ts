@@ -7,7 +7,7 @@ import { PostData, CorePostData } from '../typings';
 import { makeStoreProps, makeStore } from './makeStore';
 import { storeMap, watcherMap } from './common';
 import { getStyledInfoMsg } from '../lib/msgHandler';
-import { PLATFROM_DARWIN, MODE_TEST, MODE_DEV } from '../lib/constants';
+import { PLATFROM_DARWIN, MODE_TEST } from '../lib/constants';
 
 export const startWatchMode = ({
   postDir,
