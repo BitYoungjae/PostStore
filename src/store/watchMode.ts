@@ -23,7 +23,7 @@ export const startWatchMode = ({
         ignoreInitial: true,
         interval: 200,
         binaryInterval: 3000,
-        persistent: false,
+        persistent: true,
       });
 
   watcherMap.set(postDir, watcher);
@@ -37,7 +37,7 @@ export const startWatchMode = ({
     });
 
     console.log(msg);
-  });
+  }, 200);
 
   /*
    * Watcher: File Change Handler
@@ -94,6 +94,13 @@ export const startWatchMode = ({
     // 해당 store가 관리하는 경로가 아니라면 무시
     const store = storeMap.get(postDir)!;
     const fileDirPath = path.dirname(filePath);
+
+    console.log({
+      store,
+      fileDirPath,
+      isSubDir: isSubDir(store.postDir, fileDirPath),
+    });
+
     if (!isSubDir(store.postDir, fileDirPath)) return;
 
     if (eventName === 'modified' && detail.type === 'file') {
