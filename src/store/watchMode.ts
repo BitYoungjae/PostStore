@@ -110,7 +110,7 @@ export const startWatchMode = ({
       await changeFileHandler(filePath);
       return;
     }
-    if (detail.flags === 72704) return;
+    // if (detail.flags === 72704) return;
     if (['unknown', 'error', 'ready'].includes(eventName)) return;
     if (
       ['created', 'moved'].includes(eventName) &&
