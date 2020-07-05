@@ -7,7 +7,7 @@ import { PostData, CorePostData } from '../typings';
 import { makeStoreProps, makeStore } from './makeStore';
 import { storeMap, watcherMap } from './common';
 import { getStyledInfoMsg } from '../lib/msgHandler';
-import { PLATFROM_DARWIN, MODE_TEST } from '../lib/constants';
+import { PLATFROM_DARWIN, MODE_TEST, MODE_DEV } from '../lib/constants';
 
 export const startWatchMode = ({
   postDir,
@@ -84,7 +84,7 @@ export const startWatchMode = ({
     filePath: string,
     detail: any,
   ) => {
-    if (MODE_TEST)
+    if (MODE_TEST || MODE_DEV)
       console.log({
         event: detail.event,
         flags: detail.flags,
@@ -96,7 +96,7 @@ export const startWatchMode = ({
     const fileDirPath = path.dirname(filePath);
 
     console.log({
-      store,
+      postDir: store.postDir,
       fileDirPath,
       isSubDir: isSubDir(store.postDir, fileDirPath),
     });
