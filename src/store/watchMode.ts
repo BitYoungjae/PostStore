@@ -1,6 +1,6 @@
 import path from 'path';
 import { watch } from 'chokidar';
-import { getPostByPath, isSubDir, debounce, getPostsAll } from '../lib/common';
+import { getPostByPath, isSubDir, debounce } from '../lib/common';
 import { makePost } from '../core/postParser';
 import { buildInfoFileSave } from '../core/incrementalBuild';
 import { PostData, CorePostData } from '../typings';
@@ -23,7 +23,7 @@ export const startWatchMode = ({
         ignoreInitial: true,
         interval: 200,
         binaryInterval: 3000,
-        persistent: true,
+        persistent: false,
       });
 
   watcherMap.set(postDir, watcher);
@@ -49,14 +49,12 @@ export const startWatchMode = ({
     if (!isMarkDownFile(filePath)) return;
 
     const store = storeMap.get(postDir)!;
-    const post = getPostByPath(store.rootNode, filePath);
 
-    console.log('포스트데이타', post);
-    console.log(
-      'root Node',
-      getPostsAll(store.rootNode).map((n) => n.path),
+    const normalizedFilePath = path.join(
+      postDir,
+      path.relative(postDir, filePath),
     );
-    console.log('파일 경로', filePath);
+    const post = getPostByPath(store.rootNode, normalizedFilePath);
 
     if (!post) {
       updateStore(
@@ -91,7 +89,7 @@ export const startWatchMode = ({
     filePath: string,
     detail: any,
   ) => {
-    if (MODE_TEST || MODE_DEV)
+    if (MODE_TEST)
       console.log({
         event: detail.event,
         flags: detail.flags,
