@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 import matter from 'gray-matter';
 import unified from 'unified';
 import remark from 'remark-parse';
