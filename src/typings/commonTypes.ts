@@ -10,10 +10,18 @@ export interface PerPageOption
   extends Partial<Omit<Clone<PageCategory, number>, 'post'>> {}
 
 export interface PostStore {
-  postDir: string;
   rootNode: FileNode;
   propList: PropList;
   pathList: PathList;
+  info: {
+    name: string;
+    postDir: string;
+  };
+  options: {
+    postDir: string;
+    perPage: PerPageOption;
+    pageParam: PageParamOption;
+  };
 }
 
 export interface PostData extends CorePostData, ExtraPostData {}
@@ -36,3 +44,10 @@ export interface ExtraPostData {
 interface PostLink extends Pick<PostData, 'slug' | 'title'> {}
 
 export type SlugMap = Map<string, boolean>;
+
+export interface FrontMatter {
+  title?: string;
+  date?: Date;
+  tags?: string[];
+  published?: boolean;
+}

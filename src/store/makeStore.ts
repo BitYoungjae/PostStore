@@ -30,13 +30,11 @@ const defaultCountOption: Required<PerPageOption> = {
 };
 
 export interface makeStoreProps
-  extends Pick<
-    getStoreProps,
-    'postDir' | 'perPage' | 'pageParam' | 'incremental'
-  > {}
+  extends Omit<getStoreProps, 'shouldUpdate' | 'watchMode'> {}
 
 export const makeStore = async ({
   postDir,
+  storeName,
   perPage,
   pageParam,
   incremental,
@@ -66,11 +64,23 @@ export const makeStore = async ({
     pathList: pathList,
   });
 
-  const store: PostStore = {
+  const info: PostStore['info'] = {
+    name: storeName ? storeName : rootNode.name,
+    postDir: postDir,
+  };
+
+  const options: PostStore['options'] = {
     postDir,
+    perPage: perPageOption,
+    pageParam: paramOption,
+  };
+
+  const store: PostStore = {
     rootNode,
     pathList,
     propList,
+    info,
+    options,
   };
 
   if (incremental) buildInfoFileSave();
