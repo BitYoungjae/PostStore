@@ -103,7 +103,9 @@ const makeCategoryTree = (rootNode: FileNode): PropInfoNode => {
     postCount: getPostsAll(rootNode).length,
   };
 
-  for (const child of rootNode.children!) {
+  if (!rootNode.children) return newNode;
+
+  for (const child of rootNode.children) {
     if (isCategoryNode(child)) {
       if (!newNode.children) newNode.children = [];
       newNode.children.push(makeCategoryTree(child));

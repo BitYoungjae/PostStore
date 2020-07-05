@@ -103,17 +103,10 @@ export const startWatchMode = ({
     if (!isSubDir(store.postDir, fileDirPath)) return;
 
     if (eventName === 'modified' && detail.type === 'file') {
-      console.log({
-        postDir: store.postDir,
-        fileDirPath,
-        isSubDir: isSubDir(store.postDir, fileDirPath),
-      });
-
       await changeFileHandler(filePath);
       return;
     }
-    // if (detail.flags === 72704) return;
-    if (['unknown', 'error', 'ready'].includes(eventName)) return;
+    if (['error', 'ready'].includes(eventName)) return;
     if (
       ['created', 'moved'].includes(eventName) &&
       detail.type === 'file' &&
