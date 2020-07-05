@@ -1,6 +1,6 @@
 import path from 'path';
 import { watch } from 'chokidar';
-import { getPostByPath, isSubDir, debounce } from '../lib/common';
+import { getPostByPath, isSubDir, debounce, getPostsAll } from '../lib/common';
 import { makePost } from '../core/postParser';
 import { buildInfoFileSave } from '../core/incrementalBuild';
 import { PostData, CorePostData } from '../typings';
@@ -52,6 +52,10 @@ export const startWatchMode = ({
     const post = getPostByPath(store.rootNode, filePath);
 
     console.log('포스트데이타', post);
+    console.log(
+      'root Node',
+      getPostsAll(store.rootNode).map((n) => n.path),
+    );
     console.log('파일 경로', filePath);
 
     if (!post) {
