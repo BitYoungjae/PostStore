@@ -23,7 +23,7 @@ export const startWatchMode = ({
         ignoreInitial: true,
         interval: 200,
         binaryInterval: 3000,
-        persistent: false,
+        persistent: true,
       });
 
   watcherMap.set(postDir, watcher);
