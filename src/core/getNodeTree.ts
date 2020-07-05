@@ -6,6 +6,8 @@ import { slugify } from '../lib/slugify';
 import { isCategoryNode, isPostNode } from '../lib/common';
 import { FileNode, PostNode, CategoryNode } from '../typings';
 import { NODE_TYPE_CATEGORY, NODE_TYPE_POST } from '../lib/constants';
+import { getStyledCautionMsg } from '../lib/msgHandler';
+import chalk from 'chalk';
 
 const fsPromise = fs.promises;
 const markdownRegex = new RegExp(/\.mdx?$/);
@@ -52,14 +54,23 @@ export async function getNodeTree({
         continue;
       }
     } else if (isMarkdown(currentFile)) {
-      childNode = await createPostNode({
-        slugMap,
-        nodePath: currentFilePath,
-      });
+      try {
+        childNode = await createPostNode({
+          slugMap,
+          nodePath: currentFilePath,
+        });
 
-      // publish 상태가 아니거나 본문이 없는 게시물은 트리에서 제외
-      const { isPublished, html } = (childNode as PostNode).postData;
-      if (!isPublished || !html) continue;
+        // publish 상태가 아니거나 본문이 없는 게시물은 트리에서 제외
+        const { isPublished, html } = (childNode as PostNode).postData;
+        if (!isPublished || !html) continue;
+      } catch {
+        console.log(
+          getStyledCautionMsg(
+            chalk`Failed to parse {bold [ ${currentFile.name} ]} file. Please check the file content.`,
+          ),
+        );
+        continue;
+      }
     } else {
       continue;
     }
