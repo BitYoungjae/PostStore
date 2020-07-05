@@ -1,6 +1,7 @@
+import path from 'path';
 import { getStore, getStoreProps } from '../store/getStore';
 import chalk from 'chalk';
-import { getStyledErrorMsg } from '../lib/msgHandler';
+import { getStyledErrorMsg, getStyledCautionMsg } from '../lib/msgHandler';
 import { PageCategory, Path, PageProp, MainProp, ListProp } from '../typings';
 
 const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
@@ -60,7 +61,10 @@ export const getMainPageHandler = (storeOption: getStoreProps) => {
 
     if (!mainProp) {
       console.log(
-        chalk`{red.bold Caution :} Since There are no posts in the {yellow.bold (${storeOption.postDir})} path, the following default values is delivered.`,
+        getStyledCautionMsg(
+          'Since There are no posts in the [postDir] path, the following default values is delivered.',
+          `postDir: ${path.basename(storeOption.postDir)}`,
+        ),
       );
       console.log('\u001b[2m──────────────\u001b[22m');
       console.log(
