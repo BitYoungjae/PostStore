@@ -24,6 +24,7 @@ const option = {
     'crypto',
     'process',
     'prismjs/components/',
+    'date-fns/format',
   ],
   plugins: [
     json(),
