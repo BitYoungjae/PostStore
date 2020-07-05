@@ -6,36 +6,26 @@ import { buildInfoFileSave } from '../core/incrementalBuild';
 import { PostData, CorePostData } from '../typings';
 import { makeStoreProps, makeStore } from './makeStore';
 import { storeMap, watcherMap } from './common';
-import { getStyledInfoMsg } from '../lib/msgHandler';
+import { getStyledLogMsg, getStyledCautionMsg } from '../lib/msgHandler';
 import { PLATFROM_DARWIN, MODE_TEST } from '../lib/constants';
+import chalk from 'chalk';
 
-export const startWatchMode = ({
-  postDir,
-  pageParam,
-  perPage,
-  incremental,
-}: makeStoreProps): void => {
-  const parentWatcherKey = getParentWatcherKey(postDir);
+export const startWatchMode = (props: makeStoreProps): void => {
+  const parentWatcherKey = getParentWatcherKey(props.postDir);
 
   const watcher = parentWatcherKey
     ? watcherMap.get(parentWatcherKey)!
-    : watch(postDir, {
-        ignoreInitial: true,
-        interval: 200,
-        binaryInterval: 3000,
+    : watch(props.postDir, {
         persistent: true,
+        ignoreInitial: true,
+        interval: 100,
+        binaryInterval: 3000,
       });
 
-  watcherMap.set(postDir, watcher);
+  watcherMap.set(props.postDir, watcher);
 
   const updateStore = debounce(async (msg: string) => {
-    await makeStore({
-      postDir,
-      perPage,
-      pageParam,
-      incremental,
-    });
-
+    await makeStore(props);
     console.log(msg);
   }, 200);
 
@@ -48,36 +38,60 @@ export const startWatchMode = ({
   const changeFileHandler = async (filePath: string) => {
     if (!isMarkDownFile(filePath)) return;
 
-    const store = storeMap.get(postDir)!;
+    const store = storeMap.get(props.postDir)!;
 
     const normalizedFilePath = path.join(
-      postDir,
-      path.relative(postDir, filePath),
+      props.postDir,
+      path.relative(props.postDir, filePath),
     );
-    const post = getPostByPath(store.rootNode, normalizedFilePath);
 
-    if (!post) {
-      updateStore(
-        getStyledInfoMsg(
-          `The store was updated because there is no existing post.`,
-          `Store name : ${store.rootNode.name}`,
+    let newPostData: PostData;
+
+    try {
+      newPostData = await makePost({ filePath, useCache: false });
+    } catch {
+      console.log(
+        getStyledCautionMsg(
+          chalk`Failed to parse {bold [ ${path.basename(
+            filePath,
+          )} ]} file. Please check the file content.`,
         ),
       );
       return;
     }
 
-    const { postData } = post;
-    const newPostData = await makePost({ filePath, useCache: false });
+    if (!newPostData.html) return;
 
-    updatePostData(postData, newPostData, ['title', 'html', 'tags', 'date']);
+    const post = getPostByPath(store.rootNode, normalizedFilePath);
+
+    if (!post) {
+      updateStore(
+        getStyledLogMsg(
+          chalk`{red.bold There is no stored post corresponding to the [ ${path.basename(
+            filePath,
+          )} ] file.} The Store is created again.`,
+          `store : ${store.info.name}`,
+        ),
+      );
+      return;
+    }
+
+    const { postData: prevPostData } = post;
+
+    updatePostData(prevPostData, newPostData, [
+      'title',
+      'html',
+      'tags',
+      'date',
+    ]);
 
     console.log(
-      getStyledInfoMsg(
-        `${newPostData.title} Post updated.`,
-        `Store name : ${store.rootNode.name}`,
+      getStyledLogMsg(
+        chalk`{bold [ ${newPostData.title} ]} Post updated.`,
+        `store : ${store.info.name}`,
       ),
     );
-    if (incremental) buildInfoFileSave();
+    if (props.incremental) buildInfoFileSave();
   };
 
   /*
@@ -97,10 +111,10 @@ export const startWatchMode = ({
       });
 
     // 해당 store가 관리하는 경로가 아니라면 무시
-    const store = storeMap.get(postDir)!;
+    const { info: storeInfo } = storeMap.get(props.postDir)!;
     const fileDirPath = path.dirname(filePath);
 
-    if (!isSubDir(store.postDir, fileDirPath)) return;
+    if (!isSubDir(storeInfo.postDir, fileDirPath)) return;
 
     if (eventName === 'modified' && detail.type === 'file') {
       await changeFileHandler(filePath);
@@ -118,13 +132,13 @@ export const startWatchMode = ({
   };
 
   const restEventHandler = async (filePath: string, type = 'file') => {
-    const store = storeMap.get(postDir)!;
+    const { info: storeInfo } = storeMap.get(props.postDir)!;
     updateStore(
-      getStyledInfoMsg(
-        `The store was updated because a change in the ${path.basename(
+      getStyledLogMsg(
+        chalk`{bold [ ${path.basename(
           filePath,
-        )} ${type}.`,
-        `Store name : ${store.rootNode.name}`,
+        )} ${type} ]} has changed. The Store is created again.`,
+        `store : ${storeInfo.name}`,
       ),
     );
   };
