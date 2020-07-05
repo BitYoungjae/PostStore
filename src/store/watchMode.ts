@@ -46,15 +46,14 @@ export const startWatchMode = ({
    * 또한, slug 역시 store 빌드 과정에서 중복 방지 해시 및 ctime에 의해 가변되는 extra 데이터가 있으므로 업데이트에서 제외해야함.
    */
   const changeFileHandler = async (filePath: string) => {
-    console.log('file handler 진입함');
     if (!isMarkDownFile(filePath)) return;
-    console.log('마크다운 파일로 밝혀짐');
 
     const store = storeMap.get(postDir)!;
-
     const post = getPostByPath(store.rootNode, filePath);
 
     console.log('포스트데이타', post);
+    console.log('파일 경로', filePath);
+
     if (!post) {
       updateStore(
         getStyledInfoMsg(
