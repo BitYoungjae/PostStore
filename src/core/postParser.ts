@@ -12,7 +12,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from '../lib/sanitizeSchema.json';
 import { slugify } from '../lib/slugify';
 import { getCachedData, saveCache } from './incrementalBuild';
-import { makeHash } from '../lib/common';
+import { makeHash, makeSetLike } from '../lib/common';
 import { PostData, SlugMap } from '../typings';
 import { MODE_TEST } from '../lib/constants';
 
@@ -157,7 +157,9 @@ const createPostData = async (
     title: !title ? slug : title,
     date,
     html: cachedData ? cachedData.html : await markdownToHTML(rawContent),
-    tags: cachedData ? cachedData.tags : tags.map((tag) => slugify(tag)),
+    tags: cachedData
+      ? makeSetLike(cachedData.tags)
+      : makeSetLike(tags.map((tag) => slugify(tag))),
     categories: categories ? categories : [],
     isPublished,
   };
