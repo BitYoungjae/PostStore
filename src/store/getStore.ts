@@ -38,7 +38,7 @@ export const getStore = async ({
   const store = await makeStore(paramToMakeStore);
   if (watchMode && !MODE_PRODUCTION) startWatchMode(paramToMakeStore);
 
-  if (MODE_PRODUCTION) return store;
+  if (MODE_PRODUCTION || MODE_TEST) return store;
 
   console.log(
     getStyledInfoMsg(
