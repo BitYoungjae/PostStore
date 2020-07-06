@@ -1,13 +1,13 @@
 {
   "proplist": {
     "global": {
-      "categoryCount": 12,
-      "postCount": 40,
+      "categoryCount": 13,
+      "postCount": 42,
       "tagCount": 17,
       "categoryTree": {
         "name": "testPosts",
         "slug": "testPosts",
-        "postCount": 40,
+        "postCount": 42,
         "children": [
           {
             "name": "테스트용 게시물들",
@@ -42,6 +42,11 @@
                 "postCount": 8
               }
             ]
+          },
+          {
+            "name": "Asset을 가진 것들",
+            "slug": "Asset을-가진-것들",
+            "postCount": 2
           },
           {
             "name": "Javascript",
@@ -188,6 +193,7 @@
             "특별-시리즈"
           ],
           "isPublished": true,
+          "assets": [],
           "nextPost": {
             "slug": "2020-06-23-자바스크립트-개껌이지",
             "title": "개껌이라니까?"

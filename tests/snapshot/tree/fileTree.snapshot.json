@@ -28,7 +28,8 @@
                 "html": "<p>제목은 6번이지만, 가장 최근에 작성 되었어요.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -43,7 +44,8 @@
                 "html": "<p>제목은 5번이지만, 작성한지는 다섯번째로 오래되었어요.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -58,7 +60,8 @@
                 "html": "<p>제목은 4번이지만, 작성한지는 네번째로 오래되었어요.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -73,7 +76,8 @@
                 "html": "<p>제목은 3번이지만, 작성한지는 세번째로 오래되었어요.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -88,7 +92,8 @@
                 "html": "<p>제목은 2번이지만, 작성한지는 두번째로 오래되었어요.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -103,7 +108,8 @@
                 "html": "<p>제목은 1번이지만, 작성한지는 제일 오래되었어요.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             }
           ]
@@ -126,7 +132,8 @@
                 "html": "<p>모두 01-03에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -141,7 +148,8 @@
                 "html": "<p>모두 01-03에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -156,7 +164,8 @@
                 "html": "<p>모두 01-03에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -171,7 +180,8 @@
                 "html": "<p>모두 01-02에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -186,7 +196,8 @@
                 "html": "<p>모두 01-02에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -201,7 +212,8 @@
                 "html": "<p>모두 01-02에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -216,7 +228,8 @@
                 "html": "<p>모두 01-01에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -231,7 +244,8 @@
                 "html": "<p>모두 01-01에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -246,7 +260,8 @@
                 "html": "<p>모두 01-01에 작성 되었죠.</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             }
           ]
@@ -275,7 +290,8 @@
                     "html": "<p>내용도 같음</p>",
                     "tags": [],
                     "categories": [],
-                    "isPublished": true
+                    "isPublished": true,
+                    "assets": []
                   }
                 },
                 {
@@ -290,7 +306,8 @@
                     "html": "<p>내용도 같음</p>",
                     "tags": [],
                     "categories": [],
-                    "isPublished": true
+                    "isPublished": true,
+                    "assets": []
                   }
                 }
               ]
@@ -307,7 +324,8 @@
                 "html": "<p>내용도 같음</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -322,7 +340,8 @@
                 "html": "<p>내용도 같음</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -337,7 +356,8 @@
                 "html": "<p>내용도 같음</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -352,7 +372,8 @@
                 "html": "<p>내용도 같음</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             }
           ]
@@ -375,7 +396,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -390,7 +412,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -405,7 +428,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -420,7 +444,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -435,7 +460,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -450,7 +476,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -465,7 +492,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             },
             {
@@ -480,7 +508,8 @@
                 "html": "<p>오로지 제목으로만!</p>",
                 "tags": [],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             }
           ]
@@ -497,7 +526,8 @@
             "html": "<h1 id=\"프론트메타가-없어요\">프론트메타가 없어요</h1>\n<p>어찌될까요?</p>",
             "tags": [],
             "categories": [],
-            "isPublished": true
+            "isPublished": true,
+            "assets": []
           }
         },
         {
@@ -515,7 +545,53 @@
               "다-있다"
             ],
             "categories": [],
-            "isPublished": true
+            "isPublished": true,
+            "assets": []
+          }
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "name": "Asset을 가진 것들",
+      "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Asset을 가진 것들",
+      "slug": "Asset을-가진-것들",
+      "children": [
+        {
+          "type": "post",
+          "name": "유튜브 전용 포스트.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Asset을 가진 것들/유튜브 전용 포스트.md",
+          "slug": "1990-04-10-유튜브-전용-포스트",
+          "postData": {
+            "slug": "1990-04-10-유튜브-전용-포스트",
+            "title": "같은 이미지를 가지고 있어요",
+            "date": 639705600000,
+            "html": "<p>안녕하세요!</p>\n<p><iframe src=\"https://www.youtube.com/embed/8B4HJmlLw94\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n<iframe src=\"https://www.youtube.com/embed/8B4HJmlLw94\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></p>",
+            "tags": [],
+            "categories": [],
+            "isPublished": true,
+            "assets": []
+          }
+        },
+        {
+          "type": "post",
+          "name": "이미지를 포함한 게시물1.md",
+          "path": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Asset을 가진 것들/이미지를 포함한 게시물1.md",
+          "slug": "1990-04-10-이미지를-포함한-게시물1",
+          "postData": {
+            "slug": "1990-04-10-이미지를-포함한-게시물1",
+            "title": "이미지를 가지고 있어요",
+            "date": 639705600000,
+            "html": "<p>안녕하세요!</p>\n<p><img src=\"assets/ca3323224d13a56e5002819c63d0c66f25c5d330.png\" alt=\"견본 이미지\"></p>",
+            "tags": [],
+            "categories": [],
+            "isPublished": true,
+            "assets": [
+              {
+                "sourcePath": "/Users/youngjaejoo/WorkSpaces/Projects/PostStore/tests/testPosts/Asset을 가진 것들/마크다운에 들어갈 이미지.png",
+                "targetPath": "assets/ca3323224d13a56e5002819c63d0c66f25c5d330.png"
+              }
+            ]
           }
         }
       ]
@@ -548,7 +624,8 @@
                   "총집편"
                 ],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             }
           ]
@@ -568,7 +645,8 @@
               "삽소리"
             ],
             "categories": [],
-            "isPublished": true
+            "isPublished": true,
+            "assets": []
           }
         },
         {
@@ -586,7 +664,8 @@
               "오브제엑트"
             ],
             "categories": [],
-            "isPublished": true
+            "isPublished": true,
+            "assets": []
           }
         }
       ]
@@ -618,7 +697,8 @@
                   "리액트"
                 ],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             }
           ]
@@ -644,7 +724,8 @@
                   "필독자료"
                 ],
                 "categories": [],
-                "isPublished": true
+                "isPublished": true,
+                "assets": []
               }
             }
           ]
@@ -664,7 +745,8 @@
               "잡념"
             ],
             "categories": [],
-            "isPublished": true
+            "isPublished": true,
+            "assets": []
           }
         }
       ]
@@ -690,7 +772,8 @@
               "잡념"
             ],
             "categories": [],
-            "isPublished": true
+            "isPublished": true,
+            "assets": []
           }
         },
         {
@@ -708,7 +791,8 @@
               "저자직강"
             ],
             "categories": [],
-            "isPublished": true
+            "isPublished": true,
+            "assets": []
           }
         }
       ]
@@ -725,7 +809,8 @@
         "html": "<h1 id=\"최상위-게시물입니다\">최상위 게시물입니다</h1>\n<p>또한 프론트메타도 없지요.</p>",
         "tags": [],
         "categories": [],
-        "isPublished": true
+        "isPublished": true,
+        "assets": []
       }
     }
   ]
