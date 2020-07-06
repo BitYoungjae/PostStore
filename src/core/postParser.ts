@@ -7,13 +7,15 @@ import remark from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 import rehypeSlug from 'rehype-slug';
 import rehypeHtml from 'rehype-stringify';
+import rehypeAsset from '../assetProcessor/rehype-asset';
+import rehypeYoutube from '../assetProcessor/rehype-youtube';
 import rehypePrism from '../lib/rehype-prism';
 import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from '../lib/sanitizeSchema.json';
 import { slugify } from '../lib/slugify';
 import { getCachedData, saveCache } from './incrementalBuild';
 import { makeHash, makeSetLike } from '../lib/common';
-import { PostData, SlugMap } from '../typings';
+import { PostData, SlugMap, PostStoreAsset } from '../typings';
 import { MODE_TEST } from '../lib/constants';
 
 const fsPromise = fs.promises;
@@ -48,6 +50,7 @@ export const makePost = async ({
     : makeUnique(parsedSlug, filePath, slugMap);
 
   const post = await createPostData(
+    filePath,
     {
       title,
       tags,
@@ -69,11 +72,14 @@ export const makePost = async ({
   return post;
 };
 
-export const markdownToHTML = async (markdown: string) => {
+export const markdownToHTML = async (filePath: string, markdown: string) => {
+  const assets: PostStoreAsset[] = [];
   const parser = unified()
     .use(remark)
     .use(remark2rehype)
     .use(rehypeSanitize, sanitizeSchema)
+    .use(rehypeYoutube)
+    .use(rehypeAsset(filePath, assets))
     .use(rehypeSlug)
     .use(rehypePrism)
     .use(rehypeHtml, {
@@ -83,7 +89,10 @@ export const markdownToHTML = async (markdown: string) => {
   const parsedData = await parser.process(markdown);
   const html = parsedData.contents.toString();
 
-  return html;
+  return {
+    html,
+    assets,
+  };
 };
 
 const parseSlug = (filePath: string, timestamp: number): string => {
@@ -148,19 +157,32 @@ const makeUnique = (
 };
 
 const createPostData = async (
+  filePath: string,
   { slug, title, date, tags, categories, isPublished }: Omit<PostData, 'html'>,
   rawContent: string,
   cachedData?: CachedPostData,
 ): Promise<PostData> => {
-  return {
+  const postData: PostData = {
     slug,
     title: !title ? slug : title,
     date,
-    html: cachedData ? cachedData.html : await markdownToHTML(rawContent),
+    html: '',
     tags: cachedData
       ? makeSetLike(cachedData.tags)
       : makeSetLike(tags.map((tag) => slugify(tag))),
     categories: categories ? categories : [],
     isPublished,
   };
+
+  if (cachedData) {
+    postData.html = cachedData.html;
+    return postData;
+  }
+
+  const { html, assets } = await markdownToHTML(filePath, rawContent);
+
+  postData.html = html;
+  postData.assets = assets;
+
+  return postData;
 };
