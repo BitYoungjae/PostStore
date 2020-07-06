@@ -13,7 +13,7 @@ import { makePropList } from '../pageHandler/propGenerator';
 import { buildInfoFileSave } from '../core/incrementalBuild';
 import { storeMap } from './common';
 import { pagePathFilter, getPostsByCategories } from '../lib/common';
-import { getAssetList, copyAssetsTo } from '../assetProcessor/copyAsset';
+import { getAssetList, copyAssetsTo } from './copyAsset';
 
 const defaultParam = 'slug';
 const defaultCount = 10;

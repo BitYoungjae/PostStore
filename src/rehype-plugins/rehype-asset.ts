@@ -1,26 +1,10 @@
+import type { Node } from 'unist';
 import path from 'path';
 import url from 'url';
-import type { Node } from 'unist';
 import visit from 'unist-util-visit';
 import { PostStoreAsset } from '../typings';
 import { makeHash } from '../lib/common';
-
-interface rehypeNode extends Node {
-  tagName: string;
-  properties: {
-    className?: string[];
-    [key: string]: string[] | undefined;
-  };
-  children?: (Node & { value: string })[];
-}
-
-interface rehypeImageNode extends rehypeNode {
-  tagName: 'img';
-  properties: rehypeNode['properties'] & {
-    src: string;
-    alt?: string;
-  };
-}
+import { rehypeNode, rehypeImageNode } from './types';
 
 const isImageNode = (node: rehypeNode): node is rehypeImageNode => {
   if (node.tagName === 'img' && node.properties && node.properties.src != null)
@@ -61,7 +45,7 @@ const nodeEditor = (filePath: string, assetStore: PostStoreAsset[]) => (
 };
 
 export default (filePath: string, assetStore: PostStoreAsset[]) => () => {
-  return (root) => {
+  return (root: Node) => {
     return visit(root, 'element', nodeEditor(filePath, assetStore));
   };
 };

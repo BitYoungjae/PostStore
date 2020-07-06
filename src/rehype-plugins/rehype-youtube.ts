@@ -2,6 +2,12 @@ import visit from 'unist-util-visit';
 import type { Node } from 'unist';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
+import { rehypeNode, rehypeLinkNode } from './types';
+
+interface VideoInfo {
+  videoID: string;
+  startTime?: string;
+}
 
 const embedableLinkRegex = /https?:\/\/(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_\-]+)(\?start=(\d+))?[-a-zA-Z0-9()@:%_\+.~#?&//=]*!!/i;
 
@@ -12,23 +18,6 @@ const getIframeCode = ({ videoID, startTime }: VideoInfo) => {
   return result;
 };
 
-interface rehypeNode extends Node {
-  tagName: string;
-  properties: {
-    className?: string[];
-    [key: string]: string[] | undefined;
-  };
-  children?: (Node & { value: string })[];
-}
-
-interface rehypeLinkNode extends rehypeNode {
-  tagName: 'a';
-  properties: rehypeNode['properties'] & {
-    href: string;
-    alt?: string;
-  };
-}
-
 const isLinkNode = (node: rehypeNode): node is rehypeLinkNode => {
   if (node.tagName === 'a' && node.properties && node.properties.href != null)
     return true;
@@ -36,11 +25,6 @@ const isLinkNode = (node: rehypeNode): node is rehypeLinkNode => {
 };
 
 const isEmbedable = (href: string) => embedableLinkRegex.test(href);
-
-interface VideoInfo {
-  videoID: string;
-  startTime?: string;
-}
 
 const getVideoInfo = (href: string): VideoInfo | undefined => {
   const executed = embedableLinkRegex.exec(href);

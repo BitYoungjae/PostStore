@@ -3,19 +3,11 @@ import visit from 'unist-util-visit';
 import Prism from 'prismjs';
 import unified from 'unified';
 import rehypeParse from 'rehype-parse';
-import { getStyledErrorMsg } from './msgHandler';
+import { getStyledErrorMsg } from '../lib/msgHandler';
 import loadLanguage from 'prismjs/components/';
+import { rehypeNode } from './types';
 
 loadLanguage(['jsx', 'tsx', 'typescript', 'scss', 'sql', 'json', 'bash']);
-
-interface rehypeNode extends Node {
-  tagName: string;
-  properties: {
-    className?: string[];
-    [key: string]: string[] | undefined;
-  };
-  children?: (Node & { value: string })[];
-}
 
 const langPrefix = 'language-';
 
@@ -81,7 +73,7 @@ const nodeEditor = (node: rehypeNode) => {
 };
 
 export default () => {
-  return (root) => {
+  return (root: Node) => {
     return visit(root, 'element', nodeEditor);
   };
 };
