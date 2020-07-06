@@ -1,12 +1,12 @@
 {
   "global": {
-    "categoryCount": 12,
-    "postCount": 40,
+    "categoryCount": 13,
+    "postCount": 42,
     "tagCount": 17,
     "categoryTree": {
       "name": "testPosts",
       "slug": "testPosts",
-      "postCount": 40,
+      "postCount": 42,
       "children": [
         {
           "name": "테스트용 게시물들",
@@ -41,6 +41,11 @@
               "postCount": 8
             }
           ]
+        },
+        {
+          "name": "Asset을 가진 것들",
+          "slug": "Asset을-가진-것들",
+          "postCount": 2
         },
         {
           "name": "Javascript",
@@ -183,6 +188,7 @@
           "날짜순-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "nextPost": {
           "slug": "2020-01-05-5",
           "title": "5번"
@@ -199,6 +205,7 @@
           "날짜순-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-06-6",
           "title": "6번"
@@ -219,6 +226,7 @@
           "날짜순-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-05-5",
           "title": "5번"
@@ -239,6 +247,7 @@
           "날짜순-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-04-4",
           "title": "4번"
@@ -259,6 +268,7 @@
           "날짜순-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-03-3",
           "title": "3번"
@@ -279,6 +289,7 @@
           "날짜순-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-02-2",
           "title": "2번"
@@ -299,6 +310,7 @@
           "복합-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-01-1",
           "title": "1번"
@@ -319,6 +331,7 @@
           "복합-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-03-1.-세번째-날짜",
           "title": "세번째 날짜"
@@ -339,6 +352,7 @@
           "복합-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-03-2.-세번째-날짜",
           "title": "세번째 날짜"
@@ -359,6 +373,7 @@
           "복합-정렬"
         ],
         "isPublished": true,
+        "assets": [],
         "prevPost": {
           "slug": "2020-01-03-3.-세번째-날짜",
           "title": "세번째 날짜"
@@ -369,6 +384,6 @@
         }
       }
     ],
-    "totalPage": 4
+    "totalPage": 5
   }
 }

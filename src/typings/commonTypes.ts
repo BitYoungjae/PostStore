@@ -37,8 +37,14 @@ export interface CorePostData {
 
 export interface ExtraPostData {
   categories: string[];
+  assets?: PostStoreAsset[];
   prevPost?: PostLink;
   nextPost?: PostLink;
+}
+
+export interface PostStoreAsset {
+  sourcePath: string;
+  targetPath: string;
 }
 
 interface PostLink extends Pick<PostData, 'slug' | 'title'> {}

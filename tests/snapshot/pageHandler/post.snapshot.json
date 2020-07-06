@@ -1,13 +1,13 @@
 {
   "proplist": {
     "global": {
-      "categoryCount": 12,
-      "postCount": 40,
+      "categoryCount": 13,
+      "postCount": 42,
       "tagCount": 17,
       "categoryTree": {
         "name": "testPosts",
         "slug": "testPosts",
-        "postCount": 40,
+        "postCount": 42,
         "children": [
           {
             "name": "테스트용 게시물들",
@@ -42,6 +42,11 @@
                 "postCount": 8
               }
             ]
+          },
+          {
+            "name": "Asset을 가진 것들",
+            "slug": "Asset을-가진-것들",
+            "postCount": 2
           },
           {
             "name": "Javascript",
@@ -181,6 +186,7 @@
         "Redux"
       ],
       "isPublished": true,
+      "assets": [],
       "prevPost": {
         "slug": "2020-06-27-사랑해요-헬지",
         "title": "정말 행복하시나요"
@@ -199,6 +205,7 @@
             "Redux"
           ],
           "isPublished": true,
+          "assets": [],
           "nextPost": {
             "slug": "2020-06-20-리덕스-저자-직강-정리",
             "title": "리덕스 저자 직강 정리"
@@ -361,6 +368,16 @@
     {
       "params": {
         "slug": "1990-04-10-날짜-없는-게시물"
+      }
+    },
+    {
+      "params": {
+        "slug": "1990-04-10-유튜브-전용-포스트"
+      }
+    },
+    {
+      "params": {
+        "slug": "1990-04-10-이미지를-포함한-게시물1"
       }
     },
     {

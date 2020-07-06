@@ -13,6 +13,7 @@ import { makePropList } from '../pageHandler/propGenerator';
 import { buildInfoFileSave } from '../core/incrementalBuild';
 import { storeMap } from './common';
 import { pagePathFilter, getPostsByCategories } from '../lib/common';
+import { getAssetList, copyAssetsTo } from '../assetProcessor/copyAsset';
 
 const defaultParam = 'slug';
 const defaultCount = 10;
@@ -74,6 +75,9 @@ export const makeStore = async ({
     perPage: perPageOption,
     pageParam: paramOption,
   };
+
+  const assetList = getAssetList(rootNode);
+  await copyAssetsTo('./public')(assetList);
 
   const store: PostStore = {
     rootNode,

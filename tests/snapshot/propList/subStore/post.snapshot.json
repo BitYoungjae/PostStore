@@ -13,6 +13,7 @@
       "특별-시리즈"
     ],
     "isPublished": true,
+    "assets": [],
     "relatedPosts": []
   },
   "2020-06-23-자바스크립트-개껌이지": {
@@ -26,6 +27,7 @@
     ],
     "categories": [],
     "isPublished": true,
+    "assets": [],
     "relatedPosts": []
   },
   "2020-06-23-객체에-대하여": {
@@ -39,6 +41,7 @@
     ],
     "categories": [],
     "isPublished": true,
+    "assets": [],
     "relatedPosts": []
   }
 }

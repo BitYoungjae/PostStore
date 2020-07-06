@@ -21,6 +21,7 @@ const option = {
     ...Object.keys(pkg.dependencies || {}),
     'fs',
     'path',
+    'url',
     'crypto',
     'process',
     'prismjs/components/',
