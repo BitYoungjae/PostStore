@@ -9,7 +9,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeHtml from 'rehype-stringify';
 import { rehypePrism, rehypeAsset, rehypeYoutube } from '../rehype-plugins';
 import rehypeSanitize from 'rehype-sanitize';
-import sanitizeSchema from '../lib/sanitizeSchema.json';
+import sanitizeSchema from './sanitizeSchema.json';
 import { slugify } from '../lib/slugify';
 import { getCachedData, saveCache } from './incrementalBuild';
 import { makeHash, makeSetLike } from '../lib/common';
