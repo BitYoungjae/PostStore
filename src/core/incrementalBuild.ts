@@ -42,11 +42,8 @@ export const saveCache = <T>(filePath: string, content: string, data: T) => {
   buildInfo[filePath] = cacheData;
 };
 
-const loadBuildInfo = (
-  buildInfoPath: string,
-  shouldUpdate: boolean = false,
-) => {
-  if (buildInfo && shouldUpdate === false) return buildInfo;
+const loadBuildInfo = (buildInfoPath: string) => {
+  if (buildInfo) return buildInfo;
 
   try {
     const rawInfo = fs.readFileSync(buildInfoPath, 'utf8');
@@ -66,5 +63,6 @@ export const buildInfoFileSave = () => {
   const writeBuildInfo = () => {
     fs.promises.writeFile(buildInfoPath, stringified, 'utf8');
   };
+
   fs.promises.unlink(buildInfoPath).then(writeBuildInfo, writeBuildInfo);
 };
