@@ -70,29 +70,6 @@ export const makePost = async ({
   return post;
 };
 
-export const markdownToHTML = async (filePath: string, markdown: string) => {
-  const assets: PostStoreAsset[] = [];
-  const parser = unified()
-    .use(remark)
-    .use(remark2rehype)
-    .use(rehypeSanitize, sanitizeSchema)
-    .use(rehypeYoutube)
-    .use(rehypeAsset(filePath, assets))
-    .use(rehypeSlug)
-    .use(rehypePrism)
-    .use(rehypeHtml, {
-      collapseEmptyAttributes: true,
-    });
-
-  const parsedData = await parser.process(markdown);
-  const html = parsedData.contents.toString();
-
-  return {
-    html,
-    assets,
-  };
-};
-
 const parseSlug = (filePath: string, timestamp: number): string => {
   const basename = path.basename(filePath, '.md');
   const datePrepended = prependDate(basename, timestamp);
@@ -127,16 +104,8 @@ const makeUnique = (
   salt = 0,
   newSlug?: string,
 ) => {
-  let result: string;
-  let isDupl: boolean | undefined;
-
-  if (newSlug) {
-    isDupl = slugMap.get(newSlug);
-    result = newSlug;
-  } else {
-    isDupl = slugMap.get(slug);
-    result = slug;
-  }
+  const result: string = newSlug || slug;
+  const isDupl: boolean | undefined = slugMap.get(newSlug || slug);
 
   const nowDir = path.dirname(nodePath);
   const parentDir = path.resolve(nowDir, '..');
@@ -177,10 +146,33 @@ const createPostData = async (
     return postData;
   }
 
-  const { html, assets } = await markdownToHTML(filePath, rawContent);
+  const { html, assets } = await parseMainContent(filePath, rawContent);
 
   postData.html = html;
   postData.assets = assets;
 
   return postData;
+};
+
+export const parseMainContent = async (filePath: string, markdown: string) => {
+  const assets: PostStoreAsset[] = [];
+  const parser = unified()
+    .use(remark)
+    .use(remark2rehype)
+    .use(rehypeSanitize, sanitizeSchema)
+    .use(rehypeYoutube)
+    .use(rehypeAsset(filePath, assets))
+    .use(rehypeSlug)
+    .use(rehypePrism)
+    .use(rehypeHtml, {
+      collapseEmptyAttributes: true,
+    });
+
+  const parsedData = await parser.process(markdown);
+  const html = parsedData.contents.toString();
+
+  return {
+    html,
+    assets,
+  };
 };
