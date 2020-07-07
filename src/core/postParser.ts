@@ -41,7 +41,7 @@ export const makePost = async ({
     content = '',
   } = matter(rawText);
 
-  const refinedDate = await refinePostDate(filePath, date);
+  const refinedDate = await refineDate(filePath, date);
   const parsedSlug = parseSlug(filePath, refinedDate);
   const refinedSlug = !slugMap
     ? parsedSlug
@@ -78,10 +78,7 @@ const parseSlug = (filePath: string, timestamp: number): string => {
   return slugified;
 };
 
-const refinePostDate = async (
-  filePath: string,
-  date?: Date,
-): Promise<number> => {
+const refineDate = async (filePath: string, date?: Date): Promise<number> => {
   if (date == null) {
     // 스냅샷 테스트의 균일성을 위해, 테스트 시에는 모두 동일 날짜로 처리.
     if (MODE_TEST) return new Date('1990-04-10').valueOf();
@@ -146,7 +143,7 @@ const createPostData = async (
     return postData;
   }
 
-  const { html, assets } = await parseMainContent(filePath, rawContent);
+  const { html, assets } = await parseMarkdown(filePath, rawContent);
 
   postData.html = html;
   postData.assets = assets;
@@ -154,7 +151,7 @@ const createPostData = async (
   return postData;
 };
 
-export const parseMainContent = async (filePath: string, markdown: string) => {
+export const parseMarkdown = async (filePath: string, markdown: string) => {
   const assets: PostStoreAsset[] = [];
   const parser = unified()
     .use(remark)
