@@ -1,9 +1,8 @@
 import fs from 'fs';
-import path from 'path';
 import { makeHash } from '../lib/common';
-import { MODE_TEST } from '../lib/constants';
+import { MODE_TEST, DEFAULT_BUILDINFO_PATH } from '../lib/constants';
 
-const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
+const buildInfoPath = DEFAULT_BUILDINFO_PATH;
 
 interface BuildInfo<T> {
   [filePath: string]: {

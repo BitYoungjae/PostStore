@@ -14,21 +14,7 @@ import { buildInfoFileSave } from '../core/incrementalBuild';
 import { storeMap } from './common';
 import { pagePathFilter, getPostsByCategories } from '../lib/common';
 import { getAssetList, copyAssetsTo } from './copyAsset';
-
-const defaultParam = 'slug';
-const defaultCount = 10;
-
-const defaultParamOption: Required<PageParamOption> = {
-  page: defaultParam,
-  category: defaultParam,
-  post: defaultParam,
-  tag: defaultParam,
-};
-const defaultCountOption: Required<PerPageOption> = {
-  page: defaultCount,
-  category: defaultCount,
-  tag: defaultCount,
-};
+import { DEFAULT_PARAM_OPTION, DEFAULT_PERPAGE_OPTION } from '../lib/constants';
 
 export interface makeStoreProps
   extends Omit<getStoreProps, 'shouldUpdate' | 'watchMode'> {}
@@ -132,12 +118,12 @@ export const normalizeOption = (
 ): [Required<PageParamOption>, Required<PerPageOption>] => {
   let paramOptionResult =
     typeof paramOption === 'object'
-      ? { ...defaultParamOption, ...paramOption }
-      : defaultParamOption;
+      ? { ...DEFAULT_PARAM_OPTION, ...paramOption }
+      : DEFAULT_PARAM_OPTION;
   let countOptionResult =
     typeof PerPageOption === 'object'
-      ? { ...defaultCountOption, ...PerPageOption }
-      : defaultCountOption;
+      ? { ...DEFAULT_PERPAGE_OPTION, ...PerPageOption }
+      : DEFAULT_PERPAGE_OPTION;
 
   return [paramOptionResult, countOptionResult];
 };
