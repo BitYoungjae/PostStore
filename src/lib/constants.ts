@@ -32,3 +32,17 @@ export const DEFAULT_PERPAGE_OPTION: Required<PerPageOption> = {
   category: DEFAULT_PERPAGE_VALUE,
   tag: DEFAULT_PERPAGE_VALUE,
 };
+
+export const CONFIG_EXAMPLE = `export default {
+  storeOption: StoreOption | StoreOption[]
+}
+
+interface StoreOption {
+  postDir: string;
+  storeName?: string;
+  perPage?: number | PerPageOption;
+  pageParam?: string | PageParamOption;
+  shouldUpdate?: boolean;
+  watchMode?: boolean;
+  incremental?: boolean;
+}`;

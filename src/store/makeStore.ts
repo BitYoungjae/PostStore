@@ -5,19 +5,23 @@ import {
   FileNode,
   Path,
   PostData,
+  StoreOption,
 } from '../typings';
-import { getStoreProps } from './getStore';
 import { getNodeTree } from '../core/getNodeTree';
 import { getPathList } from '../pageHandler/pathGenerator';
 import { makePropList } from '../pageHandler/propGenerator';
 import { buildInfoFileSave } from '../core/incrementalBuild';
 import { storeMap } from './common';
-import { pagePathFilter, getPostsByCategories } from '../lib/common';
+import {
+  pagePathFilter,
+  getPostsByCategories,
+  fillToOwnProperty,
+} from '../lib/common';
 import { getAssetList, copyAssetsTo } from './copyAsset';
 import { DEFAULT_PARAM_OPTION, DEFAULT_PERPAGE_OPTION } from '../lib/constants';
 
 export interface makeStoreProps
-  extends Omit<getStoreProps, 'shouldUpdate' | 'watchMode'> {}
+  extends Omit<StoreOption, 'shouldUpdate' | 'watchMode'> {}
 
 export const makeStore = async ({
   postDir,
@@ -113,16 +117,20 @@ const appendExtraToPost = ({
 };
 
 export const normalizeOption = (
-  paramOption: getStoreProps['pageParam'],
-  PerPageOption: getStoreProps['perPage'],
+  paramOption: StoreOption['pageParam'],
+  perPageOption: StoreOption['perPage'],
 ): [Required<PageParamOption>, Required<PerPageOption>] => {
   let paramOptionResult =
     typeof paramOption === 'object'
       ? { ...DEFAULT_PARAM_OPTION, ...paramOption }
+      : paramOption
+      ? fillToOwnProperty(DEFAULT_PARAM_OPTION, paramOption)
       : DEFAULT_PARAM_OPTION;
   let countOptionResult =
-    typeof PerPageOption === 'object'
-      ? { ...DEFAULT_PERPAGE_OPTION, ...PerPageOption }
+    typeof perPageOption === 'object'
+      ? { ...DEFAULT_PERPAGE_OPTION, ...perPageOption }
+      : perPageOption
+      ? fillToOwnProperty(DEFAULT_PERPAGE_OPTION, perPageOption)
       : DEFAULT_PERPAGE_OPTION;
 
   return [paramOptionResult, countOptionResult];

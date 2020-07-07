@@ -232,3 +232,21 @@ export async function normalizeOptionTest(shouldUpdate: boolean = false) {
 
   return testResult;
 }
+
+export async function configurationFileTest(
+  shoudUpdate: boolean = false,
+): Promise<boolean> {
+  const { getMainProps } = getMainPageHandler({
+    useConfig: true,
+    configPath: '../../poststore.sample.config.js',
+  });
+
+  const mainProp = await getMainProps();
+  const testResult = await snapShotTest(
+    mainProp,
+    './configTest/mainProp',
+    shoudUpdate,
+  );
+
+  return testResult;
+}

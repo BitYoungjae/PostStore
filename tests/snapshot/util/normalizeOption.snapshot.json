@@ -1,15 +1,15 @@
 {
   "primitive": [
     {
-      "page": "slug",
-      "category": "slug",
-      "post": "slug",
-      "tag": "slug"
+      "page": "abc",
+      "category": "abc",
+      "post": "abc",
+      "tag": "abc"
     },
     {
-      "page": 10,
-      "category": 10,
-      "tag": 10
+      "page": 7,
+      "category": 7,
+      "tag": 7
     }
   ],
   "object": [

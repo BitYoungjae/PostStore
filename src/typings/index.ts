@@ -4,4 +4,4 @@ export * from './node';
 export * from './pageProp';
 export * from './path';
 export * from './prop';
-export * from './PostStoreConfig';
+export * from './storeOption';
