@@ -101,23 +101,23 @@ const makeUnique = (
   salt = 0,
   newSlug?: string,
 ) => {
-  const result: string = newSlug || slug;
-  const isDupl: boolean | undefined = slugMap.get(newSlug || slug);
-
-  const nowDir = path.dirname(nodePath);
-  const parentDir = path.resolve(nowDir, '..');
-  const relativeDir = path.relative(parentDir, nowDir);
+  const target: string = newSlug || slug;
+  const isDupl: boolean = slugMap.get(target) === true ? true : false;
 
   if (isDupl) {
+    const nowDir = path.dirname(nodePath);
+    const parentDir = path.resolve(nowDir, '..');
+    const relativeDir = path.relative(parentDir, nowDir);
+
     const hash =
       salt === 0 ? '' : makeHash(relativeDir + `${salt}`, 'hex').substr(0, 5);
-
     const saltedSlug = slug + hash;
+
     return makeUnique(slug, nodePath, slugMap, salt + 1, saltedSlug);
   }
 
-  slugMap.set(result, true);
-  return result;
+  slugMap.set(target, true);
+  return target;
 };
 
 const createPostData = async (
