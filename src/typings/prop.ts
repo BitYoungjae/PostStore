@@ -1,5 +1,5 @@
-import { PostData } from './commonTypes';
-import { SubTypeWithoutObjectMap, ObjectMap } from './helperTypes';
+import { PostData } from './common';
+import { SubTypeWithoutObjectMap, ObjectMap } from './helper';
 
 export interface PropList {
   global: GlobalProp;
