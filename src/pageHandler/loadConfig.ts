@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { DEFAULT_CONFIG_PATH, CONFIG_EXAMPLE } from '../lib/constants';
 import { StoreOption, UseConfigOption, PostStoreConfig } from '../typings';
 import { getStyledErrorMsg } from '../lib/msgHandler';
@@ -7,7 +9,7 @@ export const loadConfig = async ({
   storeName,
   configPath = DEFAULT_CONFIG_PATH,
 }: UseConfigOption): Promise<StoreOption> => {
-  const { storeOption } = await getConfig(configPath);
+  const { storeOption } = await getConfig(path.resolve(configPath));
 
   if (Array.isArray(storeOption)) {
     if (!storeName) {
@@ -40,13 +42,26 @@ const getConfig = async (configPath: string): Promise<PostStoreConfig> => {
   let config: Partial<PostStoreConfig>;
 
   try {
-    config = (await import(configPath)).default;
+    fs.statSync(configPath);
   } catch {
     throw new Error(
       getStyledErrorMsg(
         'Please ensure that the config file exists.',
         `path: ${configPath}`,
       ),
+    );
+  }
+
+  try {
+    const importedModule = await import(configPath);
+    if (importedModule.default) {
+      config = importedModule.default;
+    } else {
+      config = importedModule;
+    }
+  } catch {
+    throw new Error(
+      getStyledErrorMsg('This is not a module file.', `path: ${configPath}`),
     );
   }
 

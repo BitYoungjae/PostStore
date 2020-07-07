@@ -238,7 +238,7 @@ export async function configurationFileTest(
 ): Promise<boolean> {
   const { getMainProps } = getMainPageHandler({
     useConfig: true,
-    configPath: '../../poststore.sample.config.js',
+    configPath: './poststore.sample.config.js',
   });
 
   const mainProp = await getMainProps();
