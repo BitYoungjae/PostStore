@@ -1,9 +1,8 @@
 import fs from 'fs';
-import path from 'path';
 import { makeHash } from '../lib/common';
-import { MODE_TEST } from '../lib/constants';
+import { MODE_TEST, DEFAULT_BUILDINFO_PATH } from '../lib/constants';
 
-const buildInfoPath = path.resolve(process.cwd(), './.poststore.buildinfo');
+const buildInfoPath = DEFAULT_BUILDINFO_PATH;
 
 interface BuildInfo<T> {
   [filePath: string]: {
@@ -43,11 +42,8 @@ export const saveCache = <T>(filePath: string, content: string, data: T) => {
   buildInfo[filePath] = cacheData;
 };
 
-const loadBuildInfo = (
-  buildInfoPath: string,
-  shouldUpdate: boolean = false,
-) => {
-  if (buildInfo && shouldUpdate === false) return buildInfo;
+const loadBuildInfo = (buildInfoPath: string) => {
+  if (buildInfo) return buildInfo;
 
   try {
     const rawInfo = fs.readFileSync(buildInfoPath, 'utf8');
@@ -67,5 +63,6 @@ export const buildInfoFileSave = () => {
   const writeBuildInfo = () => {
     fs.promises.writeFile(buildInfoPath, stringified, 'utf8');
   };
+
   fs.promises.unlink(buildInfoPath).then(writeBuildInfo, writeBuildInfo);
 };

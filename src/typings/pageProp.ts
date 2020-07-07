@@ -1,5 +1,5 @@
-import { GlobalProp, MainProp } from './propTypes';
-import { PageCategory } from './commonTypes';
+import { GlobalProp, MainProp } from './prop';
+import { PageCategory } from './common';
 
 export interface PageProp<T extends PageCategory> {
   global: GlobalProp;

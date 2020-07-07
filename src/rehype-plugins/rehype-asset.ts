@@ -5,6 +5,7 @@ import visit from 'unist-util-visit';
 import { PostStoreAsset } from '../typings';
 import { makeHash } from '../lib/common';
 import { rehypeNode, rehypeImageNode } from './types';
+import { DEFAULT_ASSET_DIRNAME } from '../lib/constants';
 
 const isImageNode = (node: rehypeNode): node is rehypeImageNode => {
   if (node.tagName === 'img' && node.properties && node.properties.src != null)
@@ -32,7 +33,8 @@ const nodeEditor = (filePath: string, assetStore: PostStoreAsset[]) => (
       extName = path.extname(sourcePath);
     }
 
-    const targetPath = 'assets/' + makeHash(sourcePath, 'hex') + extName;
+    const hashedPath = makeHash(sourcePath, 'hex');
+    const targetPath = `${DEFAULT_ASSET_DIRNAME}/${hashedPath}${extName}`;
 
     const assetInfo: PostStoreAsset = {
       sourcePath,

@@ -1,7 +1,7 @@
-import { Clone } from './helperTypes';
-import { PropList } from './propTypes';
-import { FileNode } from './nodeTypes';
-import { PathList } from './pathTypes';
+import { Clone } from './helper';
+import { PropList } from './prop';
+import { FileNode } from './node';
+import { PathList } from './path';
 
 export type PageCategory = keyof PropList & keyof PathList;
 

@@ -41,7 +41,7 @@ export const makePost = async ({
     content = '',
   } = matter(rawText);
 
-  const refinedDate = await refinePostDate(filePath, date);
+  const refinedDate = await refineDate(filePath, date);
   const parsedSlug = parseSlug(filePath, refinedDate);
   const refinedSlug = !slugMap
     ? parsedSlug
@@ -70,29 +70,6 @@ export const makePost = async ({
   return post;
 };
 
-export const markdownToHTML = async (filePath: string, markdown: string) => {
-  const assets: PostStoreAsset[] = [];
-  const parser = unified()
-    .use(remark)
-    .use(remark2rehype)
-    .use(rehypeSanitize, sanitizeSchema)
-    .use(rehypeYoutube)
-    .use(rehypeAsset(filePath, assets))
-    .use(rehypeSlug)
-    .use(rehypePrism)
-    .use(rehypeHtml, {
-      collapseEmptyAttributes: true,
-    });
-
-  const parsedData = await parser.process(markdown);
-  const html = parsedData.contents.toString();
-
-  return {
-    html,
-    assets,
-  };
-};
-
 const parseSlug = (filePath: string, timestamp: number): string => {
   const basename = path.basename(filePath, '.md');
   const datePrepended = prependDate(basename, timestamp);
@@ -101,10 +78,7 @@ const parseSlug = (filePath: string, timestamp: number): string => {
   return slugified;
 };
 
-const refinePostDate = async (
-  filePath: string,
-  date?: Date,
-): Promise<number> => {
+const refineDate = async (filePath: string, date?: Date): Promise<number> => {
   if (date == null) {
     // 스냅샷 테스트의 균일성을 위해, 테스트 시에는 모두 동일 날짜로 처리.
     if (MODE_TEST) return new Date('1990-04-10').valueOf();
@@ -127,31 +101,23 @@ const makeUnique = (
   salt = 0,
   newSlug?: string,
 ) => {
-  let result: string;
-  let isDupl: boolean | undefined;
-
-  if (newSlug) {
-    isDupl = slugMap.get(newSlug);
-    result = newSlug;
-  } else {
-    isDupl = slugMap.get(slug);
-    result = slug;
-  }
-
-  const nowDir = path.dirname(nodePath);
-  const parentDir = path.resolve(nowDir, '..');
-  const relativeDir = path.relative(parentDir, nowDir);
+  const target: string = newSlug || slug;
+  const isDupl: boolean = slugMap.get(target) === true ? true : false;
 
   if (isDupl) {
+    const nowDir = path.dirname(nodePath);
+    const parentDir = path.resolve(nowDir, '..');
+    const relativeDir = path.relative(parentDir, nowDir);
+
     const hash =
       salt === 0 ? '' : makeHash(relativeDir + `${salt}`, 'hex').substr(0, 5);
-
     const saltedSlug = slug + hash;
+
     return makeUnique(slug, nodePath, slugMap, salt + 1, saltedSlug);
   }
 
-  slugMap.set(result, true);
-  return result;
+  slugMap.set(target, true);
+  return target;
 };
 
 const createPostData = async (
@@ -177,10 +143,33 @@ const createPostData = async (
     return postData;
   }
 
-  const { html, assets } = await markdownToHTML(filePath, rawContent);
+  const { html, assets } = await parseMarkdown(filePath, rawContent);
 
   postData.html = html;
   postData.assets = assets;
 
   return postData;
+};
+
+export const parseMarkdown = async (filePath: string, markdown: string) => {
+  const assets: PostStoreAsset[] = [];
+  const parser = unified()
+    .use(remark)
+    .use(remark2rehype)
+    .use(rehypeSanitize, sanitizeSchema)
+    .use(rehypeYoutube)
+    .use(rehypeAsset(filePath, assets))
+    .use(rehypeSlug)
+    .use(rehypePrism)
+    .use(rehypeHtml, {
+      collapseEmptyAttributes: true,
+    });
+
+  const parsedData = await parser.process(markdown);
+  const html = parsedData.contents.toString();
+
+  return {
+    html,
+    assets,
+  };
 };

@@ -2,13 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import { PostStoreAsset, FileNode } from '../typings';
 import { getPostsAll } from '../lib/common';
+import { DEFAULT_ASSET_DIRNAME } from '../lib/constants';
 
 const fsPromise = fs.promises;
 
 export const copyAssetsTo = (publicDir: string) => async (
   assetList: PostStoreAsset[],
 ) => {
-  const assetDir = path.resolve(publicDir, './assets');
+  const assetDir = path.resolve(publicDir, `./${DEFAULT_ASSET_DIRNAME}`);
   try {
     await fsPromise.stat(assetDir);
   } catch (e) {

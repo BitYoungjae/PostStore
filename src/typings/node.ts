@@ -1,4 +1,4 @@
-import { PostData } from './commonTypes';
+import { PostData } from './common';
 
 export interface FileNode {
   type: PostNode['type'] | CategoryNode['type'];

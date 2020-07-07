@@ -1,14 +1,27 @@
 import path from 'path';
-import { getStore, getStoreProps } from '../store/getStore';
+import { getStore } from '../store/getStore';
 import chalk from 'chalk';
 import { getStyledErrorMsg, getStyledCautionMsg } from '../lib/msgHandler';
-import { PageCategory, Path, PageProp, MainProp, ListProp } from '../typings';
+import {
+  PageCategory,
+  Path,
+  PageProp,
+  MainProp,
+  ListProp,
+  StoreOption,
+  UseConfigOption,
+} from '../typings';
+import { loadConfig } from './loadConfig';
+
+type makePageHandlerProps = StoreOption | UseConfigOption;
 
 const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
-  storeOption: getStoreProps,
+  option: makePageHandlerProps,
 ) => {
+  const storeOption = normalizeOption(option);
+
   async function getPathsBySlug(): Promise<Path[]> {
-    const store = await getStore(storeOption);
+    const store = await getStore(await storeOption);
     const pathList = store.pathList[pageCategory];
 
     return pathList;
@@ -17,7 +30,7 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
   async function getPropsBySlug(
     param: string | string[],
   ): Promise<PageProp<T>> {
-    const store = await getStore(storeOption);
+    const store = await getStore(await storeOption);
     const propList = store.propList[pageCategory] as MainProp<T>;
     const key = Array.isArray(param) ? param.join('/') : param;
     const mainProp = propList[key];
@@ -43,9 +56,11 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
   };
 };
 
-export const getMainPageHandler = (storeOption: getStoreProps) => {
+export const getMainPageHandler = (option: makePageHandlerProps) => {
+  const storeOption = normalizeOption(option);
+
   async function getMainProps(): Promise<PageProp<'page'>> {
-    const store = await getStore(storeOption);
+    const store = await getStore(await storeOption);
 
     const propList = store.propList.page;
     const mainKey = 'page/1';
@@ -63,7 +78,7 @@ export const getMainPageHandler = (storeOption: getStoreProps) => {
       console.log(
         getStyledCautionMsg(
           'Since There are no posts in the [postDir] path, the following default values is delivered.',
-          `postDir: ${path.basename(storeOption.postDir)}`,
+          `postDir: ${path.basename(store.info.postDir)}`,
         ),
       );
       console.log('\u001b[2m──────────────\u001b[22m');
@@ -86,6 +101,30 @@ export const getMainPageHandler = (storeOption: getStoreProps) => {
   }
 
   return { getMainProps };
+};
+
+const isConfigOption = (
+  option: makePageHandlerProps,
+): option is UseConfigOption => {
+  if ((option as UseConfigOption).useConfig) return true;
+  return false;
+};
+
+const normalizeOption = async (
+  option: makePageHandlerProps,
+): Promise<StoreOption> => {
+  let storeOption: StoreOption;
+
+  if (isConfigOption(option)) {
+    storeOption = await loadConfig(option);
+  } else {
+    if (!option.postDir) {
+      throw new Error(getStyledErrorMsg('The postDir parameter is required.'));
+    }
+    storeOption = option;
+  }
+
+  return storeOption;
 };
 
 export const getCategoryPageHandler = makePageHandler('category');

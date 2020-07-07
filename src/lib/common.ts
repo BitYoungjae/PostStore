@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { findNode, findNodeAll } from './visit';
@@ -125,6 +126,14 @@ export const makeHash = (
 
 export const makeSetLike = <T>(arr: T[]): T[] => [...new Set(arr)];
 
+export const isDirPath = (path: string): boolean => {
+  try {
+    return fs.statSync(path).isDirectory();
+  } catch {
+    return false;
+  }
+};
+
 export const isSubDir = (
   parent: string,
   child: string,
@@ -153,4 +162,11 @@ export const debounce = (fn: (...args: any) => any, time: number = 300) => {
       fn(...args);
     }, time);
   };
+};
+
+export const fillToOwnProperty = <R, T>(obj: R, value: T): R => {
+  const coppied = { ...obj };
+  Object.getOwnPropertyNames(obj).forEach((key) => (coppied[key] = value));
+
+  return coppied as R;
 };

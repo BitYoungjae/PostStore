@@ -2,7 +2,7 @@
   "page/1": {
     "count": 3,
     "currentPage": 1,
-    "perPage": 10,
+    "perPage": 5,
     "postList": [
       {
         "slug": "2020-06-22-자바스크립트의-모든-것-1탄",

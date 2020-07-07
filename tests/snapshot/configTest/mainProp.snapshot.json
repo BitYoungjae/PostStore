@@ -1,0 +1,138 @@
+{
+  "global": {
+    "categoryCount": 5,
+    "postCount": 31,
+    "tagCount": 2,
+    "categoryTree": {
+      "name": "테스트용 게시물들",
+      "slug": "테스트용-게시물들",
+      "postCount": 31,
+      "children": [
+        {
+          "name": "날짜순 정렬",
+          "slug": "날짜순-정렬",
+          "postCount": 6
+        },
+        {
+          "name": "복합 정렬",
+          "slug": "복합-정렬",
+          "postCount": 9
+        },
+        {
+          "name": "이름이 중복되는 경우",
+          "slug": "이름이-중복되는-경우",
+          "postCount": 6,
+          "children": [
+            {
+              "name": "중첩된 경로",
+              "slug": "중첩된-경로",
+              "postCount": 2
+            }
+          ]
+        },
+        {
+          "name": "제목순 정렬",
+          "slug": "제목순-정렬",
+          "postCount": 8
+        }
+      ]
+    },
+    "tagList": [
+      {
+        "name": "다른건",
+        "slug": "다른건",
+        "postCount": 1
+      },
+      {
+        "name": "다-있다",
+        "slug": "다-있다",
+        "postCount": 1
+      }
+    ],
+    "buildTime": 0
+  },
+  "main": {
+    "count": 4,
+    "currentPage": 1,
+    "perPage": 4,
+    "postList": [
+      {
+        "slug": "2020-01-06-6",
+        "title": "6번",
+        "date": 1578268800000,
+        "html": "<p>제목은 6번이지만, 가장 최근에 작성 되었어요.</p>",
+        "tags": [],
+        "categories": [
+          "날짜순-정렬"
+        ],
+        "isPublished": true,
+        "assets": [],
+        "nextPost": {
+          "slug": "2020-01-05-5",
+          "title": "5번"
+        }
+      },
+      {
+        "slug": "2020-01-05-5",
+        "title": "5번",
+        "date": 1578182400000,
+        "html": "<p>제목은 5번이지만, 작성한지는 다섯번째로 오래되었어요.</p>",
+        "tags": [],
+        "categories": [
+          "날짜순-정렬"
+        ],
+        "isPublished": true,
+        "assets": [],
+        "prevPost": {
+          "slug": "2020-01-06-6",
+          "title": "6번"
+        },
+        "nextPost": {
+          "slug": "2020-01-04-4",
+          "title": "4번"
+        }
+      },
+      {
+        "slug": "2020-01-04-4",
+        "title": "4번",
+        "date": 1578096000000,
+        "html": "<p>제목은 4번이지만, 작성한지는 네번째로 오래되었어요.</p>",
+        "tags": [],
+        "categories": [
+          "날짜순-정렬"
+        ],
+        "isPublished": true,
+        "assets": [],
+        "prevPost": {
+          "slug": "2020-01-05-5",
+          "title": "5번"
+        },
+        "nextPost": {
+          "slug": "2020-01-03-3",
+          "title": "3번"
+        }
+      },
+      {
+        "slug": "2020-01-03-3",
+        "title": "3번",
+        "date": 1578009600000,
+        "html": "<p>제목은 3번이지만, 작성한지는 세번째로 오래되었어요.</p>",
+        "tags": [],
+        "categories": [
+          "날짜순-정렬"
+        ],
+        "isPublished": true,
+        "assets": [],
+        "prevPost": {
+          "slug": "2020-01-04-4",
+          "title": "4번"
+        },
+        "nextPost": {
+          "slug": "2020-01-02-2",
+          "title": "2번"
+        }
+      }
+    ],
+    "totalPage": 8
+  }
+}
