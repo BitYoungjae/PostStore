@@ -34,7 +34,7 @@ const nodeEditor = (filePath: string, assetStore: PostStoreAsset[]) => (
     }
 
     const hashedPath = makeHash(sourcePath, 'hex');
-    const targetPath = `${DEFAULT_ASSET_DIRNAME}/${hashedPath}${extName}`;
+    const targetPath = `/${DEFAULT_ASSET_DIRNAME}/${hashedPath}${extName}`;
 
     const assetInfo: PostStoreAsset = {
       sourcePath,
