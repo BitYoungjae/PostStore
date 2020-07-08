@@ -19,6 +19,7 @@ export const DEFAULT_PERPAGE_VALUE = 10;
 export const DEFAULT_BUILDINFO_PATH = './.poststore.buildInfo';
 export const DEFAULT_CONFIG_PATH = './poststore.config.js';
 export const DEFAULT_ASSET_DIRNAME = 'assets';
+export const DEFAULT_PUBLICDIR_PATH = './public';
 
 export const DEFAULT_PARAM_OPTION: Required<PageParamOption> = {
   page: DEFAULT_PARAM_VALUE,

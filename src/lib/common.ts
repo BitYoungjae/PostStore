@@ -170,3 +170,8 @@ export const fillToOwnProperty = <R, T>(obj: R, value: T): R => {
 
   return coppied as R;
 };
+
+export const normalizeFilePath = (postDir: string, filePath: string) => {
+  const normalized = [postDir, path.relative(postDir, filePath)].join(path.sep);
+  return normalized;
+};

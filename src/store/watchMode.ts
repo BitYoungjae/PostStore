@@ -1,6 +1,11 @@
 import path from 'path';
 import { watch } from 'chokidar';
-import { getPostByPath, isSubDir, debounce } from '../lib/common';
+import {
+  getPostByPath,
+  isSubDir,
+  debounce,
+  normalizeFilePath,
+} from '../lib/common';
 import { makePost } from '../core/postParser';
 import { buildInfoFileSave } from '../core/incrementalBuild';
 import { PostData, CorePostData } from '../typings';
@@ -39,21 +44,20 @@ export const startWatchMode = (props: makeStoreProps): void => {
     if (!isMarkDownFile(filePath)) return;
 
     const store = storeMap.get(props.postDir)!;
-
-    const normalizedFilePath = path.join(
-      props.postDir,
-      path.relative(props.postDir, filePath),
-    );
+    const normalizedFilePath = normalizeFilePath(store.info.postDir, filePath);
 
     let newPostData: PostData;
 
     try {
-      newPostData = await makePost({ filePath, useCache: false });
+      newPostData = await makePost({
+        filePath: normalizedFilePath,
+        useCache: false,
+      });
     } catch {
       console.log(
         getStyledCautionMsg(
           chalk`Failed to parse {bold [ ${path.basename(
-            filePath,
+            normalizedFilePath,
           )} ]} file. Please check the file content.`,
         ),
       );
@@ -68,7 +72,7 @@ export const startWatchMode = (props: makeStoreProps): void => {
       updateStore(
         getStyledLogMsg(
           chalk`{red.bold There is no stored post corresponding to the [ ${path.basename(
-            filePath,
+            normalizedFilePath,
           )} ] file.} The Store is created again.`,
           `store : ${store.info.name}`,
         ),

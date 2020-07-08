@@ -18,7 +18,7 @@ import { MODE_TEST } from '../lib/constants';
 
 const fsPromise = fs.promises;
 
-interface CachedPostData extends Pick<PostData, 'html' | 'tags'> {}
+interface CachedPostData extends Pick<PostData, 'html' | 'tags' | 'assets'> {}
 
 interface makePostProps {
   filePath: string;
@@ -65,6 +65,7 @@ export const makePost = async ({
     saveCache(filePath, rawText, {
       html: post.html,
       tags: post.tags,
+      assets: post.assets,
     } as CachedPostData);
 
   return post;
@@ -131,15 +132,17 @@ const createPostData = async (
     title: !title ? slug : title,
     date,
     html: '',
-    tags: cachedData
-      ? makeSetLike(cachedData.tags)
-      : makeSetLike(tags.map((tag) => slugify(tag))),
+    tags: makeSetLike(tags.map((tag) => slugify(tag))),
     categories: categories ? categories : [],
     isPublished,
   };
 
   if (cachedData) {
     postData.html = cachedData.html;
+    postData.tags = makeSetLike(cachedData.tags);
+
+    if (cachedData.assets) postData.assets = cachedData.assets;
+
     return postData;
   }
 

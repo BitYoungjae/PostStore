@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { PostStoreAsset, FileNode } from '../typings';
 import { getPostsAll } from '../lib/common';
-import { DEFAULT_ASSET_DIRNAME } from '../lib/constants';
+import { DEFAULT_ASSET_DIRNAME, MODE_PRODUCTION } from '../lib/constants';
 
 const fsPromise = fs.promises;
 
@@ -10,7 +10,11 @@ export const copyAssetsTo = (publicDir: string) => async (
   assetList: PostStoreAsset[],
 ) => {
   const assetDir = path.resolve(publicDir, `./${DEFAULT_ASSET_DIRNAME}`);
+
   try {
+    if (MODE_PRODUCTION) {
+      await fsPromise.rmdir(assetDir, { recursive: true });
+    }
     await fsPromise.stat(assetDir);
   } catch (e) {
     if (e.code === 'ENOENT') fsPromise.mkdir(assetDir, { recursive: true });

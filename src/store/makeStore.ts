@@ -18,7 +18,11 @@ import {
   fillToOwnProperty,
 } from '../lib/common';
 import { getAssetList, copyAssetsTo } from './copyAsset';
-import { DEFAULT_PARAM_OPTION, DEFAULT_PERPAGE_OPTION } from '../lib/constants';
+import {
+  DEFAULT_PARAM_OPTION,
+  DEFAULT_PERPAGE_OPTION,
+  DEFAULT_PUBLICDIR_PATH,
+} from '../lib/constants';
 
 export interface makeStoreProps
   extends Omit<StoreOption, 'shouldUpdate' | 'watchMode'> {}
@@ -67,7 +71,7 @@ export const makeStore = async ({
   };
 
   const assetList = getAssetList(rootNode);
-  await copyAssetsTo('./public')(assetList);
+  await copyAssetsTo(DEFAULT_PUBLICDIR_PATH)(assetList);
 
   const store: PostStore = {
     rootNode,
