@@ -41,11 +41,8 @@ export const startWatchMode = (props: makeStoreProps): void => {
    * 또한, slug 역시 store 빌드 과정에서 중복 방지 해시 및 ctime에 의해 가변되는 extra 데이터가 있으므로 업데이트에서 제외해야함.
    */
   const changeFileHandler = async (filePath: string) => {
-    if (!isMarkDownFile(filePath)) return;
-
     const store = storeMap.get(props.postDir)!;
     const normalizedFilePath = normalizeFilePath(store.info.postDir, filePath);
-
     let newPostData: PostData;
 
     try {
@@ -68,7 +65,7 @@ export const startWatchMode = (props: makeStoreProps): void => {
 
     const post = getPostByPath(store.rootNode, normalizedFilePath);
 
-    if (!post) {
+    if (!post || !store.propList.post[post.slug]) {
       updateStore(
         getStyledLogMsg(
           chalk`{red.bold There is no stored post corresponding to the [ ${path.basename(
@@ -80,7 +77,7 @@ export const startWatchMode = (props: makeStoreProps): void => {
       return;
     }
 
-    const { postData: prevPostData } = post;
+    const prevPostData = store.propList.post[post.slug];
 
     updatePostData(prevPostData, newPostData, [
       'title',
@@ -120,7 +117,11 @@ export const startWatchMode = (props: makeStoreProps): void => {
 
     if (!isSubDir(storeInfo.postDir, fileDirPath)) return;
 
-    if (eventName === 'modified' && detail.type === 'file') {
+    if (
+      eventName === 'modified' &&
+      detail.type === 'file' &&
+      extName(filePath) === '.md'
+    ) {
       await changeFileHandler(filePath);
       return;
     }
@@ -128,7 +129,7 @@ export const startWatchMode = (props: makeStoreProps): void => {
     if (
       ['created', 'moved'].includes(eventName) &&
       detail.type === 'file' &&
-      !isMarkDownFile(filePath)
+      !['.md', '.jpg', '.png'].includes(extName(filePath))
     )
       return;
 
@@ -163,8 +164,8 @@ export const startWatchMode = (props: makeStoreProps): void => {
   watcher.on('raw', rawHandlerForDarwin);
 };
 
-const isMarkDownFile = (filePath: string) =>
-  path.extname(filePath).normalize().toLowerCase() === '.md';
+const extName = (filePath: string) =>
+  path.extname(filePath).normalize().toLowerCase();
 
 const getParentWatcherKey = (postDir: string) =>
   [...watcherMap.keys()].find((watcherKey) => isSubDir(watcherKey, postDir));

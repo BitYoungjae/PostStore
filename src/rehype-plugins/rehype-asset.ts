@@ -24,10 +24,12 @@ const nodeEditor = (filePath: string, assetStore: PostStoreAsset[]) => (
     const decodedPath = decodeURIComponent(src);
     const { isAbsolute } = path;
 
+    if (isURL(decodedPath)) return;
+
     let sourcePath: string = decodedPath;
     let extName: string = '';
 
-    if (!isURL(sourcePath) && !isAbsolute(sourcePath)) {
+    if (!isAbsolute(sourcePath)) {
       const fileDir = path.dirname(filePath);
       sourcePath = path.resolve(fileDir, decodedPath);
       extName = path.extname(sourcePath);

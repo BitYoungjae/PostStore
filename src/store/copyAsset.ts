@@ -23,7 +23,7 @@ export const copyAssetsTo = (publicDir: string) => async (
   const operations = assetList.map(({ sourcePath, targetPath }) => {
     return fsPromise.copyFile(
       sourcePath,
-      path.resolve(publicDir, targetPath),
+      path.join(publicDir, targetPath),
       fs.constants.COPYFILE_EXCL | fs.constants.COPYFILE_FICLONE,
     );
   });
