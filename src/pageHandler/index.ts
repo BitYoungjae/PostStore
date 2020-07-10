@@ -52,7 +52,7 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
     }
 
     return {
-      key,
+      param: key,
       global: store.propList.global,
       main: mainProp,
     };
@@ -103,7 +103,7 @@ export const getMainPageHandler = (option: makePageHandlerProps) => {
     }
 
     return {
-      key: mainKey,
+      param: mainKey,
       global: store.propList.global,
       main: mainProp == null ? emptyProp : mainProp,
     };

@@ -2,7 +2,7 @@ import { GlobalProp, MainProp } from './prop';
 import { PageCategory } from './common';
 
 export interface PageProp<T extends PageCategory> {
-  key: string;
+  param: string;
   global: GlobalProp;
   main: MainProp<T>;
 }
