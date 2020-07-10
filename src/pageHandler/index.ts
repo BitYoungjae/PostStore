@@ -12,6 +12,7 @@ import {
   UseConfigOption,
 } from '../typings';
 import { loadConfig } from './loadConfig';
+import { makePathStore } from '../store/makeStore';
 
 type makePageHandlerProps = StoreOption | UseConfigOption;
 
@@ -21,7 +22,13 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
   const storeOption = normalizeOption(option);
 
   async function getPathsBySlug(): Promise<Path[]> {
-    const store = await getStore(await storeOption);
+    const { postDir, perPage, pageParam } = await storeOption;
+    const store = await makePathStore({
+      postDir,
+      perPage,
+      pageParam,
+    });
+
     const pathList = store.pathList[pageCategory];
 
     return pathList;

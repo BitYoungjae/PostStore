@@ -6,6 +6,7 @@ import {
   Path,
   PostData,
   StoreOption,
+  PathStore,
 } from '../typings';
 import { getNodeTree } from '../core/getNodeTree';
 import { getPathList } from '../pageHandler/pathGenerator';
@@ -85,6 +86,29 @@ export const makeStore = async ({
   storeMap.set(postDir, store);
 
   return store;
+};
+
+// 오직 Path만을 보관하는 Store
+export const makePathStore = async ({
+  postDir,
+  perPage,
+  pageParam,
+}: makeStoreProps): Promise<PathStore> => {
+  const [paramOption, perPageOption] = normalizeOption(pageParam, perPage);
+
+  const rootNode = await getNodeTree({
+    rootPath: postDir,
+  });
+
+  const pathList = getPathList({
+    paramOption,
+    perPageOption,
+    rootNode: rootNode,
+  });
+
+  return {
+    pathList,
+  };
 };
 
 interface appendExtraToPostProps {

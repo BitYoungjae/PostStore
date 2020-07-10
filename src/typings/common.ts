@@ -24,6 +24,7 @@ export interface PostStore {
   };
 }
 
+export interface PathStore extends Pick<PostStore, 'pathList'> {}
 export interface PostData extends CorePostData, ExtraPostData {}
 
 export interface CorePostData {
