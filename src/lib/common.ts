@@ -175,3 +175,22 @@ export const normalizeFilePath = (postDir: string, filePath: string) => {
   const normalized = [postDir, path.relative(postDir, filePath)].join(path.sep);
   return normalized;
 };
+
+export const sortRule = (a: PostNode, b: PostNode): number => {
+  const dateDiff = b.postData.date - a.postData.date; // 날짜 기준 내림차순 정렬
+
+  // 같은 날짜인 경우 게시물 제목 기준으로 정렬
+  if (dateDiff === 0) {
+    const aTitle = a.postData.title.toLowerCase();
+    const bTitle = b.postData.title.toLowerCase();
+
+    // 첫 글자만 비교
+    const firstCharDiff = aTitle[0].localeCompare(bTitle[0]);
+    // 첫 글자도 같을 경우 전체 비교
+    if (firstCharDiff === 0) return aTitle.localeCompare(bTitle);
+
+    return firstCharDiff;
+  }
+
+  return dateDiff;
+};

@@ -11,6 +11,7 @@ import {
   getPostsByTags,
   getPostBySlug,
   isCategoryNode,
+  sortRule,
 } from '../lib/common';
 import {
   FileNode,
@@ -65,6 +66,7 @@ export const makePropList = ({
     pathList: pathList.page,
     pageParam: paramOption.page,
     getPostsFn: getPostsAll,
+    sort: true,
   });
 
   const post = makePostPageProp(rootNode, pathList.post, paramOption.post);
@@ -132,6 +134,7 @@ interface makePropListProps {
   pageParam: string;
   getPostsFn?: (rootNode: FileNode, slug?: string[]) => PostNode[];
   perPage?: number;
+  sort?: boolean;
 }
 
 const makeListPageProp = ({
@@ -140,6 +143,7 @@ const makeListPageProp = ({
   pageParam,
   perPage = 10,
   getPostsFn = getPostsAll,
+  sort = false,
 }: makePropListProps): ObjectMap<ListProp> => {
   const propMap: ObjectMap<ListProp> = {};
 
@@ -150,10 +154,13 @@ const makeListPageProp = ({
     const posts = getPostsFn(rootNode, trimmedSlug);
     const totalPage = getTotalPage(posts.length, perPage);
 
+    if (sort) posts.sort(sortRule);
+
     const currentPage = isPage ? getPageNum(slug) : 1;
     const postList = getPostsByPage(posts, currentPage, perPage).map(
       (node) => node.postData,
     );
+
     const count = postList.length;
 
     const prop: ListProp = {
