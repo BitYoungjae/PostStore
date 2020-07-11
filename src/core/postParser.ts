@@ -7,18 +7,27 @@ import remark from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 import rehypeSlug from 'rehype-slug';
 import rehypeHtml from 'rehype-stringify';
-import { rehypePrism, rehypeAsset, rehypeYoutube } from '../rehype-plugins';
+import {
+  rehypePrism,
+  rehypeAsset,
+  rehypeYoutube,
+  rehypeExcerpt,
+} from '../rehype-plugins';
 import rehypeSanitize from 'rehype-sanitize';
 import sanitizeSchema from './sanitizeSchema.json';
 import { slugify } from '../lib/slugify';
 import { getCachedData, saveCache } from './incrementalBuild';
 import { makeHash, makeSetLike } from '../lib/common';
-import { PostData, SlugMap, PostStoreAsset } from '../typings';
+import { PostData, SlugMap, PostInfo } from '../typings';
 import { MODE_TEST } from '../lib/constants';
 
 const fsPromise = fs.promises;
 
-interface CachedPostData extends Pick<PostData, 'html' | 'tags' | 'assets'> {}
+interface CachedPostData
+  extends Pick<
+    PostData,
+    'html' | 'tags' | 'assets' | 'excerpt' | 'thumbnail'
+  > {}
 
 interface makePostProps {
   filePath: string;
@@ -66,6 +75,8 @@ export const makePost = async ({
       html: post.html,
       tags: post.tags,
       assets: post.assets,
+      excerpt: post.excerpt,
+      thumbnail: post.thumbnail,
     } as CachedPostData);
 
   return post;
@@ -140,28 +151,36 @@ const createPostData = async (
   if (cachedData) {
     postData.html = cachedData.html;
     postData.tags = makeSetLike(cachedData.tags);
-
-    if (cachedData.assets) postData.assets = cachedData.assets;
+    postData.assets = cachedData.assets;
+    postData.excerpt = cachedData.excerpt;
+    postData.thumbnail = cachedData.thumbnail;
 
     return postData;
   }
 
-  const { html, assets } = await parseMarkdown(filePath, rawContent);
+  const { html, info } = await parseMarkdown(filePath, rawContent);
 
   postData.html = html;
-  postData.assets = assets;
+  postData.assets = info.assets;
+  postData.excerpt = info.excerpt;
+  postData.thumbnail = info.thumbnail;
 
   return postData;
 };
 
-export const parseMarkdown = async (filePath: string, markdown: string) => {
-  const assets: PostStoreAsset[] = [];
+export const parseMarkdown = async (
+  filePath: string,
+  markdown: string,
+): Promise<{ html: string; info: PostInfo }> => {
+  const info: PostInfo = {};
+
   const parser = unified()
     .use(remark)
     .use(remark2rehype)
     .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeYoutube)
-    .use(rehypeAsset(filePath, assets))
+    .use(rehypeExcerpt(info))
+    .use(rehypeAsset(filePath, info))
     .use(rehypeSlug)
     .use(rehypePrism)
     .use(rehypeHtml, {
@@ -173,6 +192,6 @@ export const parseMarkdown = async (filePath: string, markdown: string) => {
 
   return {
     html,
-    assets,
+    info,
   };
 };

@@ -1,5 +1,6 @@
 {
   "proplist": {
+    "param": "자바스크립트",
     "global": {
       "categoryCount": 13,
       "postCount": 42,
@@ -194,6 +195,8 @@
           ],
           "isPublished": true,
           "assets": [],
+          "excerpt": "",
+          "thumbnail": "",
           "nextPost": {
             "slug": "2020-06-23-자바스크립트-개껌이지",
             "title": "개껌이라니까?"

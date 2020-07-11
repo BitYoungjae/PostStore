@@ -49,6 +49,8 @@ const setCode = (node: rehypeNode, code: string) => {
 
   node.tagName = fragment.tagName;
   node.type = fragment.type;
+  if (!node.properties.className) node.properties.className = [];
+  node.properties.className.push('youtube-video-iframe');
   node.children = [...fragment.children];
 };
 

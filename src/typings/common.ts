@@ -36,9 +36,14 @@ export interface CorePostData {
   isPublished: boolean;
 }
 
-export interface ExtraPostData {
-  categories: string[];
+export interface PostInfo {
   assets?: PostStoreAsset[];
+  excerpt?: string;
+  thumbnail?: string;
+}
+
+export interface ExtraPostData extends PostInfo {
+  categories: string[];
   prevPost?: PostLink;
   nextPost?: PostLink;
 }

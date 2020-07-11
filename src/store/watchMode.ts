@@ -12,8 +12,13 @@ import { PostData, CorePostData } from '../typings';
 import { makeStoreProps, makeStore } from './makeStore';
 import { storeMap, watcherMap } from './common';
 import { getStyledLogMsg, getStyledCautionMsg } from '../lib/msgHandler';
-import { PLATFROM_DARWIN, MODE_TEST } from '../lib/constants';
+import {
+  PLATFROM_DARWIN,
+  MODE_TEST,
+  DEFAULT_PUBLICDIR_PATH,
+} from '../lib/constants';
 import chalk from 'chalk';
+import { copyAssetsTo } from './copyAsset';
 
 export const startWatchMode = (props: makeStoreProps): void => {
   const parentWatcherKey = getParentWatcherKey(props.postDir);
@@ -50,6 +55,10 @@ export const startWatchMode = (props: makeStoreProps): void => {
         filePath: normalizedFilePath,
         useCache: false,
       });
+
+      if (newPostData.assets) {
+        await copyAssetsTo(DEFAULT_PUBLICDIR_PATH)(newPostData.assets);
+      }
     } catch {
       console.log(
         getStyledCautionMsg(
