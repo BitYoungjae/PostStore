@@ -31,7 +31,8 @@ export type MainProp<K extends keyof PropList> = SubTypeWithoutObjectMap<
   K
 >;
 
-export interface PostProp extends PostData {
+export interface PostProp {
+  postData: PostData;
   relatedPosts: PostData[];
 }
 

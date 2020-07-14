@@ -1,17 +1,16 @@
 import path from 'path';
 import { watch } from 'chokidar';
-import {
-  getPostByPath,
-  isSubDir,
-  debounce,
-  normalizeFilePath,
-} from '../lib/common';
+import { getPostByPath, isSubDir, debounce } from '../lib/common';
 import { makePost } from '../core/postParser';
 import { buildInfoFileSave } from '../core/incrementalBuild';
-import { PostData, CorePostData } from '../typings';
+import { PostData, CorePostData, PostInfo } from '../typings';
 import { makeStoreProps, makeStore } from './makeStore';
 import { storeMap, watcherMap } from './common';
-import { getStyledLogMsg, getStyledCautionMsg } from '../lib/msgHandler';
+import {
+  getStyledLogMsg,
+  getStyledCautionMsg,
+  getStyledInfoMsg,
+} from '../lib/msgHandler';
 import {
   PLATFROM_DARWIN,
   MODE_TEST,
@@ -21,6 +20,8 @@ import chalk from 'chalk';
 import { copyAssetsTo } from './copyAsset';
 
 export const startWatchMode = (props: makeStoreProps): void => {
+  console.log(getStyledInfoMsg('Start Watch mode..', props.postDir));
+
   const parentWatcherKey = getParentWatcherKey(props.postDir);
 
   const watcher = parentWatcherKey
@@ -47,12 +48,11 @@ export const startWatchMode = (props: makeStoreProps): void => {
    */
   const changeFileHandler = async (filePath: string) => {
     const store = storeMap.get(props.postDir)!;
-    const normalizedFilePath = normalizeFilePath(store.info.postDir, filePath);
     let newPostData: PostData;
 
     try {
       newPostData = await makePost({
-        filePath: normalizedFilePath,
+        filePath: filePath,
         useCache: false,
       });
 
@@ -63,7 +63,7 @@ export const startWatchMode = (props: makeStoreProps): void => {
       console.log(
         getStyledCautionMsg(
           chalk`Failed to parse {bold [ ${path.basename(
-            normalizedFilePath,
+            filePath,
           )} ]} file. Please check the file content.`,
         ),
       );
@@ -72,13 +72,13 @@ export const startWatchMode = (props: makeStoreProps): void => {
 
     if (!newPostData.html) return;
 
-    const post = getPostByPath(store.rootNode, normalizedFilePath);
+    const post = getPostByPath(store.rootNode, filePath);
 
     if (!post || !store.propList.post[post.slug]) {
       updateStore(
         getStyledLogMsg(
           chalk`{red.bold There is no stored post corresponding to the [ ${path.basename(
-            normalizedFilePath,
+            filePath,
           )} ] file.} The Store is created again.`,
           `store : ${store.info.name}`,
         ),
@@ -86,13 +86,13 @@ export const startWatchMode = (props: makeStoreProps): void => {
       return;
     }
 
-    const prevPostData = store.propList.post[post.slug];
-
-    updatePostData(prevPostData, newPostData, [
+    updatePostData(post.postData, newPostData, [
       'title',
       'html',
       'tags',
       'date',
+      'excerpt',
+      'thumbnail',
     ]);
 
     console.log(
@@ -138,7 +138,9 @@ export const startWatchMode = (props: makeStoreProps): void => {
     if (
       ['created', 'moved'].includes(eventName) &&
       detail.type === 'file' &&
-      !['.md', '.jpg', '.png'].includes(extName(filePath))
+      !['.md', '.jpg', '.png', '.jpeg', '.gif', '.svg'].includes(
+        extName(filePath),
+      )
     )
       return;
 
@@ -182,7 +184,7 @@ const getParentWatcherKey = (postDir: string) =>
 const updatePostData = (
   targetPostData: PostData,
   newPostData: PostData,
-  keys: (keyof (PostData | CorePostData))[],
+  keys: (keyof ((PostData | CorePostData) & PostInfo))[],
 ) =>
   keys.forEach((key) => {
     (targetPostData[key] as any) = newPostData[key];

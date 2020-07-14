@@ -6,8 +6,8 @@ import {
   getMainPageHandler,
 } from './pageHandler';
 
-import type { ListPageProp, PostPageProp, PostStoreConfig } from './typings';
-export type { ListPageProp, PostPageProp, PostStoreConfig };
+import type { ListPageProp, PostPageProp, PostStoreConfig, PostData } from './typings';
+export type { ListPageProp, PostPageProp, PostStoreConfig, PostData };
 
 export {
   getCategoryPageHandler,

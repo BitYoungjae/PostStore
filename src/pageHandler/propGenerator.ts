@@ -200,7 +200,7 @@ const makePostPageProp = (
         .map((node) => node.postData);
     }
 
-    postMap[slug] = { ...post.postData, relatedPosts };
+    postMap[slug] = { postData, relatedPosts };
   }
 
   return postMap;

@@ -241,7 +241,7 @@
           ],
           "isPublished": true,
           "assets": [],
-          "excerpt": "정말  반갑  습니다!",
+          "excerpt": "정말 반갑 습니다!",
           "thumbnail": "",
           "prevPost": {
             "slug": "2020-06-30-리액트의-핵심",
@@ -262,7 +262,7 @@
           ],
           "isPublished": true,
           "assets": [],
-          "excerpt": "정말  반갑  습니다!",
+          "excerpt": "정말 반갑 습니다!",
           "thumbnail": "",
           "nextPost": {
             "slug": "2020-06-20-리덕스-저자-직강-정리",
@@ -352,7 +352,7 @@
           ],
           "isPublished": true,
           "assets": [],
-          "excerpt": "리덕스의 창시자인 댄 아브라모프가 직접 만든 동영상 강의를 요약해보았다. 강의 링크 : https://egghead.io/courses/getting-started-with-redux 상기된 리듀서 조합과 거의 같은 일을 한다.",
+          "excerpt": "리덕스의 창시자인 댄 아브라모프가 직접 만든 동영상 강의를 요약해보았다. 강의 링크 : https://egghead.io/courses/getting-started-with-redux 상기된 리듀서 조합과 거의 같은 일을 한다. combineReducers 함수에는 각 리듀서가 감당할 상태 트리의 필드 이름 과 해당 상태...",
           "thumbnail": "",
           "prevPost": {
             "slug": "2020-06-27-사랑해요-헬지",

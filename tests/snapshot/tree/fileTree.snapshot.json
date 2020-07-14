@@ -646,7 +646,7 @@
             "slug": "1990-04-10-이미지를-포함한-게시물1",
             "title": "이미지를 가지고 있어요",
             "date": 639705600000,
-            "html": "<p>안녕하세요!</p>\n<p><img src=\"/assets/ca3323224d13a56e5002819c63d0c66f25c5d330.png\" alt=\"thumbnail\"></p>",
+            "html": "<p>안녕하세요!</p>\n<p><img src=\"/assets/ca3323224d13a56e5002819c63d0c66f25c5d330.png\" alt=\"thumbnail\" class=\"thumbnail-image\"></p>",
             "tags": [],
             "categories": [],
             "isPublished": true,
@@ -823,7 +823,7 @@
             "categories": [],
             "isPublished": true,
             "assets": [],
-            "excerpt": "정말  반갑  습니다!",
+            "excerpt": "정말 반갑 습니다!",
             "thumbnail": ""
           }
         }
@@ -852,7 +852,7 @@
             "categories": [],
             "isPublished": true,
             "assets": [],
-            "excerpt": "정말  반갑  습니다!",
+            "excerpt": "정말 반갑 습니다!",
             "thumbnail": ""
           }
         },
@@ -873,7 +873,7 @@
             "categories": [],
             "isPublished": true,
             "assets": [],
-            "excerpt": "리덕스의 창시자인 댄 아브라모프가 직접 만든 동영상 강의를 요약해보았다. 강의 링크 : https://egghead.io/courses/getting-started-with-redux 상기된 리듀서 조합과 거의 같은 일을 한다.",
+            "excerpt": "리덕스의 창시자인 댄 아브라모프가 직접 만든 동영상 강의를 요약해보았다. 강의 링크 : https://egghead.io/courses/getting-started-with-redux 상기된 리듀서 조합과 거의 같은 일을 한다. combineReducers 함수에는 각 리듀서가 감당할 상태 트리의 필드 이름 과 해당 상태...",
             "thumbnail": ""
           }
         }

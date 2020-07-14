@@ -40,7 +40,7 @@ export async function getNodeTree({
   node.children = [];
 
   for (const currentFile of subFileList) {
-    const currentFilePath = path.join(rootPath, currentFile.name);
+    const currentFilePath = path.resolve(rootPath, currentFile.name);
     let childNode: FileNode;
 
     if (isDirectory(currentFile)) {

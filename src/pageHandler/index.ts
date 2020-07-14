@@ -122,17 +122,16 @@ const isConfigOption = (
 const normalizeOption = async (
   option: makePageHandlerProps,
 ): Promise<StoreOption> => {
-  let storeOption: StoreOption;
-
   if (isConfigOption(option)) {
-    storeOption = await loadConfig(option);
-  } else {
-    if (!option.postDir) {
-      throw new Error(getStyledErrorMsg('The postDir parameter is required.'));
-    }
-    storeOption = option;
+    const storeOption = await loadConfig(option);
+    return storeOption;
   }
 
+  if (!option.postDir) {
+    throw new Error(getStyledErrorMsg('The postDir parameter is required.'));
+  }
+
+  const storeOption = option;
   return storeOption;
 };
 

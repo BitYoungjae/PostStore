@@ -89,7 +89,20 @@ const validateConfig = (
   return validateStoreOption(storeOption);
 };
 
-const validateStoreOption = (option: StoreOption) => {
-  if (!option.postDir) return false;
+const validateStoreOption = ({
+  postDir,
+  shouldUpdate,
+  watchMode,
+  storeName,
+}: StoreOption) => {
+  if (!postDir) return false;
+  if (shouldUpdate && watchMode === true) {
+    throw new Error(
+      getStyledErrorMsg(
+        'Both "shouldUpdate" and "watchMode" cannot be true. Please check the configuration.',
+        storeName && `store: ${storeName}`,
+      ),
+    );
+  }
   return true;
 };
