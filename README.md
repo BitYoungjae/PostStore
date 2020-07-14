@@ -1,6 +1,166 @@
 # PostStore
 
-PostStore는 NEXT.JS와 함께 마크다운 기반 블로그를 만들기 위한 도구입니다.
+`PostStore` 는 `NEXT.JS` 와 함께 `블로그`를 위시한 `마크다운 기반의 문서 페이지`를 보다 쉽게 제작하기 위한 도구입니다.
+
+## 장점
+
+1. 디렉터리 구조에 기반한 카테고리 기능을 제공하여 굳이 마크다운 파일 내에 카테고리를 명시할 필요가 없습니다. `./Javascript/Snippets` 폴더에 위치한 게시물들은 모두 `Javascript -> Snippets` 라는 중첩된 카테고리를 가지게 됩니다.
+2. 마크다운 문서가 저장된 특정 디렉터리를 분석하여, `NEXT.JS`의 `getStaticPaths`와 `getStaticProps`를 위한 `paths`와 `props`를 자동으로 생성합니다.
+3. 마크다운 문서에 첨부된 이미지들은 굳이 `public` 디렉터리에 옮기지 않아도, 개발 모드와 프로덕션 빌드 단계에서 자동으로 빌드 결과물에 삽입됩니다. 즉, 상대경로 절대경로를 포함한 그 어떤 경로도 자유롭게 이미지 삽입을 위해 사용할 수 있습니다.
+4. 180자 길이의 Excerpt가 마크다운 해석 과정 중 자동으로 생성되며, 마크다운 문서 편집 만으로 특정 이미지를 `Thumbnail`로 지정하거나 `Youtube 영상`을 첨부하는 것이 가능합니다.
+5. 마크다운을 통해 파싱된 `html` 결과물은 검증된 [rehype-sanitize](https://github.com/rehypejs/rehype-sanitize) 플러그인의 기본 옵션을 사용하여 `XSS 공격`을 예방 하였습니다.
+6. 타입 선언을 패키지 내에 자체적으로 내장하고 있어서, 타입스크립트와 함께 사용하기 용이합니다.
+
+## 단점
+
+1. 블로그 데이터에 대한 자유로운 커스터마이징이 필요하다면 이 라이브러리 사용을 재고해 보셔야 합니다.
+
+## 설치
+
+```bash
+npm i poststore
+```
+
+## 사용법
+
+`PostStore` 는 각 페이지의 목적에 맞는 `PageHandler`를 각각 제공합니다.
+
+모든 `PageHandler`는 `NEXT.JS`의 `getStaticPaths`와 `getStaticProps`에 사용하기 위한 `Paths`와 `Props`를 제공합니다.
+
+## PageHandler 분류
+
+별도의 Paths 생성이 필요한 페이지와 불필요한 페이지 두 가지 핸들러로 분류가 됩니다.
+
+### 별도의 Paths 생성이 필요한 페이지
+
+- getPageHandler : `/page/[pageNum]` 에 대한 각각의 `Paths`와 `Props`를 생성하는데 사용됩니다.
+- getPostPageHandler : `/posts/[PostSlug]` 에 대한 각각의 `Paths`와 `Props`를 생성하는데 사용됩니다.
+- getCategoryPageHandler : `/categories/[...categories]` 에 대한 각각의 `Paths`와 `Props`를 생성하는데 사용됩니다.
+- getTagPageHandler : `/tags/[..tags]` 에 대한 각각의 `Paths`와 `Props`를 생성하는데 사용됩니다.
+
+상기의 핸들러들은 모두 동일한 `API` 를 사용합니다.
+
+```ts
+import React from 'react';
+import { getPostPageHandler, PostPageProp } from 'poststore';
+
+const PostView: React.FC<PostPageProp> = (/* 생략 */) => {
+  //... 컴포넌트 코드 생략
+};
+
+const { getPathsBySlug, getPropsBySlug } = getPostPageHandler({
+  useConfig: true,
+});
+
+export async function getStaticPaths() {
+  const paths = await getPathsBySlug();
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+export async function getStaticProps({ params: { post } }) {
+  const props = await getPropsBySlug(post);
+
+  return {
+    props,
+  };
+}
+```
+
+### 별도의 Paths 생성이 불필요한 페이지
+
+- getMainPageHandler : 메인 페이지를 위한 핸들러이며, `/page/1` 과 동일한 Props를 생성합니다.
+
+```ts
+import { getMainPageHandler, ListPageProp } from 'poststore';
+import PostList from 'components/molecules/PostList';
+
+const Post = ({ main: { postList } }: ListPageProp) => {
+  return (
+    <>
+      <PostList postList={postList} href='/blog/[post]' as='/blog/' />
+    </>
+  );
+};
+
+export default Post;
+
+const { getMainProps } = getMainPageHandler({
+  useConfig: true,
+});
+
+export async function getStaticProps() {
+  const props = await getMainProps();
+
+  return {
+    props,
+  };
+}
+```
+
+## 사용 예시
+
+### getPostPageHandler
+
+개개의 마크다운 문서들을 위한 `Paths`를 `Props`를 제공합니다.
+
+```ts
+import Link from 'next/link';
+import { getPostPageHandler, PostPageProp } from 'poststore';
+
+const Post = ({
+  param,
+  main: {
+    postData: { title, html, date, prevPost, excerpt, thumbnail, nextPost },
+  },
+}: PostPageProp) => {
+  return (
+    <>
+      <h1>
+        {title} - {param}
+      </h1>
+      <h2>{new Date(date).toLocaleString()}</h2>
+      {excerpt && <h2>요약 : {excerpt}</h2>}
+      {thumbnail && <h2>썸네일 : {thumbnail}</h2>}
+      <div className='article' dangerouslySetInnerHTML={{ __html: html }}></div>
+      {prevPost && (
+        <Link href='/blog/[post]' as={`/blog/${prevPost.slug}`}>
+          <a>이전 포스트 : {prevPost.title}</a>
+        </Link>
+      )}
+      {nextPost && (
+        <Link href='/blog/[post]' as={`/blog/${nextPost.slug}`}>
+          <a>다음 포스트 : {nextPost.title}</a>
+        </Link>
+      )}
+    </>
+  );
+};
+
+export default Post;
+
+const { getPathsBySlug, getPropsBySlug } = getPostPageHandler({
+  useConfig: true,
+});
+
+export async function getStaticPaths() {
+  const paths = await getPathsBySlug();
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+export async function getStaticProps({ params: { post } }) {
+  const props = await getPropsBySlug(post);
+
+  return {
+    props,
+  };
+}
+```
 
 ## 테스트
 
