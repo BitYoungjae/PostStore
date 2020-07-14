@@ -40,7 +40,7 @@ npm i poststore
 
 상기의 핸들러들은 모두 동일한 `API` 를 사용합니다.
 
-```ts
+```tsx
 import React from 'react';
 import { getPostPageHandler, PostPageProp } from 'poststore';
 
@@ -73,7 +73,7 @@ export async function getStaticProps({ params: { post } }) {
 
 - getMainPageHandler : 메인 페이지를 위한 핸들러이며, `/page/1` 과 동일한 Props를 생성합니다.
 
-```ts
+```tsx
 import { getMainPageHandler, ListPageProp } from 'poststore';
 import PostList from 'components/molecules/PostList';
 
@@ -106,7 +106,7 @@ export async function getStaticProps() {
 
 개개의 마크다운 문서들을 위한 `Paths`를 `Props`를 제공합니다.
 
-```ts
+```tsx
 import Link from 'next/link';
 import { getPostPageHandler, PostPageProp } from 'poststore';
 
