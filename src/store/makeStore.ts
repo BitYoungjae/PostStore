@@ -34,6 +34,7 @@ export const makeStore = async ({
   perPage,
   pageParam,
   incremental,
+  imageMaxWidth,
 }: makeStoreProps): Promise<PostStore> => {
   const [paramOption, perPageOption] = normalizeOption(pageParam, perPage);
 
@@ -72,7 +73,7 @@ export const makeStore = async ({
   };
 
   const assetList = getAssetList(rootNode);
-  await copyAssetsTo(DEFAULT_PUBLICDIR_PATH)(assetList);
+  await copyAssetsTo(DEFAULT_PUBLICDIR_PATH, imageMaxWidth)(assetList);
 
   const store: PostStore = {
     rootNode,

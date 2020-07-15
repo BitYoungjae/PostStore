@@ -12,6 +12,7 @@ export interface StoreOption {
   shouldUpdate?: boolean;
   watchMode?: boolean;
   incremental?: boolean;
+  imageMaxWidth?: number;
 }
 
 export interface UseConfigOption {

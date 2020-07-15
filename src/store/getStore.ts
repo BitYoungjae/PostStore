@@ -19,6 +19,7 @@ export const getStore = async ({
   shouldUpdate = MODE_TEST,
   watchMode = MODE_DEV,
   incremental = true,
+  imageMaxWidth,
 }: StoreOption): Promise<PostStore> => {
   const cachedStore = storeMap.get(postDir);
   if (cachedStore && (!shouldUpdate || watchMode)) return cachedStore;
@@ -29,6 +30,7 @@ export const getStore = async ({
     perPage,
     pageParam,
     incremental,
+    imageMaxWidth,
   };
 
   const store = await makeStore(paramToMakeStore);

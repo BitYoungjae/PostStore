@@ -7,9 +7,10 @@
 1. 디렉터리 구조에 기반한 카테고리 기능을 제공하여 굳이 마크다운 파일 내에 카테고리를 명시할 필요가 없습니다. `./Javascript/Snippets` 폴더에 위치한 게시물들은 모두 `Javascript -> Snippets` 라는 중첩된 카테고리를 가지게 됩니다.
 2. 마크다운 문서가 저장된 특정 디렉터리를 분석하여, `NEXT.JS`의 `getStaticPaths`와 `getStaticProps`를 위한 `paths`와 `props`를 자동으로 생성합니다.
 3. 마크다운 문서에 첨부된 이미지들은 굳이 `public` 디렉터리에 옮기지 않아도, 개발 모드와 프로덕션 빌드 단계에서 자동으로 빌드 결과물에 삽입됩니다. 즉, 상대경로 절대경로를 포함한 그 어떤 경로도 자유롭게 이미지 삽입을 위해 사용할 수 있습니다.
-4. 180자 길이의 Excerpt가 마크다운 해석 과정 중 자동으로 생성되며, 마크다운 문서 편집 만으로 특정 이미지를 `Thumbnail`로 지정하거나 `Youtube 영상`을 첨부하는 것이 가능합니다.
-5. 마크다운을 통해 파싱된 `html` 결과물은 검증된 [rehype-sanitize](https://github.com/rehypejs/rehype-sanitize) 플러그인의 기본 옵션을 사용하여 `XSS 공격`을 예방 하였습니다.
-6. 타입 선언을 패키지 내에 자체적으로 내장하고 있어서, 타입스크립트와 함께 사용하기 용이합니다.
+4. 마크다운에 첨부된 이미지 파일들은 모두 동일한 퀄리티로 최적화 되며, 특정 너비를 초과하는 이미지들은 리사이징 됩니다. (최대 너비 기본값은 600으로 설정되어 있습니다.)
+5. 180자 길이의 Excerpt가 마크다운 해석 과정 중 자동으로 생성되며, 마크다운 문서 편집 만으로 특정 이미지를 `Thumbnail`로 지정하거나 `Youtube 영상`을 첨부하는 것이 가능합니다.
+6. 마크다운을 통해 파싱된 `html` 결과물은 검증된 [rehype-sanitize](https://github.com/rehypejs/rehype-sanitize) 플러그인의 기본 옵션을 사용하여 `XSS 공격`을 예방 하였습니다.
+7. 타입 선언을 패키지 내에 자체적으로 내장하고 있어서, 타입스크립트와 함께 사용하기 용이합니다.
 
 ## 단점
 
@@ -26,6 +27,8 @@ npm i poststore
 `PostStore` 는 각 페이지의 목적에 맞는 `PageHandler`를 각각 제공합니다.
 
 모든 `PageHandler`는 `NEXT.JS`의 `getStaticPaths`와 `getStaticProps`에 사용하기 위한 `Paths`와 `Props`를 제공합니다.
+
+## 생성되는 Props와 Paths의 형태
 
 ## PageHandler 분류
 
