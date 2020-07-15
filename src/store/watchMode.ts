@@ -55,10 +55,6 @@ export const startWatchMode = (props: makeStoreProps): void => {
         filePath: filePath,
         useCache: false,
       });
-
-      if (newPostData.assets) {
-        await copyAssetsTo(DEFAULT_PUBLICDIR_PATH)(newPostData.assets);
-      }
     } catch {
       console.log(
         getStyledCautionMsg(
@@ -74,7 +70,7 @@ export const startWatchMode = (props: makeStoreProps): void => {
 
     const post = getPostByPath(store.rootNode, filePath);
 
-    if (!post || !store.propList.post[post.slug]) {
+    if (!post) {
       updateStore(
         getStyledLogMsg(
           chalk`{red.bold There is no stored post corresponding to the [ ${path.basename(
@@ -94,6 +90,10 @@ export const startWatchMode = (props: makeStoreProps): void => {
       'excerpt',
       'thumbnail',
     ]);
+
+    if (newPostData.assets) {
+      await copyAssetsTo(DEFAULT_PUBLICDIR_PATH)(newPostData.assets);
+    }
 
     console.log(
       getStyledLogMsg(
