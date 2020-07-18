@@ -12,6 +12,8 @@ import type {
   PostStoreConfig,
   PostData,
   GlobalProp,
+  PropInfoNode,
+  PropInfo,
 } from './typings';
 export type {
   ListPageProp,
@@ -19,6 +21,8 @@ export type {
   PostStoreConfig,
   PostData,
   GlobalProp,
+  PropInfoNode,
+  PropInfo,
 };
 
 export {
