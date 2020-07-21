@@ -71,7 +71,7 @@ export const copyAssetsTo = (publicDir: string, imageMaxWidth = 600) => async (
 
   const settledLength = result.fulfilled.length;
 
-  if (settledLength > 0) {
+  if (settledLength > 0 && !MODE_PRODUCTION) {
     const resultMsg = `${result.fulfilled.length} image files have been created.`;
     console.log(getStyledLogMsg(resultMsg));
   }
