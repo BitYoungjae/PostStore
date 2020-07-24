@@ -10,6 +10,7 @@ import {
   ListProp,
   StoreOption,
   UseConfigOption,
+  ShortPostData,
 } from '../typings';
 import { loadConfig } from './loadConfig';
 import { makePathStore } from '../store/makeStore';
@@ -38,9 +39,9 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
     param: string | string[],
   ): Promise<PageProp<T>> {
     const store = await getStore(await storeOption);
-    const propList = store.propList[pageCategory] as MainProp<T>;
+    const propList = store.propList[pageCategory];
     const key = Array.isArray(param) ? param.join('/') : param;
-    const mainProp = propList[key];
+    const mainProp = propList[key] as MainProp<T>;
 
     if (!mainProp) {
       throw new Error(
@@ -49,6 +50,29 @@ const makePageHandler = <T extends PageCategory>(pageCategory: T) => (
           `input param : ${param}`,
         ),
       );
+    }
+
+    if (isListPage(mainProp)) {
+      const refinedPostList: ShortPostData[] = mainProp.postList.map(
+        ({ slug, title, date, thumbnail, excerpt, categories, tags }) => ({
+          slug,
+          title,
+          date,
+          thumbnail,
+          excerpt,
+          categories,
+          tags,
+        }),
+      );
+
+      const newMainProp = { ...(mainProp as ListProp) };
+      newMainProp.postList = refinedPostList;
+
+      return {
+        param: key,
+        global: store.propList.global,
+        main: newMainProp as MainProp<T>,
+      };
     }
 
     return {
@@ -75,6 +99,8 @@ export const getMainPageHandler = (option: makePageHandlerProps) => {
     const mainProp = propList[mainKey];
 
     const emptyProp: ListProp = {
+      slug: mainKey,
+      pageCategory: 'page',
       count: 0,
       currentPage: 0,
       postList: [],
@@ -133,6 +159,10 @@ const normalizeOption = async (
 
   const storeOption = option;
   return storeOption;
+};
+
+const isListPage = (a: MainProp<any>): a is ListProp => {
+  return a.pageCategory !== 'post';
 };
 
 export const getCategoryPageHandler = makePageHandler('category');

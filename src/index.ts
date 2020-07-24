@@ -14,6 +14,7 @@ import type {
   GlobalProp,
   PropInfoNode,
   PropInfo,
+  ShortPostData,
 } from './typings';
 export type {
   ListPageProp,
@@ -23,6 +24,7 @@ export type {
   GlobalProp,
   PropInfoNode,
   PropInfo,
+  ShortPostData,
 };
 
 export {

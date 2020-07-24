@@ -55,6 +55,12 @@ export interface PostStoreAsset {
 
 interface PostLink extends Pick<PostData, 'slug' | 'title'> {}
 
+export interface ShortPostData
+  extends Pick<
+    PostData,
+    'slug' | 'title' | 'date' | 'thumbnail' | 'excerpt' | 'categories' | 'tags'
+  > {}
+
 export type SlugMap = Map<string, boolean>;
 
 export interface FrontMatter {

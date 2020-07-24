@@ -26,6 +26,7 @@ import {
   PropInfoNode,
   PropInfo,
   PerPageOption,
+  PageCategory,
 } from '../typings';
 import { MODE_DEV, MODE_TEST } from '../lib/constants';
 
@@ -50,6 +51,7 @@ export const makePropList = ({
     perPage: perPageOption.category,
     pageParam: paramOption.category,
     getPostsFn: getPostsByCategories,
+    pageCategory: 'category',
   });
 
   const tag: PropList['tag'] = makeListPageProp({
@@ -58,6 +60,7 @@ export const makePropList = ({
     perPage: perPageOption.tag,
     pageParam: paramOption.tag,
     getPostsFn: getPostsByTags,
+    pageCategory: 'tag',
   });
 
   const page: PropList['page'] = makeListPageProp({
@@ -67,6 +70,7 @@ export const makePropList = ({
     pageParam: paramOption.page,
     getPostsFn: getPostsAll,
     sort: true,
+    pageCategory: 'page',
   });
 
   const post = makePostPageProp(rootNode, pathList.post, paramOption.post);
@@ -132,6 +136,7 @@ interface makePropListProps {
   rootNode: FileNode;
   pathList: Path[];
   pageParam: string;
+  pageCategory: PageCategory;
   getPostsFn?: (rootNode: FileNode, slug?: string[]) => PostNode[];
   perPage?: number;
   sort?: boolean;
@@ -141,6 +146,7 @@ const makeListPageProp = ({
   rootNode,
   pathList,
   pageParam,
+  pageCategory,
   perPage = 10,
   getPostsFn = getPostsAll,
   sort = false,
@@ -162,8 +168,11 @@ const makeListPageProp = ({
     );
 
     const count = postList.length;
+    const joinedSlug = slug.join('/');
 
     const prop: ListProp = {
+      slug: joinedSlug,
+      pageCategory,
       count,
       currentPage,
       perPage,
@@ -171,7 +180,7 @@ const makeListPageProp = ({
       totalPage,
     };
 
-    propMap[slug.join('/')] = prop;
+    propMap[joinedSlug] = prop;
   }
 
   return propMap;
@@ -200,7 +209,7 @@ const makePostPageProp = (
         .map((node) => node.postData);
     }
 
-    postMap[slug] = { postData, relatedPosts };
+    postMap[slug] = { slug, postData, relatedPosts, pageCategory: 'post' };
   }
 
   return postMap;

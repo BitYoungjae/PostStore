@@ -1,4 +1,4 @@
-import { PostData } from './common';
+import { PostData, ShortPostData, PageCategory } from './common';
 import { SubTypeWithoutObjectMap, ObjectMap } from './helper';
 
 export interface PropList {
@@ -9,12 +9,22 @@ export interface PropList {
   post: ObjectMap<PostProp>;
 }
 
-export interface ListProp {
+export interface CoreProp {
+  pageCategory: PageCategory;
+  slug: string;
+}
+
+export interface ListProp extends CoreProp {
   count: number;
   currentPage: number;
   perPage: number;
   totalPage: number;
-  postList: PostData[];
+  postList: ShortPostData[];
+}
+
+export interface PostProp extends CoreProp {
+  postData: PostData;
+  relatedPosts: PostData[];
 }
 
 export interface GlobalProp {
@@ -26,15 +36,9 @@ export interface GlobalProp {
   buildTime: number;
 }
 
-export type MainProp<K extends keyof PropList> = SubTypeWithoutObjectMap<
-  PropList,
-  K
->;
-
-export interface PostProp {
-  postData: PostData;
-  relatedPosts: PostData[];
-}
+export type MainProp<K extends PageCategory> = K extends 'post'
+  ? PostProp
+  : ListProp;
 
 export interface PropInfo {
   slug: string;
