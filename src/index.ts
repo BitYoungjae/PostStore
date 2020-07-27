@@ -4,6 +4,7 @@ import {
   getPostPageHandler,
   getTagPageHandler,
   getMainPageHandler,
+  getGlobalPageHandler,
 } from './pageHandler';
 
 import type {
@@ -33,4 +34,5 @@ export {
   getPostPageHandler,
   getTagPageHandler,
   getMainPageHandler,
+  getGlobalPageHandler,
 };
