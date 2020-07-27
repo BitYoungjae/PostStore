@@ -11,6 +11,7 @@ import {
   StoreOption,
   UseConfigOption,
   ShortPostData,
+  GlobalProp,
 } from '../typings';
 import { loadConfig } from './loadConfig';
 import { makePathStore } from '../store/makeStore';
@@ -132,6 +133,20 @@ export const getMainPageHandler = (option: makePageHandlerProps) => {
       param: mainKey,
       global: store.propList.global,
       main: mainProp == null ? emptyProp : mainProp,
+    };
+  }
+
+  return { getMainProps };
+};
+
+export const getGlobalPageHandler = (option: makePageHandlerProps) => {
+  const storeOption = normalizeOption(option);
+
+  async function getMainProps(): Promise<GlobalProp> {
+    const store = await getStore(await storeOption);
+
+    return {
+      ...store.propList.global,
     };
   }
 
