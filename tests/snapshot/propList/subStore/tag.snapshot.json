@@ -1,5 +1,7 @@
 {
   "자바스크립트": {
+    "slug": "자바스크립트",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -26,6 +28,8 @@
     "totalPage": 1
   },
   "자바스크립트/page/1": {
+    "slug": "자바스크립트/page/1",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -52,6 +56,8 @@
     "totalPage": 1
   },
   "모든-것": {
+    "slug": "모든-것",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -78,6 +84,8 @@
     "totalPage": 1
   },
   "모든-것/page/1": {
+    "slug": "모든-것/page/1",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -104,6 +112,8 @@
     "totalPage": 1
   },
   "총집편": {
+    "slug": "총집편",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -130,6 +140,8 @@
     "totalPage": 1
   },
   "총집편/page/1": {
+    "slug": "총집편/page/1",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -156,6 +168,8 @@
     "totalPage": 1
   },
   "개소리": {
+    "slug": "개소리",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -179,6 +193,8 @@
     "totalPage": 1
   },
   "개소리/page/1": {
+    "slug": "개소리/page/1",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -202,6 +218,8 @@
     "totalPage": 1
   },
   "삽소리": {
+    "slug": "삽소리",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -225,6 +243,8 @@
     "totalPage": 1
   },
   "삽소리/page/1": {
+    "slug": "삽소리/page/1",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -248,6 +268,8 @@
     "totalPage": 1
   },
   "객체": {
+    "slug": "객체",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -271,6 +293,8 @@
     "totalPage": 1
   },
   "객체/page/1": {
+    "slug": "객체/page/1",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -294,6 +318,8 @@
     "totalPage": 1
   },
   "오브제엑트": {
+    "slug": "오브제엑트",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -317,6 +343,8 @@
     "totalPage": 1
   },
   "오브제엑트/page/1": {
+    "slug": "오브제엑트/page/1",
+    "pageCategory": "tag",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,

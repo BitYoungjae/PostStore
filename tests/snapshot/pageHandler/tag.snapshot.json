@@ -17,29 +17,29 @@
             "children": [
               {
                 "name": "날짜순 정렬",
-                "slug": "날짜순-정렬",
+                "slug": "테스트용-게시물들/날짜순-정렬",
                 "postCount": 6
               },
               {
                 "name": "복합 정렬",
-                "slug": "복합-정렬",
+                "slug": "테스트용-게시물들/복합-정렬",
                 "postCount": 9
               },
               {
                 "name": "이름이 중복되는 경우",
-                "slug": "이름이-중복되는-경우",
+                "slug": "테스트용-게시물들/이름이-중복되는-경우",
                 "postCount": 6,
                 "children": [
                   {
                     "name": "중첩된 경로",
-                    "slug": "중첩된-경로",
+                    "slug": "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로",
                     "postCount": 2
                   }
                 ]
               },
               {
                 "name": "제목순 정렬",
-                "slug": "제목순-정렬",
+                "slug": "테스트용-게시물들/제목순-정렬",
                 "postCount": 8
               }
             ]
@@ -56,7 +56,7 @@
             "children": [
               {
                 "name": "특별 시리즈",
-                "slug": "특별-시리즈",
+                "slug": "Javascript/특별-시리즈",
                 "postCount": 1
               }
             ]
@@ -68,12 +68,12 @@
             "children": [
               {
                 "name": "꿀팁 정리",
-                "slug": "꿀팁-정리",
+                "slug": "React/꿀팁-정리",
                 "postCount": 1
               },
               {
                 "name": "리액트 핵심정리",
-                "slug": "리액트-핵심정리",
+                "slug": "React/리액트-핵심정리",
                 "postCount": 1
               }
             ]
@@ -175,6 +175,8 @@
       "buildTime": 0
     },
     "main": {
+      "slug": "자바스크립트",
+      "pageCategory": "tag",
       "count": 1,
       "currentPage": 1,
       "perPage": 10,
@@ -183,24 +185,17 @@
           "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
           "title": "자바스크립트의 모든 거엇!",
           "date": 1592784000000,
-          "html": "<h2 id=\"슬러기파이에-대해-알아보자\">슬러기파이에 대해 알아보자</h2>\n<pre><code class=\"language-js\"><span class=\"token keyword\">const</span> spaceRegex <span class=\"token operator\">=</span> <span class=\"token regex\">/\\s+/g</span><span class=\"token punctuation\">;</span>\n<span class=\"token keyword\">const</span> nonAllowedRegex <span class=\"token operator\">=</span> <span class=\"token regex\">/[^가-힇a-z\\d\\s\\.\\-]/gi</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">const</span> slugify <span class=\"token operator\">=</span> <span class=\"token punctuation\">(</span>name<span class=\"token operator\">:</span> string<span class=\"token punctuation\">,</span> delimeter <span class=\"token operator\">=</span> <span class=\"token string\">'-'</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">{</span>\n  <span class=\"token keyword\">const</span> result <span class=\"token operator\">=</span> name\n    <span class=\"token punctuation\">.</span><span class=\"token function\">replace</span><span class=\"token punctuation\">(</span>nonAllowedRegex<span class=\"token punctuation\">,</span> <span class=\"token string\">''</span><span class=\"token punctuation\">)</span>\n    <span class=\"token punctuation\">.</span><span class=\"token function\">trim</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span>\n    <span class=\"token punctuation\">.</span><span class=\"token function\">replace</span><span class=\"token punctuation\">(</span>spaceRegex<span class=\"token punctuation\">,</span> delimeter<span class=\"token punctuation\">)</span>\n    <span class=\"token punctuation\">.</span><span class=\"token function\">toLowerCase</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span>\n\n  <span class=\"token keyword\">return</span> result<span class=\"token punctuation\">;</span>\n<span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n<span class=\"token keyword\">export</span> <span class=\"token punctuation\">{</span> slugify <span class=\"token punctuation\">}</span><span class=\"token punctuation\">;</span>\n\n</code></pre>",
-          "tags": [
-            "자바스크립트",
-            "모든-것",
-            "총집편"
-          ],
+          "thumbnail": "",
+          "excerpt": "",
           "categories": [
             "Javascript",
             "특별-시리즈"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "",
-          "thumbnail": "",
-          "nextPost": {
-            "slug": "2020-06-23-자바스크립트-개껌이지",
-            "title": "개껌이라니까?"
-          }
+          "tags": [
+            "자바스크립트",
+            "모든-것",
+            "총집편"
+          ]
         }
       ],
       "totalPage": 1

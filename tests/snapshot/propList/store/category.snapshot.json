@@ -1,5 +1,7 @@
 {
   "테스트용-게시물들": {
+    "slug": "테스트용-게시물들",
+    "pageCategory": "category",
     "count": 10,
     "currentPage": 1,
     "perPage": 10,
@@ -234,6 +236,8 @@
     "totalPage": 4
   },
   "테스트용-게시물들/page/1": {
+    "slug": "테스트용-게시물들/page/1",
+    "pageCategory": "category",
     "count": 10,
     "currentPage": 1,
     "perPage": 10,
@@ -468,6 +472,8 @@
     "totalPage": 4
   },
   "테스트용-게시물들/page/2": {
+    "slug": "테스트용-게시물들/page/2",
+    "pageCategory": "category",
     "count": 10,
     "currentPage": 2,
     "perPage": 10,
@@ -708,6 +714,8 @@
     "totalPage": 4
   },
   "테스트용-게시물들/page/3": {
+    "slug": "테스트용-게시물들/page/3",
+    "pageCategory": "category",
     "count": 10,
     "currentPage": 3,
     "perPage": 10,
@@ -945,6 +953,8 @@
     "totalPage": 4
   },
   "테스트용-게시물들/page/4": {
+    "slug": "테스트용-게시물들/page/4",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 4,
     "perPage": 10,
@@ -974,6 +984,8 @@
     "totalPage": 4
   },
   "테스트용-게시물들/날짜순-정렬": {
+    "slug": "테스트용-게시물들/날짜순-정렬",
+    "pageCategory": "category",
     "count": 6,
     "currentPage": 1,
     "perPage": 10,
@@ -1116,6 +1128,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/날짜순-정렬/page/1": {
+    "slug": "테스트용-게시물들/날짜순-정렬/page/1",
+    "pageCategory": "category",
     "count": 6,
     "currentPage": 1,
     "perPage": 10,
@@ -1258,6 +1272,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/복합-정렬": {
+    "slug": "테스트용-게시물들/복합-정렬",
+    "pageCategory": "category",
     "count": 9,
     "currentPage": 1,
     "perPage": 10,
@@ -1473,6 +1489,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/복합-정렬/page/1": {
+    "slug": "테스트용-게시물들/복합-정렬/page/1",
+    "pageCategory": "category",
     "count": 9,
     "currentPage": 1,
     "perPage": 10,
@@ -1688,6 +1706,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/이름이-중복되는-경우": {
+    "slug": "테스트용-게시물들/이름이-중복되는-경우",
+    "pageCategory": "category",
     "count": 6,
     "currentPage": 1,
     "perPage": 10,
@@ -1836,6 +1856,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/이름이-중복되는-경우/page/1": {
+    "slug": "테스트용-게시물들/이름이-중복되는-경우/page/1",
+    "pageCategory": "category",
     "count": 6,
     "currentPage": 1,
     "perPage": 10,
@@ -1984,6 +2006,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로": {
+    "slug": "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로",
+    "pageCategory": "category",
     "count": 2,
     "currentPage": 1,
     "perPage": 10,
@@ -2040,6 +2064,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로/page/1": {
+    "slug": "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로/page/1",
+    "pageCategory": "category",
     "count": 2,
     "currentPage": 1,
     "perPage": 10,
@@ -2096,6 +2122,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/제목순-정렬": {
+    "slug": "테스트용-게시물들/제목순-정렬",
+    "pageCategory": "category",
     "count": 8,
     "currentPage": 1,
     "perPage": 10,
@@ -2288,6 +2316,8 @@
     "totalPage": 1
   },
   "테스트용-게시물들/제목순-정렬/page/1": {
+    "slug": "테스트용-게시물들/제목순-정렬/page/1",
+    "pageCategory": "category",
     "count": 8,
     "currentPage": 1,
     "perPage": 10,
@@ -2480,6 +2510,8 @@
     "totalPage": 1
   },
   "Asset을-가진-것들": {
+    "slug": "Asset을-가진-것들",
+    "pageCategory": "category",
     "count": 2,
     "currentPage": 1,
     "perPage": 10,
@@ -2529,6 +2561,8 @@
     "totalPage": 1
   },
   "Asset을-가진-것들/page/1": {
+    "slug": "Asset을-가진-것들/page/1",
+    "pageCategory": "category",
     "count": 2,
     "currentPage": 1,
     "perPage": 10,
@@ -2578,6 +2612,8 @@
     "totalPage": 1
   },
   "Javascript": {
+    "slug": "Javascript",
+    "pageCategory": "category",
     "count": 3,
     "currentPage": 1,
     "perPage": 10,
@@ -2655,6 +2691,8 @@
     "totalPage": 1
   },
   "Javascript/page/1": {
+    "slug": "Javascript/page/1",
+    "pageCategory": "category",
     "count": 3,
     "currentPage": 1,
     "perPage": 10,
@@ -2732,6 +2770,8 @@
     "totalPage": 1
   },
   "Javascript/특별-시리즈": {
+    "slug": "Javascript/특별-시리즈",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 10,
@@ -2763,6 +2803,8 @@
     "totalPage": 1
   },
   "Javascript/특별-시리즈/page/1": {
+    "slug": "Javascript/특별-시리즈/page/1",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 10,
@@ -2794,6 +2836,8 @@
     "totalPage": 1
   },
   "React": {
+    "slug": "React",
+    "pageCategory": "category",
     "count": 3,
     "currentPage": 1,
     "perPage": 10,
@@ -2871,6 +2915,8 @@
     "totalPage": 1
   },
   "React/page/1": {
+    "slug": "React/page/1",
+    "pageCategory": "category",
     "count": 3,
     "currentPage": 1,
     "perPage": 10,
@@ -2948,6 +2994,8 @@
     "totalPage": 1
   },
   "React/꿀팁-정리": {
+    "slug": "React/꿀팁-정리",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 10,
@@ -2978,6 +3026,8 @@
     "totalPage": 1
   },
   "React/꿀팁-정리/page/1": {
+    "slug": "React/꿀팁-정리/page/1",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 10,
@@ -3008,6 +3058,8 @@
     "totalPage": 1
   },
   "React/리액트-핵심정리": {
+    "slug": "React/리액트-핵심정리",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 10,
@@ -3042,6 +3094,8 @@
     "totalPage": 1
   },
   "React/리액트-핵심정리/page/1": {
+    "slug": "React/리액트-핵심정리/page/1",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 10,
@@ -3076,6 +3130,8 @@
     "totalPage": 1
   },
   "Redux": {
+    "slug": "Redux",
+    "pageCategory": "category",
     "count": 2,
     "currentPage": 1,
     "perPage": 10,
@@ -3126,6 +3182,8 @@
     "totalPage": 1
   },
   "Redux/page/1": {
+    "slug": "Redux/page/1",
+    "pageCategory": "category",
     "count": 2,
     "currentPage": 1,
     "perPage": 10,

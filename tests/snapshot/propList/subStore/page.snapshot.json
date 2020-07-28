@@ -1,5 +1,7 @@
 {
   "page/1": {
+    "slug": "page/1",
+    "pageCategory": "page",
     "count": 3,
     "currentPage": 1,
     "perPage": 5,

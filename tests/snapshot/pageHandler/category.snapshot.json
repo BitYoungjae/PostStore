@@ -17,29 +17,29 @@
             "children": [
               {
                 "name": "날짜순 정렬",
-                "slug": "날짜순-정렬",
+                "slug": "테스트용-게시물들/날짜순-정렬",
                 "postCount": 6
               },
               {
                 "name": "복합 정렬",
-                "slug": "복합-정렬",
+                "slug": "테스트용-게시물들/복합-정렬",
                 "postCount": 9
               },
               {
                 "name": "이름이 중복되는 경우",
-                "slug": "이름이-중복되는-경우",
+                "slug": "테스트용-게시물들/이름이-중복되는-경우",
                 "postCount": 6,
                 "children": [
                   {
                     "name": "중첩된 경로",
-                    "slug": "중첩된-경로",
+                    "slug": "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로",
                     "postCount": 2
                   }
                 ]
               },
               {
                 "name": "제목순 정렬",
-                "slug": "제목순-정렬",
+                "slug": "테스트용-게시물들/제목순-정렬",
                 "postCount": 8
               }
             ]
@@ -56,7 +56,7 @@
             "children": [
               {
                 "name": "특별 시리즈",
-                "slug": "특별-시리즈",
+                "slug": "Javascript/특별-시리즈",
                 "postCount": 1
               }
             ]
@@ -68,12 +68,12 @@
             "children": [
               {
                 "name": "꿀팁 정리",
-                "slug": "꿀팁-정리",
+                "slug": "React/꿀팁-정리",
                 "postCount": 1
               },
               {
                 "name": "리액트 핵심정리",
-                "slug": "리액트-핵심정리",
+                "slug": "React/리액트-핵심정리",
                 "postCount": 1
               }
             ]
@@ -175,6 +175,8 @@
       "buildTime": 0
     },
     "main": {
+      "slug": "테스트용-게시물들",
+      "pageCategory": "category",
       "count": 10,
       "currentPage": 1,
       "perPage": 10,
@@ -183,227 +185,121 @@
           "slug": "2020-01-06-6",
           "title": "6번",
           "date": 1578268800000,
-          "html": "<p>제목은 6번이지만, 가장 최근에 작성 되었어요.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "제목은 6번이지만, 가장 최근에 작성 되었어요.",
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "제목은 6번이지만, 가장 최근에 작성 되었어요.",
-          "thumbnail": "",
-          "nextPost": {
-            "slug": "2020-01-05-5",
-            "title": "5번"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-05-5",
           "title": "5번",
           "date": 1578182400000,
-          "html": "<p>제목은 5번이지만, 작성한지는 다섯번째로 오래되었어요.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "제목은 5번이지만, 작성한지는 다섯번째로 오래되었어요.",
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "제목은 5번이지만, 작성한지는 다섯번째로 오래되었어요.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-06-6",
-            "title": "6번"
-          },
-          "nextPost": {
-            "slug": "2020-01-04-4",
-            "title": "4번"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-04-4",
           "title": "4번",
           "date": 1578096000000,
-          "html": "<p>제목은 4번이지만, 작성한지는 네번째로 오래되었어요.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "제목은 4번이지만, 작성한지는 네번째로 오래되었어요.",
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "제목은 4번이지만, 작성한지는 네번째로 오래되었어요.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-05-5",
-            "title": "5번"
-          },
-          "nextPost": {
-            "slug": "2020-01-03-3",
-            "title": "3번"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-03-3",
           "title": "3번",
           "date": 1578009600000,
-          "html": "<p>제목은 3번이지만, 작성한지는 세번째로 오래되었어요.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "제목은 3번이지만, 작성한지는 세번째로 오래되었어요.",
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "제목은 3번이지만, 작성한지는 세번째로 오래되었어요.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-04-4",
-            "title": "4번"
-          },
-          "nextPost": {
-            "slug": "2020-01-02-2",
-            "title": "2번"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-02-2",
           "title": "2번",
           "date": 1577923200000,
-          "html": "<p>제목은 2번이지만, 작성한지는 두번째로 오래되었어요.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "제목은 2번이지만, 작성한지는 두번째로 오래되었어요.",
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "제목은 2번이지만, 작성한지는 두번째로 오래되었어요.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-03-3",
-            "title": "3번"
-          },
-          "nextPost": {
-            "slug": "2020-01-01-1",
-            "title": "1번"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-01-1",
           "title": "1번",
           "date": 1577836800000,
-          "html": "<p>제목은 1번이지만, 작성한지는 제일 오래되었어요.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "제목은 1번이지만, 작성한지는 제일 오래되었어요.",
           "categories": [
             "테스트용-게시물들",
             "날짜순-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "제목은 1번이지만, 작성한지는 제일 오래되었어요.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-02-2",
-            "title": "2번"
-          },
-          "nextPost": {
-            "slug": "2020-01-03-1.-세번째-날짜",
-            "title": "세번째 날짜"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-03-1.-세번째-날짜",
           "title": "세번째 날짜",
           "date": 1578009600000,
-          "html": "<p>모두 01-03에 작성 되었죠.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "모두 01-03에 작성 되었죠.",
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "모두 01-03에 작성 되었죠.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-01-1",
-            "title": "1번"
-          },
-          "nextPost": {
-            "slug": "2020-01-03-2.-세번째-날짜",
-            "title": "세번째 날짜"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-03-2.-세번째-날짜",
           "title": "세번째 날짜",
           "date": 1578009600000,
-          "html": "<p>모두 01-03에 작성 되었죠.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "모두 01-03에 작성 되었죠.",
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "모두 01-03에 작성 되었죠.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-03-1.-세번째-날짜",
-            "title": "세번째 날짜"
-          },
-          "nextPost": {
-            "slug": "2020-01-03-3.-세번째-날짜",
-            "title": "세번째 날짜"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-03-3.-세번째-날짜",
           "title": "세번째 날짜",
           "date": 1578009600000,
-          "html": "<p>모두 01-03에 작성 되었죠.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "모두 01-03에 작성 되었죠.",
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "모두 01-03에 작성 되었죠.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-03-2.-세번째-날짜",
-            "title": "세번째 날짜"
-          },
-          "nextPost": {
-            "slug": "2020-01-02-1.-두번째-날짜",
-            "title": "두번째 날짜"
-          }
+          "tags": []
         },
         {
           "slug": "2020-01-02-1.-두번째-날짜",
           "title": "두번째 날짜",
           "date": 1577923200000,
-          "html": "<p>모두 01-02에 작성 되었죠.</p>",
-          "tags": [],
+          "thumbnail": "",
+          "excerpt": "모두 01-02에 작성 되었죠.",
           "categories": [
             "테스트용-게시물들",
             "복합-정렬"
           ],
-          "isPublished": true,
-          "assets": [],
-          "excerpt": "모두 01-02에 작성 되었죠.",
-          "thumbnail": "",
-          "prevPost": {
-            "slug": "2020-01-03-3.-세번째-날짜",
-            "title": "세번째 날짜"
-          },
-          "nextPost": {
-            "slug": "2020-01-02-2.-두번째-날짜",
-            "title": "두번째 날짜"
-          }
+          "tags": []
         }
       ],
       "totalPage": 4

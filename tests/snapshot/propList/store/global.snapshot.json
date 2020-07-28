@@ -14,29 +14,29 @@
         "children": [
           {
             "name": "날짜순 정렬",
-            "slug": "날짜순-정렬",
+            "slug": "테스트용-게시물들/날짜순-정렬",
             "postCount": 6
           },
           {
             "name": "복합 정렬",
-            "slug": "복합-정렬",
+            "slug": "테스트용-게시물들/복합-정렬",
             "postCount": 9
           },
           {
             "name": "이름이 중복되는 경우",
-            "slug": "이름이-중복되는-경우",
+            "slug": "테스트용-게시물들/이름이-중복되는-경우",
             "postCount": 6,
             "children": [
               {
                 "name": "중첩된 경로",
-                "slug": "중첩된-경로",
+                "slug": "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로",
                 "postCount": 2
               }
             ]
           },
           {
             "name": "제목순 정렬",
-            "slug": "제목순-정렬",
+            "slug": "테스트용-게시물들/제목순-정렬",
             "postCount": 8
           }
         ]
@@ -53,7 +53,7 @@
         "children": [
           {
             "name": "특별 시리즈",
-            "slug": "특별-시리즈",
+            "slug": "Javascript/특별-시리즈",
             "postCount": 1
           }
         ]
@@ -65,12 +65,12 @@
         "children": [
           {
             "name": "꿀팁 정리",
-            "slug": "꿀팁-정리",
+            "slug": "React/꿀팁-정리",
             "postCount": 1
           },
           {
             "name": "리액트 핵심정리",
-            "slug": "리액트-핵심정리",
+            "slug": "React/리액트-핵심정리",
             "postCount": 1
           }
         ]

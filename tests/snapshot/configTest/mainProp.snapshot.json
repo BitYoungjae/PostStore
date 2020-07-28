@@ -26,7 +26,7 @@
           "children": [
             {
               "name": "중첩된 경로",
-              "slug": "중첩된-경로",
+              "slug": "이름이-중복되는-경우/중첩된-경로",
               "postCount": 2
             }
           ]
@@ -53,6 +53,8 @@
     "buildTime": 0
   },
   "main": {
+    "slug": "page/1",
+    "pageCategory": "page",
     "count": 4,
     "currentPage": 1,
     "perPage": 4,

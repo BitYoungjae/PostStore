@@ -1,5 +1,7 @@
 {
   "특별-시리즈": {
+    "slug": "특별-시리즈",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,
@@ -26,6 +28,8 @@
     "totalPage": 1
   },
   "특별-시리즈/page/1": {
+    "slug": "특별-시리즈/page/1",
+    "pageCategory": "category",
     "count": 1,
     "currentPage": 1,
     "perPage": 5,

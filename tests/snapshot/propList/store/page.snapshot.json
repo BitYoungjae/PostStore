@@ -1,5 +1,7 @@
 {
   "page/1": {
+    "slug": "page/1",
+    "pageCategory": "page",
     "count": 10,
     "currentPage": 1,
     "perPage": 10,
@@ -230,6 +232,8 @@
     "totalPage": 5
   },
   "page/2": {
+    "slug": "page/2",
+    "pageCategory": "page",
     "count": 10,
     "currentPage": 2,
     "perPage": 10,
@@ -468,6 +472,8 @@
     "totalPage": 5
   },
   "page/3": {
+    "slug": "page/3",
+    "pageCategory": "page",
     "count": 10,
     "currentPage": 3,
     "perPage": 10,
@@ -697,6 +703,8 @@
     "totalPage": 5
   },
   "page/4": {
+    "slug": "page/4",
+    "pageCategory": "page",
     "count": 10,
     "currentPage": 4,
     "perPage": 10,
@@ -927,6 +935,8 @@
     "totalPage": 5
   },
   "page/5": {
+    "slug": "page/5",
+    "pageCategory": "page",
     "count": 2,
     "currentPage": 5,
     "perPage": 10,

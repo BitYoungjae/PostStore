@@ -1,5 +1,6 @@
 {
   "2020-06-22-자바스크립트의-모든-것-1탄": {
+    "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
     "postData": {
       "slug": "2020-06-22-자바스크립트의-모든-것-1탄",
       "title": "자바스크립트의 모든 거엇!",
@@ -18,9 +19,11 @@
       "excerpt": "",
       "thumbnail": ""
     },
-    "relatedPosts": []
+    "relatedPosts": [],
+    "pageCategory": "post"
   },
   "2020-06-23-자바스크립트-개껌이지": {
+    "slug": "2020-06-23-자바스크립트-개껌이지",
     "postData": {
       "slug": "2020-06-23-자바스크립트-개껌이지",
       "title": "개껌이라니까?",
@@ -36,9 +39,11 @@
       "excerpt": "그런 웃기는 소리하지마쇼.",
       "thumbnail": ""
     },
-    "relatedPosts": []
+    "relatedPosts": [],
+    "pageCategory": "post"
   },
   "2020-06-23-객체에-대하여": {
+    "slug": "2020-06-23-객체에-대하여",
     "postData": {
       "slug": "2020-06-23-객체에-대하여",
       "title": "객체에 대하여 알아봅시다",
@@ -54,6 +59,7 @@
       "excerpt": "",
       "thumbnail": ""
     },
-    "relatedPosts": []
+    "relatedPosts": [],
+    "pageCategory": "post"
   }
 }

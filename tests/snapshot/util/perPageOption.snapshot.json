@@ -1,6 +1,8 @@
 {
   "page": {
     "page/1": {
+      "slug": "page/1",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 1,
       "perPage": 2,
@@ -49,6 +51,8 @@
       "totalPage": 16
     },
     "page/2": {
+      "slug": "page/2",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 2,
       "perPage": 2,
@@ -101,6 +105,8 @@
       "totalPage": 16
     },
     "page/3": {
+      "slug": "page/3",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 3,
       "perPage": 2,
@@ -149,6 +155,8 @@
       "totalPage": 16
     },
     "page/4": {
+      "slug": "page/4",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 4,
       "perPage": 2,
@@ -201,6 +209,8 @@
       "totalPage": 16
     },
     "page/5": {
+      "slug": "page/5",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 5,
       "perPage": 2,
@@ -253,6 +263,8 @@
       "totalPage": 16
     },
     "page/6": {
+      "slug": "page/6",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 6,
       "perPage": 2,
@@ -301,6 +313,8 @@
       "totalPage": 16
     },
     "page/7": {
+      "slug": "page/7",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 7,
       "perPage": 2,
@@ -351,6 +365,8 @@
       "totalPage": 16
     },
     "page/8": {
+      "slug": "page/8",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 8,
       "perPage": 2,
@@ -403,6 +419,8 @@
       "totalPage": 16
     },
     "page/9": {
+      "slug": "page/9",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 9,
       "perPage": 2,
@@ -451,6 +469,8 @@
       "totalPage": 16
     },
     "page/10": {
+      "slug": "page/10",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 10,
       "perPage": 2,
@@ -503,6 +523,8 @@
       "totalPage": 16
     },
     "page/11": {
+      "slug": "page/11",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 11,
       "perPage": 2,
@@ -541,6 +563,8 @@
       "totalPage": 16
     },
     "page/12": {
+      "slug": "page/12",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 12,
       "perPage": 2,
@@ -582,6 +606,8 @@
       "totalPage": 16
     },
     "page/13": {
+      "slug": "page/13",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 13,
       "perPage": 2,
@@ -634,6 +660,8 @@
       "totalPage": 16
     },
     "page/14": {
+      "slug": "page/14",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 14,
       "perPage": 2,
@@ -686,6 +714,8 @@
       "totalPage": 16
     },
     "page/15": {
+      "slug": "page/15",
+      "pageCategory": "page",
       "count": 2,
       "currentPage": 15,
       "perPage": 2,
@@ -738,6 +768,8 @@
       "totalPage": 16
     },
     "page/16": {
+      "slug": "page/16",
+      "pageCategory": "page",
       "count": 1,
       "currentPage": 16,
       "perPage": 2,
@@ -766,6 +798,8 @@
   },
   "category": {
     "날짜순-정렬": {
+      "slug": "날짜순-정렬",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -836,6 +870,8 @@
       "totalPage": 2
     },
     "날짜순-정렬/page/1": {
+      "slug": "날짜순-정렬/page/1",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -906,6 +942,8 @@
       "totalPage": 2
     },
     "날짜순-정렬/page/2": {
+      "slug": "날짜순-정렬/page/2",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 2,
       "perPage": 3,
@@ -976,6 +1014,8 @@
       "totalPage": 2
     },
     "복합-정렬": {
+      "slug": "복합-정렬",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -1046,6 +1086,8 @@
       "totalPage": 3
     },
     "복합-정렬/page/1": {
+      "slug": "복합-정렬/page/1",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -1116,6 +1158,8 @@
       "totalPage": 3
     },
     "복합-정렬/page/2": {
+      "slug": "복합-정렬/page/2",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 2,
       "perPage": 3,
@@ -1190,6 +1234,8 @@
       "totalPage": 3
     },
     "복합-정렬/page/3": {
+      "slug": "복합-정렬/page/3",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 3,
       "perPage": 3,
@@ -1260,6 +1306,8 @@
       "totalPage": 3
     },
     "이름이-중복되는-경우": {
+      "slug": "이름이-중복되는-경우",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -1332,6 +1380,8 @@
       "totalPage": 2
     },
     "이름이-중복되는-경우/page/1": {
+      "slug": "이름이-중복되는-경우/page/1",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -1404,6 +1454,8 @@
       "totalPage": 2
     },
     "이름이-중복되는-경우/page/2": {
+      "slug": "이름이-중복되는-경우/page/2",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 2,
       "perPage": 3,
@@ -1474,6 +1526,8 @@
       "totalPage": 2
     },
     "이름이-중복되는-경우/중첩된-경로": {
+      "slug": "이름이-중복되는-경우/중첩된-경로",
+      "pageCategory": "category",
       "count": 2,
       "currentPage": 1,
       "perPage": 3,
@@ -1524,6 +1578,8 @@
       "totalPage": 1
     },
     "이름이-중복되는-경우/중첩된-경로/page/1": {
+      "slug": "이름이-중복되는-경우/중첩된-경로/page/1",
+      "pageCategory": "category",
       "count": 2,
       "currentPage": 1,
       "perPage": 3,
@@ -1574,6 +1630,8 @@
       "totalPage": 1
     },
     "제목순-정렬": {
+      "slug": "제목순-정렬",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -1644,6 +1702,8 @@
       "totalPage": 3
     },
     "제목순-정렬/page/1": {
+      "slug": "제목순-정렬/page/1",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 1,
       "perPage": 3,
@@ -1714,6 +1774,8 @@
       "totalPage": 3
     },
     "제목순-정렬/page/2": {
+      "slug": "제목순-정렬/page/2",
+      "pageCategory": "category",
       "count": 3,
       "currentPage": 2,
       "perPage": 3,
@@ -1788,6 +1850,8 @@
       "totalPage": 3
     },
     "제목순-정렬/page/3": {
+      "slug": "제목순-정렬/page/3",
+      "pageCategory": "category",
       "count": 2,
       "currentPage": 3,
       "perPage": 3,
@@ -1838,6 +1902,8 @@
   },
   "tag": {
     "다른건": {
+      "slug": "다른건",
+      "pageCategory": "tag",
       "count": 1,
       "currentPage": 1,
       "perPage": 4,
@@ -1861,6 +1927,8 @@
       "totalPage": 1
     },
     "다른건/page/1": {
+      "slug": "다른건/page/1",
+      "pageCategory": "tag",
       "count": 1,
       "currentPage": 1,
       "perPage": 4,
@@ -1884,6 +1952,8 @@
       "totalPage": 1
     },
     "다-있다": {
+      "slug": "다-있다",
+      "pageCategory": "tag",
       "count": 1,
       "currentPage": 1,
       "perPage": 4,
@@ -1907,6 +1977,8 @@
       "totalPage": 1
     },
     "다-있다/page/1": {
+      "slug": "다-있다/page/1",
+      "pageCategory": "tag",
       "count": 1,
       "currentPage": 1,
       "perPage": 4,
