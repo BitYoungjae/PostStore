@@ -47,5 +47,5 @@ export interface PropInfo {
 }
 
 export interface PropInfoNode extends PropInfo {
-  children?: PropInfoNode[];
+  childList?: PropInfoNode[];
 }

@@ -113,10 +113,10 @@ const makeCategoryTree = (rootNode: FileNode, isRoot = true): PropInfoNode => {
 
   for (const child of rootNode.children) {
     if (isCategoryNode(child)) {
-      if (!newNode.children) newNode.children = [];
+      if (!newNode.childList) newNode.childList = [];
 
       if (isRoot) {
-        newNode.children.push(makeCategoryTree(child, false));
+        newNode.childList.push(makeCategoryTree(child, false));
         continue;
       }
 
@@ -128,7 +128,7 @@ const makeCategoryTree = (rootNode: FileNode, isRoot = true): PropInfoNode => {
         false,
       );
 
-      newNode.children.push(childNode);
+      newNode.childList.push(childNode);
     }
   }
 
