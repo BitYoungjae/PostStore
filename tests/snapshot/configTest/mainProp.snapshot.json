@@ -8,7 +8,7 @@
       "name": "테스트용 게시물들",
       "slug": "테스트용-게시물들",
       "postCount": 31,
-      "children": [
+      "childList": [
         {
           "name": "날짜순 정렬",
           "slug": "날짜순-정렬",
@@ -23,7 +23,7 @@
           "name": "이름이 중복되는 경우",
           "slug": "이름이-중복되는-경우",
           "postCount": 6,
-          "children": [
+          "childList": [
             {
               "name": "중첩된 경로",
               "slug": "이름이-중복되는-경우/중첩된-경로",

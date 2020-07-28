@@ -6,7 +6,7 @@
     "name": "Javascript",
     "slug": "Javascript",
     "postCount": 3,
-    "children": [
+    "childList": [
       {
         "name": "특별 시리즈",
         "slug": "특별-시리즈",

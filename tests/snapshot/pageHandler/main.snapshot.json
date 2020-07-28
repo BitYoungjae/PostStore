@@ -8,12 +8,12 @@
       "name": "testPosts",
       "slug": "testPosts",
       "postCount": 42,
-      "children": [
+      "childList": [
         {
           "name": "테스트용 게시물들",
           "slug": "테스트용-게시물들",
           "postCount": 31,
-          "children": [
+          "childList": [
             {
               "name": "날짜순 정렬",
               "slug": "테스트용-게시물들/날짜순-정렬",
@@ -28,7 +28,7 @@
               "name": "이름이 중복되는 경우",
               "slug": "테스트용-게시물들/이름이-중복되는-경우",
               "postCount": 6,
-              "children": [
+              "childList": [
                 {
                   "name": "중첩된 경로",
                   "slug": "테스트용-게시물들/이름이-중복되는-경우/중첩된-경로",
@@ -52,7 +52,7 @@
           "name": "Javascript",
           "slug": "Javascript",
           "postCount": 3,
-          "children": [
+          "childList": [
             {
               "name": "특별 시리즈",
               "slug": "Javascript/특별-시리즈",
@@ -64,7 +64,7 @@
           "name": "React",
           "slug": "React",
           "postCount": 3,
-          "children": [
+          "childList": [
             {
               "name": "꿀팁 정리",
               "slug": "React/꿀팁-정리",
