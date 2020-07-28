@@ -1,6 +1,6 @@
 {
   "name": "poststore",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "description": "PostStore can be used with NEXT.JS to create markdown-based blogs.",
   "main": "./dist/index.js",
   "module": "./dist/esm/index.mjs",
