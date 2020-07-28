@@ -102,7 +102,7 @@ const makeGlobalProp = (rootNode: FileNode): PropList['global'] => {
   };
 };
 
-const makeCategoryTree = (rootNode: FileNode): PropInfoNode => {
+const makeCategoryTree = (rootNode: FileNode, isRoot = true): PropInfoNode => {
   const newNode: PropInfoNode = {
     name: rootNode.name,
     slug: rootNode.slug,
@@ -114,7 +114,21 @@ const makeCategoryTree = (rootNode: FileNode): PropInfoNode => {
   for (const child of rootNode.children) {
     if (isCategoryNode(child)) {
       if (!newNode.children) newNode.children = [];
-      newNode.children.push(makeCategoryTree(child));
+
+      if (isRoot) {
+        newNode.children.push(makeCategoryTree(child, false));
+        continue;
+      }
+
+      const childNode = makeCategoryTree(
+        {
+          ...child,
+          ...{ slug: `${newNode.slug}/${child.slug}` },
+        },
+        false,
+      );
+
+      newNode.children.push(childNode);
     }
   }
 
